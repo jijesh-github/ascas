@@ -1,0 +1,97 @@
+import Link from 'next/link';
+import { Mail, Phone, MapPin } from 'lucide-react';
+import { navLinks, services } from '@/utils/utils';
+
+const Footer = () => {
+  return (
+    <footer className="bg-gradient-to-r from-purple-50 to-pink-50">
+      <div className="container mx-auto px-4 md:px-6 pt-16 pb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Column 1 - About */}
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+              ASCAS Fertility
+            </h3>
+            <p className="text-gray-600 text-sm">
+              Providing compassionate fertility care and innovative treatments to help couples achieve their dream of
+              parenthood.
+            </p>
+            <div className="flex space-x-4 pt-2">
+              <a href="#" className="text-gray-500 hover:text-purple-600 transition-colors" aria-label="Facebook"></a>
+              <a href="#" className="text-gray-500 hover:text-purple-600 transition-colors" aria-label="Instagram"></a>
+              <a href="#" className="text-gray-500 hover:text-purple-600 transition-colors" aria-label="Twitter"></a>
+              <a href="#" className="text-gray-500 hover:text-purple-600 transition-colors" aria-label="LinkedIn"></a>
+            </div>
+          </div>
+
+          {/* Column 2 - Quick Links */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-gray-800">Quick Links</h3>
+            <ul className="space-y-2">
+              {navLinks.map(item => (
+                <li key={item.lable}>
+                  <Link href={item.path} className="text-gray-600 hover:text-purple-600 transition-colors text-sm">
+                    {item.lable}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3 - Services */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-gray-800">Our Services</h3>
+            <ul className="space-y-2">
+              {services.map(service => (
+                <li key={service}>
+                  <Link href="/" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">
+                    {service}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4 - Contact */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-gray-800">Contact Us</h3>
+            <ul className="space-y-3">
+              <li className="flex items-start">
+                <MapPin className="h-5 w-5 text-purple-500 mr-2 mt-0.5" />
+                <span className="text-gray-600 text-sm">
+                  24 Chowdhary Nagar Main Road Valasaravakkam, Chennai Tamil Nadu - 600087
+                </span>
+              </li>
+              <li className="flex items-center">
+                <Phone className="h-5 w-5 text-purple-500 mr-2" />
+                <span className="text-gray-600 text-sm">+91-9342521779</span>
+              </li>
+              <li className="flex items-center">
+                <Mail className="h-5 w-5 text-purple-500 mr-2" />
+                <span className="text-gray-600 text-sm">care@ascas.in</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-gray-200 mt-12 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-500 text-sm">
+              &copy; {new Date().getFullYear()} The Hive Fertility. All rights reserved.
+            </p>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <Link href="/privacy-policy" className="text-gray-500 hover:text-purple-600 text-sm">
+                Privacy Policy
+              </Link>
+              <Link href="/terms-of-service" className="text-gray-500 hover:text-purple-600 text-sm">
+                Terms of Service
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

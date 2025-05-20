@@ -3,11 +3,44 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Magento Primary Color and Variants */
+  --primary: #520029;
+  --primary-foreground: #ffffff;
+  --primary-hover: #6a0035;
+  --primary-muted: #ffd6e7;
+
+  --soft-primary: #fcd9d9;
+
+
+  /* Secondary (Orange) and Variants */
+  --secondary: #f97316; /* Orange-500 */
+  --secondary-foreground: #ffffff;
+  --secondary-hover: #ea580c; /* Orange-600 */
+  --secondary-muted: #ffedd5; /* Orange-100 */
+
+  --muted: #f3f4f6;     /* Gray-100 */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-muted: var(--primary-muted);
+
+  --color-soft-primary: var(--soft-primary);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-muted: var(--secondary-muted);
+
+  --color-muted: var(--muted);
+
+  --font-sans: var(--font-poppins);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -16,11 +49,40 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+
+    --primary: #520029;
+    --primary-foreground: #ffffff;
+    --primary-hover: #7a0042;
+    --primary-muted: #3c001e;
+
+    --soft-primary: #fcd9d9;
+
+    --secondary: #fb923c; /* Orange-400 */
+    --secondary-foreground: #000000;
+    --secondary-hover: #f97316; /* Orange-500 */
+    --secondary-muted: #78350f; /* Orange-900 */
+
+    --muted: #1f2937;     /* Gray-800 */
   }
 }
+
+/* body {
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+} */
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out both;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 }
