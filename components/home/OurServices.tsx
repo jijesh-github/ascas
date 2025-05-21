@@ -25,8 +25,8 @@ export default function OurServices() {
                 className={`flex items-center gap-2 px-6 py-3 rounded-full text-lg font-medium transition-all cursor-pointer
                 ${
                   activeTab === index
-                    ? 'bg-primary text-white shadow-lg'
-                    : 'bg-white text-gray-600 hover:bg-primary hover:text-white shadow-md'
+                    ? 'bg-pink-900 text-white shadow-lg'
+                    : 'bg-white text-gray-600 hover:bg-pink-900 hover:text-white shadow-md'
                 }`}>
                 {service.icon}
                 {service.title}

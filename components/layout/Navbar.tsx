@@ -44,7 +44,7 @@ export default function AnimatedUnderlineNavbar() {
             </Link>
           ))}
         </nav>
-        <Button className="hidden md:block bg-black text-white cursor-pointer" onClick={openForm}>
+        <Button className="hidden md:block bg-pink-900 hover:bg-primary text-white cursor-pointer" onClick={openForm}>
           Book Appointment
         </Button>
       </div>

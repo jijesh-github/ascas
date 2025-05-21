@@ -22,13 +22,13 @@ const CtaSection = () => {
         <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
           <a
             href="tel:+919342521779"
-            className="inline-flex items-center gap-2 text-sm font-medium bg-purple-600 text-white hover:bg-purple-700 transition rounded-full px-5 py-2">
+            className="inline-flex items-center gap-2 text-sm font-medium bg-pink-900 hover:bg-primary text-white transition rounded-full px-5 py-2">
             <Phone className="w-4 h-4" />
             Call +91-93425 21779
           </a>
           <Button
             size="sm"
-            className="rounded-full bg-purple-600 text-white hover:bg-purple-700 px-5 py-2 text-sm font-medium cursor-pointer"
+            className="rounded-full bg-pink-900 hover:bg-primary text-white px-5 py-2 text-sm font-medium cursor-pointer"
             onClick={openForm}>
             Book an Appointment
           </Button>

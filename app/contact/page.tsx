@@ -76,7 +76,7 @@ export default function ContactPage() {
             {/* Quick Actions */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Button
-                className="w-full  font-medium py-2 px-4 rounded-md hover:bg-primary transition bg-black text-white cursor-pointer"
+                className="w-full  font-medium py-2 px-4 rounded-md  bg-pink-900 hover:bg-primary transition text-white cursor-pointer"
                 onClick={openForm}>
                 1-Click Appointment
               </Button>
@@ -131,7 +131,7 @@ export default function ContactPage() {
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                   placeholder="Type your message here..."></Textarea>
               </div>
-              <Button className="w-full  font-medium py-2 px-4 rounded-md hover:bg-primary transition bg-black text-white ">
+              <Button className="w-full  font-medium py-2 px-4 rounded-md  transition  bg-pink-900 hover:bg-primary text-white ">
                 Send Message
               </Button>
             </form>

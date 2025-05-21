@@ -31,9 +31,7 @@ const HeroSection = () => {
                   className="bg-primary text-white hover:bg-white hover:text-primary font-medium px-6 cursor-pointer">
                   Book a Free First Chat
                 </Button> */}
-                <Button
-                  size="lg"
-                  className="bg-primary text-white hover:bg-white hover:text-primary font-medium px-6 cursor-pointer">
+                <Button size="lg" className="text-white bg-pink-900 hover:bg-primary font-medium px-6 cursor-pointer">
                   Call Back / Video consulting
                 </Button>
                 {/*  <Button
