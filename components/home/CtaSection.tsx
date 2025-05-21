@@ -9,7 +9,7 @@ const CtaSection = () => {
 
   return (
     <section className="bg-gray-300 border border-gray-200 rounded-2xl px-6 py-8 sm:px-10 sm:py-10 shadow-sm">
-      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+      <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-4 text-center md:text-left">
         {/* Text Section */}
         <div>
           <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-2">Ready to Start Your Family Journey?</h2>
@@ -22,9 +22,9 @@ const CtaSection = () => {
         <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
           <a
             href="tel:+919342521779"
-            className="inline-flex items-center gap-2 text-sm font-medium bg-pink-900 hover:bg-primary text-white transition rounded-full px-5 py-2">
-            <Phone className="w-4 h-4" />
-            Call +91-93425 21779
+            className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium bg-pink-900 hover:bg-primary text-white transition rounded-full px-5 py-2 min-w-[230px] gap-2">
+            <Phone className="w-4 h-4 shrink-0" />
+            <span className="truncate">Call +91-93425 21779</span>
           </a>
           <Button
             size="sm"
