@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import DoctorAppointmentForm from '../booking/DoctorAppointmentForm';
+import CountUp from './CountUp';
 
 const HeroSection = () => {
   return (
@@ -53,11 +54,23 @@ const HeroSection = () => {
               {[
                 { label: 'Success Rate', value: '75%' },
                 { label: 'Happy Families', value: '1000+' },
-                // { label: 'Experienced Doctors', value: '25+' },
                 { label: 'Years of Service', value: '15+' }
               ].map((stat, index) => (
-                <div key={index} className="text-center p-4 rounded-lg bg-white/10 backdrop-blur-sm">
-                  <p className="text-3xl md:text-4xl font-bold text-white mb-1">{stat.value}</p>
+                <div
+                  key={index}
+                  className={`text-center p-4 rounded-lg bg-white/10 backdrop-blur-sm opacity-0 animate-fade-up delay-${index}`}>
+                  {/* <p className="text-3xl md:text-4xl font-bold text-white mb-1">{stat.value}</p> */}
+                  <p className="text-3xl md:text-4xl font-bold text-white mb-1">
+                    {stat.value.includes('+') || stat.value.includes('%') ? (
+                      <CountUp
+                        end={parseInt(stat.value.replace(/\D/g, ''))}
+                        suffix={stat.value.match(/[+%]/)?.[0] || ''}
+                      />
+                    ) : (
+                      <CountUp end={parseInt(stat.value)} />
+                    )}
+                  </p>
+
                   <p className="text-sm text-white/80">{stat.label}</p>
                 </div>
               ))}
