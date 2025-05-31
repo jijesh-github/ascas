@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { useDoctorForm } from '@/context/DoctorFormContext';
-import { MessageSquare, Phone } from 'lucide-react';
+import { MessageSquare } from 'lucide-react';
 
 const CtaSection = () => {
   const { openForm } = useDoctorForm();
