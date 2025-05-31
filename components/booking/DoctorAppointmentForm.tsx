@@ -20,7 +20,7 @@ const countryCodes = [
 
 export default function DoctorAppointmentForm() {
   const [form, setForm] = useState({
-    location: '',
+    location: 'Chennai',
     name: '',
     countryCode: '+91',
     phone: '',
@@ -88,20 +88,6 @@ export default function DoctorAppointmentForm() {
       <form onSubmit={handleSubmit} className="max-w-sm mx-auto p-6 bg-white rounded-2xl shadow-md space-y-4">
         <h2 className="text-xl font-semibold text-center">Book Appointment</h2>
 
-        {/* Location */}
-        <div className="relative">
-          <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5" />
-          <input
-            type="text"
-            name="location"
-            placeholder="Clinic Location"
-            value={form.location}
-            onChange={handleChange}
-            required
-            className="w-full pl-10 pr-3 py-2 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
-          />
-        </div>
-
         {/* Name */}
         <div className="relative">
           <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -127,6 +113,21 @@ export default function DoctorAppointmentForm() {
             value={form.email}
             onChange={handleChange}
             required
+            className="w-full pl-10 pr-3 py-2 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
+          />
+        </div>
+
+        {/* Location */}
+        <div className="relative">
+          <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5" />
+          <input
+            type="text"
+            name="location"
+            placeholder="Clinic Location"
+            value={form.location}
+            onChange={handleChange}
+            required
+            disabled
             className="w-full pl-10 pr-3 py-2 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
           />
         </div>
@@ -167,7 +168,9 @@ export default function DoctorAppointmentForm() {
           type="submit"
           disabled={isSubmitting}
           className={`w-full font-medium py-2 px-4 rounded-md transition ${
-            isSubmitting ? 'bg-gray-400 cursor-not-allowed' : ' bg-pink-900 hover:bg-primary text-white cursor-pointer'
+            isSubmitting
+              ? 'bg-gray-400 cursor-not-allowed'
+              : ' bg-primary hover:bg-primary-hover text-white cursor-pointer'
           }`}>
           {isSubmitting ? 'Submitting...' : 'Submit'}
         </Button>

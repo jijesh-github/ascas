@@ -5,9 +5,9 @@
   --foreground: #171717;
 
   /* Magento Primary Color and Variants */
-  --primary: #520029;
+  --primary: #570026;
   --primary-foreground: #ffffff;
-  --primary-hover: #6a0035;
+  --primary-hover: #861043;
   --primary-muted: #ffd6e7;
 
   --soft-primary: #fcd9d9;
@@ -50,9 +50,9 @@
     --background: #0a0a0a;
     --foreground: #ededed;
 
-    --primary: #520029;
+    --primary: #570026;
     --primary-foreground: #ffffff;
-    --primary-hover: #7a0042;
+    --primary-hover: #861043;
     --primary-muted: #3c001e;
 
     --soft-primary: #fcd9d9;

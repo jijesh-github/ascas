@@ -1,33 +1,19 @@
+'use client';
 import { Pill, Syringe, Bone, Armchair, Scan } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 export default function ClinicalFacilities() {
   const facilitiesList = [
-    {
-      title: 'Surgical & Diagnostics',
-      image: '/images/faclities/01.jpg'
-    },
-    {
-      title: 'Surgical & Diagnostics',
-      image: '/images/faclities/02.jpg'
-    },
-    {
-      title: 'Surgical & Diagnostics',
-      image: '/images/faclities/03.jpg'
-    },
-    {
-      title: 'Surgical & Diagnostics',
-      image: '/images/faclities/04.jpg'
-    },
-    {
-      title: 'Surgical & Diagnostics',
-      image: '/images/faclities/04.jpg'
-    },
-    {
-      title: 'Surgical & Diagnostics',
-      image: '/images/faclities/04.jpg'
-    }
+    { title: 'OPD Waiting Hall', image: '/images/faclities/01.jpeg' },
+    { title: 'OPD Waiting Hall', image: '/images/faclities/02.jpeg' },
+    { title: 'Our IUI Lab', image: '/images/faclities/03.jpeg' },
+    { title: 'Our IUI Room', image: '/images/faclities/04.jpeg' },
+    // { title: 'Our Counseling and Physiotherapy Room', image: '/images/faclities/05.jpeg' },
+    { title: 'Our scan suite', image: '/images/faclities/06.jpeg' },
+    { title: 'Surgical & Diagnostics', image: '/images/faclities/07.jpeg' },
+    { title: 'Our Consultation Room', image: '/images/faclities/08.jpeg' }
   ];
 
   const facilities = [
@@ -62,6 +48,35 @@ export default function ClinicalFacilities() {
     }
   ];
 
+  const [randomFacilities, setRandomFacilities] = useState<{ title: string; image: string }[]>([]);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  useEffect(() => {
+    let cycleTimeout: NodeJS.Timeout;
+
+    const startCycle = () => {
+      // No loading block now
+      setIsAnimating(true);
+
+      const shuffled = [...facilitiesList].sort(() => 0.5 - Math.random());
+      setRandomFacilities(shuffled.slice(0, 6));
+
+      // Remove animation class after 500ms (duration of fade-in)
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, 500);
+
+      // Schedule next cycle
+      cycleTimeout = setTimeout(() => {
+        startCycle();
+      }, 30000);
+    };
+
+    startCycle();
+
+    return () => clearTimeout(cycleTimeout);
+  }, []);
+
   return (
     <div className="bg-white">
       <div className="max-w-7xl mx-auto px-4 py-16 space-y-20">
@@ -69,35 +84,33 @@ export default function ClinicalFacilities() {
         <div className="space-y-12">
           <div className="text-center space-y-4">
             <h2 className="text-4xl font-bold text-pink-800">Clinic Facilities</h2>
-            {/* <p className="text-primary text-lg max-w-2xl mx-auto">
-              Modern infrastructure designed for exceptional patient care
-            </p> */}
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Image Gallery */}
             <div className="grid grid-cols-2 gap-4">
-              {facilitiesList.map((item, i) => (
+              {randomFacilities.map((item, i) => (
                 <Link
                   key={i}
-                  href=""
-                  className="relative block group overflow-hidden rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 bg-white max-w-xs mx-auto">
+                  href="#"
+                  className={`relative block overflow-hidden rounded-lg shadow-lg bg-white max-w-xs mx-auto
+                    transition-opacity duration-500 transform
+                    ${isAnimating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}
+                  `}>
                   <div className="p-4">
-                    <div className="overflow-hidden rounded-lg ">
+                    <div className="overflow-hidden rounded-lg">
                       <Image
                         src={item.image}
                         alt={item.title}
                         width={420}
                         height={420}
-                        className="object-cover w-full h-auto transition-transform duration-300 group-hover:scale-110"
+                        className="object-cover w-full h-auto"
                       />
                     </div>
-                    <div className="mt-4 text-center transition-all duration-300 group-hover:-translate-y-2">
+                    <div className="mt-4 text-center">
                       <p className="text-sm text-gray-600 mt-1">{item.title}</p>
                     </div>
                   </div>
-
-                  {/* Full link overlay (optional but not necessary since Link wraps all content) */}
                   <span className="absolute inset-0 z-10" />
                 </Link>
               ))}

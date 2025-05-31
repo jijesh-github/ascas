@@ -17,7 +17,7 @@ const HeroSection = () => {
         <div className="container mx-auto px-4 md:px-6 pt-24 relative z-10">
           <div className="max-w-3xl">
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight">
-              Unlock the Miracle of Life with ASCAS Fertility & Maternity Clinic
+              Unlock the Miracle of Life with Accumed Speciality Clinic and Scans
             </h1>
 
             <p className="text-lg italic md:text-2xl text-white/90 mb-8 max-w-2xl">
@@ -25,12 +25,17 @@ const HeroSection = () => {
             </p>
 
             {/* Stack on small screens, row on medium and up */}
-            <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+            <div className="flex flex-col lg:flex-row items-center md:items-center gap-8">
               <div className="flex flex-col gap-4 md:gap-6 w-full md:w-auto">
                 <Button
                   size="lg"
-                  className="text-white bg-pink-900 hover:bg-primary font-medium px-6 cursor-pointer w-full md:w-auto">
-                  Call Back / Video consulting
+                  className="text-white bg-primary hover:bg-primary-hover font-medium px-6 cursor-pointer w-full md:w-auto">
+                  Call Back
+                </Button>
+                <Button
+                  size="lg"
+                  className="text-white bg-primary hover:bg-primary-hover font-medium px-6 cursor-pointer w-full md:w-auto">
+                  Booking for Video consulting
                 </Button>
               </div>
 
@@ -39,11 +44,12 @@ const HeroSection = () => {
               </div>
             </div>
 
-            <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-6 md:gap-8">
+            <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 md:gap-8">
               {[
-                { label: 'Success Rate', value: '75%' },
-                { label: 'Happy Families', value: '1000+' },
-                { label: 'Years of Service', value: '15+' }
+                { label: 'Successful IVF Treatments', value: '1000+' },
+                { label: 'Successful IUI Treatments', value: '5000+' },
+                { label: 'Successful Laparoscopic', value: '2000+' },
+                { label: 'Successful Natural', value: '1000+' }
               ].map((stat, index) => (
                 <div key={index} className={`text-center p-4 rounded-lg bg-white/10 backdrop-blur-sm animate-fade-up`}>
                   <p className="text-3xl md:text-4xl font-bold text-white mb-1">

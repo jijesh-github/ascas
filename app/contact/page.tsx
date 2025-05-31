@@ -141,7 +141,7 @@ export default function ContactPage() {
         {/* Map Section */}
         <div className="rounded-2xl overflow-hidden shadow-xl">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.3473770435723!2d80.191672315346!3d13.047871216559087!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5267adcc4b2f7b%3A0x2a9e939e2909bc90!2s24%2C%20Chowdhary%20Nagar%20Main%20Rd%2C%20Valasaravakkam%2C%20Chennai%2C%20Tamil%20Nadu%20600087!5e0!3m2!1sen!2sin!4v1624966504762!5m2!1sen!2sin"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d230.91300280639618!2d80.18052373469796!3d13.04012077225027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52614cc3a6016b%3A0xe59e9878a0ae65c2!2s24%2C%20Chowdry%20Nagar%20Main%20Rd%2C%20opposite%20vasanthi%20dental%20hospital%2C%20Chowthri%20Nagar%2C%20Valasaravakkam%2C%20Chennai%2C%20Tamil%20Nadu%20600087!5e1!3m2!1sen!2sin!4v1748695987640!5m2!1sen!2sin"
             width="100%"
             height="450"
             style={{ border: 0 }}

@@ -5,6 +5,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { DoctorFormProvider } from '@/context/DoctorFormContext';
 import DoctorFormModal from '@/components/ui/DoctorFormModal';
+import FloatingContactButtons from '@/components/layout/FloatingContactButtons';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -37,7 +38,9 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}>
         <DoctorFormProvider>
           <Navbar />
-          <div className="pt-[76px]">{children}</div>
+          {/* <div className="pt-[76px]">{children}</div> */}
+          <div>{children}</div>
+          <FloatingContactButtons />
           <DoctorFormModal />
           <Footer />
         </DoctorFormProvider>

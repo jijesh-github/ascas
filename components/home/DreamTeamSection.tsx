@@ -13,7 +13,7 @@ export default function DreamTeamSection() {
             <div
               key={idx}
               className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 p-5 sm:p-6">
-              <div className="relative w-full h-60 overflow-hidden rounded-2xl mb-5">
+              <div className="relative w-full h-68 overflow-hidden rounded-2xl mb-5">
                 <Image
                   src={doc.image}
                   alt={doc.name}
