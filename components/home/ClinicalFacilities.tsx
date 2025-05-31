@@ -2,7 +2,6 @@
 import { Pill, Syringe, Bone, Armchair, Scan } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 
 export default function ClinicalFacilities() {
   const facilitiesList = [
