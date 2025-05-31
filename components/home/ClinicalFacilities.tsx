@@ -10,9 +10,7 @@ export default function ClinicalFacilities() {
     { title: 'OPD Waiting Hall', image: '/images/faclities/02.jpeg' },
     { title: 'Our IUI Lab', image: '/images/faclities/03.jpeg' },
     { title: 'Our IUI Room', image: '/images/faclities/04.jpeg' },
-    // { title: 'Our Counseling and Physiotherapy Room', image: '/images/faclities/05.jpeg' },
     { title: 'Our scan suite', image: '/images/faclities/06.jpeg' },
-    { title: 'Surgical & Diagnostics', image: '/images/faclities/07.jpeg' },
     { title: 'Our Consultation Room', image: '/images/faclities/08.jpeg' }
   ];
 
@@ -48,10 +46,10 @@ export default function ClinicalFacilities() {
     }
   ];
 
-  const [randomFacilities, setRandomFacilities] = useState<{ title: string; image: string }[]>([]);
-  const [isAnimating, setIsAnimating] = useState(false);
+  // const [randomFacilities, setRandomFacilities] = useState<{ title: string; image: string }[]>([]);
+  // const [isAnimating, setIsAnimating] = useState(false);
 
-  useEffect(() => {
+  /* useEffect(() => {
     let cycleTimeout: NodeJS.Timeout;
 
     const startCycle = () => {
@@ -75,7 +73,7 @@ export default function ClinicalFacilities() {
     startCycle();
 
     return () => clearTimeout(cycleTimeout);
-  }, []);
+  }, []); */
 
   return (
     <div className="bg-white">
@@ -89,13 +87,13 @@ export default function ClinicalFacilities() {
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Image Gallery */}
             <div className="grid grid-cols-2 gap-4">
-              {randomFacilities.map((item, i) => (
+              {facilitiesList.map((item, i) => (
                 <Link
                   key={i}
                   href="#"
                   className={`relative block overflow-hidden rounded-lg shadow-lg bg-white max-w-xs mx-auto
                     transition-opacity duration-500 transform
-                    ${isAnimating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}
+                    
                   `}>
                   <div className="p-4">
                     <div className="overflow-hidden rounded-lg">

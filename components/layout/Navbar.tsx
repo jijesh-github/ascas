@@ -35,7 +35,7 @@ export default function AnimatedUnderlineNavbar() {
             alt="ascas logo"
             width={99}
             height={99}
-            className="transition-transform duration-300 hover:scale-105"
+            className="transition-transform duration-300"
           />
         </Link>
 

@@ -24,7 +24,7 @@ export default function TeamPage() {
             return (
               <div
                 key={index}
-                className="bg-white rounded-2xl p-8 shadow-xl hover:transform hover:-translate-y-2 transition-all duration-300">
+                className="bg-white rounded-2xl p-4 shadow-xl hover:transform hover:-translate-y-2 transition-all duration-300">
                 {/* Doctor Image */}
                 <div className="relative h-64 w-full mb-6 rounded-xl overflow-hidden">
                   <Image
@@ -37,12 +37,15 @@ export default function TeamPage() {
                 </div>
 
                 {/* Doctor Info */}
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="text-purple-600">{doctor.icon}</div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-pink-800">{doctor.name}</h3>
-                </div>
+                <div className="flex items-center flex-col">
+                  <div className="flex items-center mb-1 gap-3">
+                    <div className="text-purple-600">{doctor.icon}</div>
+                    <h3 className="text-xl sm:text-2xl font-bold text-pink-800">{doctor.name}</h3>
+                  </div>
+                  <p className="text-base text-primary font-semibold  mb-1">{doctor.qualification}</p>
 
-                <p className="text-base text-gray-600 mb-3">{doctor.role}</p>
+                  <p className="text-base text-primary font-semibold  mb-3">{doctor.role}</p>
+                </div>
 
                 <div className="mb-4">
                   <p className="text-sm sm:text-base text-gray-700 leading-relaxed">{doctor.about}</p>

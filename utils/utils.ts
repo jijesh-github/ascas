@@ -2,7 +2,7 @@ import { iconList } from './iconList';
 export const services = [
   'IVF/ICSI',
   'IUI',
-  'Egg/Sperm Freezing',
+  'Fertility Preservation, Fertility Enhancing Surgeries',
   'Male/Female Infertility Workups',
   'PCOS & Fibroid Management'
 ];
@@ -10,7 +10,8 @@ export const services = [
 export const doctors = [
   {
     name: 'Dr. Aishwarya Parthasarathy',
-    role: 'Gynecologist, Fertility Specialist & IVF Expert',
+    role: 'Consultant Gynecologist and Fertility Specialist',
+    qualification: 'MD(OG), DNB(OG),  FNB(RM), MRCOG(UK)',
     about:
       'Dr. Aishwarya Parthasarathy is a highly acclaimed Gynecologist, Fertility Specialist, and IVF Expert with a proven track record of helping women achieve their reproductive goals. With an MD (ObGyn) from AIIMS, New Delhi, and advanced training in Reproductive Medicine, Dr. Aishwarya Parthasarathy brings a wealth of knowledge and expertise to her practice.',
     image: '/images/doctor/aishwarya.jpeg',
@@ -26,6 +27,7 @@ export const doctors = [
   {
     name: 'Dr. Ashwin Muralidharan',
     role: 'Consultant Radiologist',
+    qualification: 'MBBS, MDRD, DNB(RD), FRCR(UK)',
     about: `Dr. Ashwin Muralidharan is a highly skilled Consultant Radiologist and Fetal Imaging Specialist with a passion for diagnosing and interpreting complex medical images. With a FRCR (UK) and DNB (Radiodiagnosis) with Distinction, Dr. Ashwin Muralidharan has consistently demonstrated a mastery of radiological techniques.`,
     image: '/images/doctor/ashwin.jpeg',
     icon: iconList.scanLine,
@@ -40,6 +42,7 @@ export const doctors = [
   {
     name: 'Dr. M. Ashokkumar',
     role: 'Consultant Surgical Gastroenterologist (SGE)',
+    qualification: '',
     image: '/images/doctor/ashok.jpeg',
     about: `Dr. M. Ashokkumar is a renowned Surgical Gastroenterologist and Laparoscopy Pioneer with a remarkable track record of performing complex surgeries with precision and care. With an (link unavailable) in Surgical Gastroenterology and advanced training in laparoscopy, Dr. Ashokkumar has perfected the art of minimally invasive surgery.`,
     icon: iconList.microscope,
@@ -77,13 +80,7 @@ export const servicesList = [
   {
     title: 'Fertility Care',
     icon: iconList.heartPulse,
-    items: [
-      'IVF/ICSI',
-      'IUI',
-      'Fertility Preservation, Fertility Enhancing Surgeries',
-      'Male/Female Infertility Workups',
-      'PCOS & Fibroid Management'
-    ]
+    items: services
   },
   {
     title: 'Pregnancy Support',
