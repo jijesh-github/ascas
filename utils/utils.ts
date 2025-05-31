@@ -85,7 +85,7 @@ export const servicesList = [
   {
     title: 'Pregnancy Support',
     icon: iconList.baby,
-    items: ['Pregnancy Related Blood Investigations', 'NT, Anomaly and Growth Scan ', 'Pregenancy Related Vaccinations']
+    items: ['Pregnancy Related Blood Investigations', 'NT, Anomaly and Growth Scans', 'Pregenancy Related Vaccinations']
   },
   {
     title: 'Surgical & Diagnostics',
