@@ -23,18 +23,19 @@ export default function AnimatedUnderlineNavbar() {
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
-    <header className={`fixed top-0 w-full z-50 bg-white ${isScrolled ? 'shadow-md' : ''}`}>
-      <div className="container mx-auto flex items-center justify-between px-4 py-3">
+    // <header className={`fixed top-0 w-full z-50 bg-white ${isScrolled ? 'shadow-md' : ''}`}>
+    <header className={` top-0 w-full z-50 bg-white ${isScrolled ? '' : ''}`}>
+      <div className="container mx-auto flex items-center justify-between px-4 py-1">
         {/* Logo */}
         <Link
           href="/"
-          className="inline-flex items-center justify-center p-1.5 bg-white rounded-full shadow-md hover:shadow-lg transition-all duration-300">
+          className="inline-flex items-center justify-center p-1.5 bg-primary rounded-md shadow-md hover:shadow-lg transition-all duration-300">
           <Image
-            src="/logo.webp"
+            src="/logo.png"
             alt="ascas logo"
-            width={64}
-            height={64}
-            className="rounded-md transition-transform duration-300 hover:scale-105"
+            width={99}
+            height={99}
+            className="transition-transform duration-300 hover:scale-105"
           />
         </Link>
 
@@ -60,7 +61,9 @@ export default function AnimatedUnderlineNavbar() {
 
           <div className="h-6 w-px bg-gray-400" />
 
-          <Button className="bg-pink-900 hover:bg-primary text-white font-medium" onClick={openForm}>
+          <Button
+            className="bg-primary hover:bg-primary-hover text-white font-medium cursor-pointer"
+            onClick={openForm}>
             Book Appointment
           </Button>
         </div>
