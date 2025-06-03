@@ -9,7 +9,7 @@ export default function ClinicalFacilities() {
     { title: 'OPD Waiting Hall', image: '/images/faclities/02.jpeg' },
     { title: 'Our IUI Lab', image: '/images/faclities/03.jpeg' },
     { title: 'Our IUI Room', image: '/images/faclities/04.jpeg' },
-    { title: 'Our scan suite', image: '/images/faclities/06.jpeg' },
+    { title: 'Our Scan Suite', image: '/images/faclities/06.jpeg' },
     { title: 'Our Consultation Room', image: '/images/faclities/08.jpeg' }
   ];
 

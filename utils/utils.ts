@@ -10,47 +10,47 @@ export const services = [
 export const doctors = [
   {
     name: 'Dr. Aishwarya Parthasarathy',
-    role: 'Consultant Gynecologist and Fertility Specialist',
-    qualification: 'MD(OG), DNB(OG),  FNB(RM), MRCOG(UK)',
+    role: 'Consultant Gynaecologist and Fertility Specialist',
+    qualification: 'MD (OG), DNB (OG), FNB (RM), MRCOG (UK)',
     about:
-      'Dr. Aishwarya Parthasarathy is a highly acclaimed Gynecologist, Fertility Specialist, and IVF Expert with a proven track record of helping women achieve their reproductive goals. With an MD (ObGyn) from AIIMS, New Delhi, and advanced training in Reproductive Medicine, Dr. Aishwarya Parthasarathy brings a wealth of knowledge and expertise to her practice.',
+      'Dr. Aishwarya Parthasarathy is a highly acclaimed Gynaecologist, Fertility Specialist, and IVF Expert with a proven track record of helping women achieve their reproductive goals. Dr. Aishwarya holds an MD in Obstetrics and Gynaecology from AIIMS, New Delhi, and has further specialized with a Fellowship of National Board (FNB) in Reproductive Medicine. With extensive experience from prestigious institutions such as JIPMER, AIIMS, IRM-MMM, and several other leading hospitals, she brings a wealth of knowledge and expertise to her clinical practice.',
     image: '/images/doctor/aishwarya.jpeg',
     icon: iconList.stethoscope,
     philosophy: `Dr. Aishwarya Parthasarathy is known for her compassionate and patient-centric approach. She takes the time to understand each patient's unique needs and concerns, tailoring her treatment plans to meet their individual requirements.`,
     expertise: [
-      'Complex IVF cases',
-      'PCOS and endometriosis management',
-      'Laporoscopic Gynaec surgeries, Obstetrics Management',
-      'Fertility preservation and egg freezing'
+      'Complex IVF cases.',
+      'PCOS and Endometriosis Management.',
+      'Laparoscopic Gynaecological surgeries, Obstetric care.',
+      'Fertility preservation and egg freezing.'
     ]
   },
   {
     name: 'Dr. Ashwin Muralidharan',
     role: 'Consultant Radiologist',
-    qualification: 'MBBS, MDRD, DNB(RD), FRCR(UK)',
-    about: `Dr. Ashwin Muralidharan is a highly skilled Consultant Radiologist and Fetal Imaging Specialist with a passion for diagnosing and interpreting complex medical images. With a FRCR (UK) and DNB (Radiodiagnosis) with Distinction, Dr. Ashwin Muralidharan has consistently demonstrated a mastery of radiological techniques.`,
+    qualification: 'MBBS, MDRD, DNB (RD), FRCR (UK)',
+    about: `Dr. Ashwin Muralidharan is a highly skilled Consultant Radiologist and Fetal Imaging Specialist with a passion for diagnosing and interpreting complex medical images. Holding FRCR (UK) and DNB (Radiodiagnosis) with distinction, Dr. Ashwin Muralidharan has consistently demonstrated mastery in radiological techniques.`,
     image: '/images/doctor/ashwin.jpeg',
     icon: iconList.scanLine,
-    philosophy: `Dr. Ashwin Muralidharan is committed to providing accurate and compassionate care. He works closely with patients and healthcare providers to ensure that imaging results are interpreted in the context of overall health and well-being.`,
+    philosophy: `He is committed to delivering precise diagnostics and empathetic care. He collaborates closely with patients and healthcare providers to ensure imaging results are interpreted within the broader context of overall health and well-being.`,
     expertise: [
       'Gynecological Imaging: Fibroids, Endometriosis, Adenomyosis, Ovarian Cysts & Uterine Anomalies.',
       'Cross-Sectional Imaging (CT, MRI, PET-CT) with special focus on Onco-Imaging and Musculoskeletal Imaging.',
-      'Renowned for 3D/4D USC Imaging of Fetal & Uterine Anomalies.',
-      'Male infertility imaging (Scrotal Doppler/ Cross sectional imaging male pelvis)'
+      'Renowned for 3D/4D USG imaging of Fetal and Uterine Anomalies.',
+      'Male infertility imaging (Scrotal Doppler and Cross-Sectional imaging of the male pelvis).'
     ]
   },
   {
-    name: 'Dr. M. Ashokkumar',
-    role: 'Consultant Surgical Gastroenterologist (SGE)',
+    name: 'Dr. M. Ashok kumar',
+    role: 'Consultant Surgical Gastroenterologist',
     qualification: '',
     image: '/images/doctor/ashok.jpeg',
-    about: `Dr. M. Ashokkumar is a renowned Surgical Gastroenterologist and Laparoscopy Pioneer with a remarkable track record of performing complex surgeries with precision and care. With an (link unavailable) in Surgical Gastroenterology and advanced training in laparoscopy, Dr. Ashokkumar has perfected the art of minimally invasive surgery.`,
+    about: `Dr. M. Ashok Kumar is a renowned Surgical Gastroenterologist and a pioneer in laparoscopic surgery, with an exceptional track record in performing advanced procedures with precision and compassion.`,
     icon: iconList.microscope,
     philosophy: `Dr. Ashokkumar is dedicated to providing patient-centered care, ensuring that each patient receives personalized attention and support throughout their treatment journey. He is committed to staying at the forefront of surgical innovation, ensuring that his patients receive the most advanced and effective treatments available.`,
     expertise: [
-      'Advanced minimally invasive laparoscopic Surgeries in GI/LIVER/PANCREAS/SPLEEN',
-      'Minimally invasive laproscopic management for HERNIA/GALL BLADDER STONE/APPENDICITIS Hepatobiliary, pancreas and Gastrointestinal CANCER SURGEON Endoscopy and colonoscopy specialist',
-      'Advanced Management of haemorrhoids/Fissure/Fistula in ano'
+      'Advanced minimally invasive laparoscopic surgeries involving the gastrointestinal (GI) tract, liver, pancreas, and spleen.',
+      'Minimally invasive laparoscopic management of hernia, gallbladder stones, and appendicitis. Specialist in hepatobiliary, pancreatic, and gastrointestinal cancers. Expert in endoscopy and colonoscopy.',
+      'Advanced management of hemorrhoids, fissures, and fistulas in the anal region.'
     ]
   }
 ];
@@ -100,4 +100,39 @@ export const navLinks = [
   { lable: 'Services', path: '/services' },
   { lable: 'Our Team', path: '/team' },
   { lable: 'Contact', path: 'contact' }
+];
+
+export const imageGallery = [
+  {
+    src: '/images/gallery/01.jpeg',
+    alt: 'Dr. Aishwarya with her FNB Batchmates in Institute of Reproductive Medicine – MMM Hospital, Chennai.',
+    caption: 'Dr. Aishwarya with her FNB Batchmates in Institute of Reproductive Medicine – MMM Hospital, Chennai.'
+  },
+  {
+    src: '/images/gallery/02.jpeg',
+    alt: 'Dr.Aishwarya shared the stage with the top fertility specialist of Tamilnadu in IFS CME.',
+    caption: 'Dr.Aishwarya shared the stage with the top fertility specialist of Tamilnadu in IFS CME.'
+  },
+  {
+    src: '/images/gallery/03.jpeg',
+    alt: 'Dr. Aishwarya has been recognized by her mentor, Dr. K. M. Kundavi Shankar, Lead Consultant at the Institute of Reproductive Medicine, MMM Hospital, for her dedication, clinical expertise, and contributions to the field of reproductive medicine.',
+    caption:
+      'Dr. Aishwarya has been recognized by her mentor, Dr. K. M. Kundavi Shankar, Lead Consultant at the Institute of Reproductive Medicine, MMM Hospital, for her dedication, clinical expertise, and contributions to the field of reproductive medicine.'
+  },
+  {
+    src: '/images/gallery/04.jpeg',
+    alt: 'Dr.Aishwarya Parthasarathy shared the stage with Dr.G.Buvaneswari Medical Director of GBR Fertility Center.',
+    caption:
+      'Dr.Aishwarya Parthasarathy shared the stage with Dr.G.Buvaneswari Medical Director of GBR Fertility Center.'
+  },
+  {
+    src: '/images/gallery/05.jpeg',
+    alt: 'Dr.Aishwarya performing laparoscopic surgery.',
+    caption: 'Dr.Aishwarya performing laparoscopic surgery.'
+  },
+  {
+    src: '/images/gallery/06.jpeg',
+    alt: 'Dr. Aishwarya with her mentor – Professor.Dr.Sunesh (AIIMS- New Delhi).',
+    caption: 'Dr. Aishwarya with her mentor – Professor.Dr.Sunesh (AIIMS- New Delhi). '
+  }
 ];

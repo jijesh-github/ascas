@@ -17,7 +17,7 @@ const WhyChooseSection = () => {
             <div
               key={index}
               className="flex items-start gap-4 bg-white border border-pink-100 rounded-xl p-6 shadow-sm">
-              <CheckCircle className="w-6 h-6 text-pink-600 mt-1" />
+              <CheckCircle className="w-6 h-6 text-pink-600 mt-1 shrink-0" />
               <div className="text-left">
                 <h3 className="text-lg font-semibold text-pink-800">{item.title}</h3>
                 <p className="text-md text-gray-700">{item.description}</p>

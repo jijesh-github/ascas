@@ -1,16 +1,16 @@
 import Link from 'next/link';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, Facebook, Youtube } from 'lucide-react';
 import { navLinks, services } from '@/utils/utils';
 
 const Footer = () => {
   return (
     <footer className="bg-gradient-to-r from-purple-50 to-pink-50">
-      <div className="container mx-auto px-4 md:px-6 pt-16 pb-8">
+      <div className="container mx-auto px-4 md:px-12 pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Column 1 - About */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
-              ASCAS Fertility
+            <h3 className="text-xl font-bold bg-gradient-to-r from-primary to-pink-600 bg-clip-text text-transparent">
+              ASCAS
             </h3>
             <p className="text-gray-600 text-sm">
               Providing compassionate fertility care and innovative treatments to help couples achieve their dream of
@@ -76,14 +76,36 @@ const Footer = () => {
 
         <div className="border-t border-gray-200 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-500 text-sm">
-              &copy; {new Date().getFullYear()} The Hive Fertility. All rights reserved.
-            </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link href="/privacy-policy" className="text-gray-500 hover:text-purple-600 text-sm">
+            <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} ASCAS. All rights reserved.</p>
+            <div className="flex items-center space-x-4 mt-4 md:mt-0">
+              <a
+                href="https://www.facebook.com/draishparth"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:text-blue-700 transition-colors"
+                aria-label="Facebook">
+                <Facebook className="h-6 w-6" />
+              </a>
+              <a
+                href="https://www.instagram.com/accumedspecialityclinic/?hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#E1306C] hover:text-[#e130a6] transition-colors"
+                aria-label="Instagram">
+                <Instagram className="h-6 w-6" />
+              </a>
+              <a
+                href="https://www.youtube.com/@doctormommies"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-red-500 hover:text-red-700 transition-colors"
+                aria-label="Instagram">
+                <Youtube className="h-6 w-6" />
+              </a>
+              <Link href="/privacy-policy" className="text-gray-500 hover:text-primary text-sm">
                 Privacy Policy
               </Link>
-              <Link href="/terms-of-service" className="text-gray-500 hover:text-purple-600 text-sm">
+              <Link href="/terms-of-service" className="text-gray-500 hover:text-primary text-sm">
                 Terms of Service
               </Link>
             </div>

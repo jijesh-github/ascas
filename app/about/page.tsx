@@ -15,22 +15,21 @@ export default function AboutPage() {
           </div>
 
           <p className="text-base sm:text-lg text-gray-700 leading-relaxed max-w-3xl sm:max-w-4xl mx-auto">
-            At <span className="font-semibold text-pink-700">ASCAS Fertility & Maternity Clinic</span>, we combine
-            cutting-edge technology with heartfelt compassion. Led by renowned specialists
-            <strong className="text-gray-900"> Dr. Aishwarya Parthasarathy</strong>,
-            <strong className="text-gray-900"> Dr. Ashwin Muralidharan</strong>, and
-            <strong className="text-gray-900"> Dr. M. Ashokkumar</strong>, we guide you through every step of your
-            parenthood journey.
+            At <span className="font-semibold text-pink-700">ASCAS</span>, we blend cutting-edge technology with
+            compassionate, personalized care. Led by renowned specialists —
+            <strong className="text-gray-900"> Dr. Aishwarya Parthasarathy</strong> and
+            <strong className="text-gray-900"> Dr. Ashwin Muralidharan</strong> — our team is dedicated to supporting
+            you through every step of your parenthood journey.
           </p>
         </div>
 
         {/* USP Section */}
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {[
-            { title: '20+ Years Experience', text: 'Combined expertise in fertility treatments' },
-            { title: '95% Success Rate', text: 'In assisted reproductive technologies' },
+            { title: '10+ Years Experience', text: 'Combined Expertise in Fertility, Gynaecology and Radiology.' },
+            { title: '80% Success Rate', text: 'In Assisted Reproductive Treatments' },
             { title: '360° Care', text: 'From conception to delivery' },
-            { title: '5-Star Facility', text: 'NABH accredited center of excellence' }
+            { title: 'One Place for All Your Needs', text: 'Consultation, Diagnosis & Pharmacy.' }
           ].map((item, idx) => (
             <div key={idx} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="text-pink-600 text-2xl sm:text-3xl mb-2 sm:mb-4">0{idx + 1}</div>
@@ -77,7 +76,7 @@ export default function AboutPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {services.map(service => (
                   <div key={service} className="flex items-center space-x-2">
-                    <CheckCircle2 className="w-5 h-5 text-green-500" />
+                    <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" />
                     <span className="text-sm sm:text-base">{service}</span>
                   </div>
                 ))}

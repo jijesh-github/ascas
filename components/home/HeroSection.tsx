@@ -46,10 +46,10 @@ const HeroSection = () => {
 
             <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 md:gap-8">
               {[
-                { label: 'Successful IVF Treatments', value: '1000+' },
-                { label: 'Successful IUI Treatments', value: '5000+' },
-                { label: 'Successful Laparoscopic', value: '2000+' },
-                { label: 'Successful Natural', value: '1000+' }
+                { label: 'Successful IVF Cycles', value: '1000+' },
+                { label: 'Successful IUI Cycles', value: '5000+' },
+                { label: 'Successful Laparoscopic Surgeries', value: '2000+' },
+                { label: 'Successful Natural Cycles', value: '1000+' }
               ].map((stat, index) => (
                 <div key={index} className={`text-center p-4 rounded-lg bg-white/10 backdrop-blur-sm animate-fade-up`}>
                   <p className="text-3xl md:text-4xl font-bold text-white mb-1">
