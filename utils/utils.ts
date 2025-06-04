@@ -136,3 +136,15 @@ export const imageGallery = [
     caption: 'Dr. Aishwarya with her mentor – Professor.Dr.Sunesh (AIIMS- New Delhi). '
   }
 ];
+
+export const videos = [
+  {
+    id: 'OlDcuUB8WM0',
+    title: ''
+  },
+  { id: 'Nf5OU3GaJtA', title: '' },
+  { id: 'cfsPnSwH7DA', title: '' },
+  { id: 'PrMkOoMZK4M', title: '' },
+  { id: 'EFRpI6x8Uv0', title: '' },
+  { id: 'IrniJo8njzQ', title: '' }
+];

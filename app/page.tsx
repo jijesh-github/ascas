@@ -5,6 +5,7 @@ import ImageGallery from '@/components/home/ImageGallery';
 import OurServices from '@/components/home/OurServices';
 import TestimonialSlider from '@/components/home/TestimonialSlider';
 import WhyChooseSection from '@/components/home/WhyChooseSection';
+import YouTubeGallery from '@/components/home/YouTubeGallery';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <ClinicalFacilities />
       <ImageGallery />
       <TestimonialSlider />
+      <YouTubeGallery />
     </main>
   );
 }
