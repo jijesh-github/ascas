@@ -34,14 +34,14 @@ export default function TestimonialSlider() {
   }, [isHovered]);
 
   // Show up to 7 dots around current index for navigation
-  const dotsToShow = useMemo(() => {
+  /*   const dotsToShow = useMemo(() => {
     const range = 3;
     const total = reviews.length;
     const start = Math.max(0, index - range);
     const end = Math.min(total, index + range + 1);
 
     return Array.from({ length: end - start }, (_, i) => start + i);
-  }, [index, reviews.length]);
+  }, [index, reviews.length]); */
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-12 relative">
