@@ -48,7 +48,7 @@ export default function TestimonialSlider() {
       const prefetchedReviews: Review[] = data.reviews || [];
       setChunkCache(prev => ({ ...prev, [chunkNum]: prefetchedReviews }));
     } catch (err) {
-      console.warn(`Prefetch failed for chunk-${chunkNum}`);
+      console.warn(`Prefetch failed for chunk-${chunkNum}`, err);
     }
   };
 
