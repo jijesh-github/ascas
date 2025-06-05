@@ -4,48 +4,95 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, UserCircle } from 'lucide-react';
 import Image from 'next/image';
-import AllReviews from '../../reviews.json';
+
+type Review = {
+  text: string;
+  author: string;
+  date: string;
+  profilePhoto?: string;
+};
+
+const CHUNK_SIZE = 10;
+const CHUNK_COUNT = 18;
 
 export default function TestimonialSlider() {
-  const [index, setIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const [imageError, setImageError] = useState(false);
+  const [chunkCache, setChunkCache] = useState<Record<number, Review[]>>({});
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [index, setIndex] = useState<number>(0);
+  const [chunkIndex, setChunkIndex] = useState<number>(0);
+  const [imageError, setImageError] = useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
 
-  const { reviews } = AllReviews;
+  const loadChunk = async (chunkNum: number) => {
+    if (chunkCache[chunkNum]) {
+      setReviews(chunkCache[chunkNum]);
+      return;
+    }
+    try {
+      const res = await fetch(`/reviews/chunk-${chunkNum}.json`);
+      const data = await res.json();
+      const loadedReviews: Review[] = data.reviews || [];
+      setChunkCache(prev => ({ ...prev, [chunkNum]: loadedReviews }));
+      setReviews(loadedReviews);
+    } catch (err) {
+      console.error(`Error loading chunk-${chunkNum}.json`, err);
+      setReviews([]);
+    }
+  };
 
-  const currentReview = reviews[index];
+  const prefetchNextChunk = async (chunkNum: number) => {
+    if (chunkNum >= CHUNK_COUNT || chunkCache[chunkNum]) return;
+    try {
+      const res = await fetch(`/reviews/chunk-${chunkNum}.json`);
+      const data = await res.json();
+      const prefetchedReviews: Review[] = data.reviews || [];
+      setChunkCache(prev => ({ ...prev, [chunkNum]: prefetchedReviews }));
+    } catch (err) {
+      console.warn(`Prefetch failed for chunk-${chunkNum}`);
+    }
+  };
+
+  useEffect(() => {
+    loadChunk(chunkIndex);
+    prefetchNextChunk(chunkIndex + 1);
+  }, [chunkIndex]);
 
   const handleNext = () => {
-    setIndex(prev => (prev + 1) % reviews.length);
+    const nextIndex = index + 1;
+    if (nextIndex >= reviews.length) {
+      if (chunkIndex + 1 < CHUNK_COUNT) {
+        setChunkIndex(prev => prev + 1);
+        setIndex(0);
+      }
+    } else {
+      setIndex(nextIndex);
+    }
     setImageError(false);
   };
 
   const handlePrev = () => {
-    setIndex(prev => (prev - 1 + reviews.length) % reviews.length);
+    const prevIndex = index - 1;
+    if (prevIndex < 0) {
+      if (chunkIndex > 0) {
+        setChunkIndex(prev => prev - 1);
+        setIndex(CHUNK_SIZE - 1);
+      }
+    } else {
+      setIndex(prevIndex);
+    }
     setImageError(false);
   };
 
   useEffect(() => {
     if (isHovered) return;
-    const timer = setInterval(() => {
-      handleNext();
-    }, 5000);
+    const timer = setInterval(handleNext, 5000);
     return () => clearInterval(timer);
-  }, [isHovered]);
+  }, [isHovered, index, reviews]);
 
-  // Show up to 7 dots around current index for navigation
-  /*   const dotsToShow = useMemo(() => {
-    const range = 3;
-    const total = reviews.length;
-    const start = Math.max(0, index - range);
-    const end = Math.min(total, index + range + 1);
-
-    return Array.from({ length: end - start }, (_, i) => start + i);
-  }, [index, reviews.length]); */
+  const currentReview = reviews[index];
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-12 relative">
-      {/* Navigation Buttons - OUTSIDE the content */}
       <button
         onClick={handlePrev}
         className="absolute top-1/2 -translate-y-1/2 -left-6 p-2 bg-pink-900 hover:bg-primary rounded-full text-white z-10 cursor-pointer"
@@ -65,42 +112,33 @@ export default function TestimonialSlider() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}>
         <AnimatePresence mode="wait">
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.6 }}>
-            <div className="flex justify-center mb-4">
-              {imageError || !currentReview?.profilePhoto ? (
-                <UserCircle className="w-24 h-24 text-pink-900" />
-              ) : (
-                <Image
-                  src={currentReview.profilePhoto}
-                  alt={currentReview.author}
-                  width={60}
-                  height={60}
-                  className="rounded-full object-cover border-1 border-indigo-500"
-                  onError={() => setImageError(true)}
-                />
-              )}
-            </div>
-            <p className="text-sm text-gray-700 dark:text-gray-200 italic mb-4">“{currentReview.text}”</p>
-            <h4 className="text-xl font-semibold text-pink-900">{currentReview.author}</h4>
-            <p className="text-sm text-gray-500">{currentReview.date}</p>
-          </motion.div>
+          {currentReview && (
+            <motion.div
+              key={`${chunkIndex}-${index}`}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.6 }}>
+              <div className="flex justify-center mb-4">
+                {imageError || !currentReview.profilePhoto ? (
+                  <UserCircle className="w-24 h-24 text-pink-900" />
+                ) : (
+                  <Image
+                    src={currentReview.profilePhoto}
+                    alt={currentReview.author}
+                    width={60}
+                    height={60}
+                    className="rounded-full object-cover border-1 border-indigo-500"
+                    onError={() => setImageError(true)}
+                  />
+                )}
+              </div>
+              <p className="text-sm text-gray-700 dark:text-gray-200 italic mb-4">“{currentReview.text}”</p>
+              <h4 className="text-xl font-semibold text-pink-900">{currentReview.author}</h4>
+              <p className="text-sm text-gray-500">{currentReview.date}</p>
+            </motion.div>
+          )}
         </AnimatePresence>
-
-        {/* <div className="flex justify-center mt-6 space-x-2">
-          {dotsToShow.map(i => (
-            <button
-              key={i}
-              className={`w-3 h-3 rounded-full ${i === index ? 'bg-indigo-500' : 'bg-gray-300'}`}
-              onClick={() => setIndex(i)}
-              aria-label={`Go to testimonial ${i + 1}`}
-            />
-          ))}
-        </div> */}
       </div>
     </div>
   );
