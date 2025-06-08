@@ -70,8 +70,8 @@ export default function DoctorAppointmentForm() {
       });
 
       if (res.ok) {
-        toast.success('Appointment request sent successfully!');
-        setForm({ location: '', name: '', countryCode: '+91', phone: '', email: '' });
+        toast.success('Your Booking Request Received, ASCAS Team will get in touch with you shortly!');
+        setForm({ location: 'Chennai', name: '', countryCode: '+91', phone: '', email: '' });
       } else {
         toast.error('Failed to send appointment request.');
       }

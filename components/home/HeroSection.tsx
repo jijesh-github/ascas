@@ -26,7 +26,7 @@ const HeroSection = () => {
 
             {/* Stack on small screens, row on medium and up */}
             <div className="flex flex-col lg:flex-row items-center md:items-center gap-8">
-              <div className="flex flex-col gap-4 md:gap-6 w-full md:w-auto">
+              {/* <div className="flex flex-col gap-4 md:gap-6 w-full md:w-auto">
                 <Button
                   size="lg"
                   className="text-white bg-primary hover:bg-primary-hover font-medium px-6 cursor-pointer w-full md:w-auto">
@@ -37,7 +37,7 @@ const HeroSection = () => {
                   className="text-white bg-primary hover:bg-primary-hover font-medium px-6 cursor-pointer w-full md:w-auto">
                   Booking for Video consulting
                 </Button>
-              </div>
+              </div> */}
 
               <div className="w-full max-w-xl">
                 <DoctorAppointmentForm />

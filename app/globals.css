@@ -12,7 +12,6 @@
 
   --soft-primary: #fcd9d9;
 
-
   /* Secondary (Orange) and Variants */
   --secondary: #f97316; /* Orange-500 */
   --secondary-foreground: #ffffff;
@@ -20,6 +19,14 @@
   --secondary-muted: #ffedd5; /* Orange-100 */
 
   --muted: #f3f4f6;     /* Gray-100 */
+
+  /* Font Variables */
+  --font-poppins: 'Poppins', sans-serif;
+  --font-geist-sans: 'Geist', sans-serif;
+  --font-geist-mono: 'Geist Mono', monospace;
+
+  /* Default font */
+  --font-sans: var(--font-poppins);
 }
 
 @theme inline {
@@ -40,9 +47,11 @@
 
   --color-muted: var(--muted);
 
+  --font-poppins: 'Poppins', sans-serif;
+  --font-geist-sans: 'Geist', sans-serif;
+  --font-geist-mono: 'Geist Mono', monospace;
+
   --font-sans: var(--font-poppins);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -66,14 +75,10 @@
   }
 }
 
-/* body {
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-} */
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
@@ -108,4 +113,3 @@ body {
     animation-delay: 0.6s;
   }
 }
-
