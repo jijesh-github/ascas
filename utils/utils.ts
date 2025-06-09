@@ -99,6 +99,7 @@ export const navLinks = [
   { lable: 'About Us', path: '/about' },
   { lable: 'Services', path: '/services' },
   { lable: 'Our Team', path: '/team' },
+  { lable: 'Blog', path: '/blog' },
   { lable: 'Contact', path: 'contact' }
 ];
 
