@@ -10,15 +10,16 @@ const FertilityBlog = () => {
   return (
     // <main className="w-full px-6 py-16 bg-gradient-to-br from-purple-50 via-pink-50 to-white">
     //   <div className="max-w-7xl mx-auto px-4 py-8 font-sans bg-gray-50">
-    <>
-      <div className="max-w-8xl mx-auto ">
+    <main className="w-full px-6 py-16 bg-gradient-to-br from-purple-50 via-pink-50 to-white">
+      <div className="max-w-8xl mx-auto space-y-10">
         {/* Clinic Facilities */}
-        <div className="space-y-12">
-          <div className="text-center space-y-4">
-            <h2 className="text-4xl font-bold text-pink-800">Blog</h2>
-            <h5 className="text-2xl font-bold text-pink-800">Know More About Your Treatment</h5>
+        <div className="text-center">
+          <div className="inline-block bg-pink-200/30 px-10 py-5 rounded-full shadow-md">
+            <span className="text-pink-800 font-bold uppercase tracking-wider text-4xl sm:text-5xl">Blog</span>
           </div>
+          <h5 className="text-2xl my-2 font-bold text-pink-800">Know More About Your Treatment</h5>
         </div>
+
         <IUIBlogComponent />
         <OITreatmentComponent />
         <IVFComponent />
@@ -26,9 +27,7 @@ const FertilityBlog = () => {
         <PGTComponent />
         <FertilityDietComponent />
       </div>
-    </>
-    //   </div>
-    // </main>
+    </main>
   );
 };
 
