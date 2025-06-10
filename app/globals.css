@@ -54,26 +54,6 @@
   --font-sans: var(--font-poppins);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-
-    --primary: #570026;
-    --primary-foreground: #ffffff;
-    --primary-hover: #861043;
-    --primary-muted: #3c001e;
-
-    --soft-primary: #fcd9d9;
-
-    --secondary: #fb923c; /* Orange-400 */
-    --secondary-foreground: #000000;
-    --secondary-hover: #f97316; /* Orange-500 */
-    --secondary-muted: #78350f; /* Orange-900 */
-
-    --muted: #1f2937;     /* Gray-800 */
-  }
-}
 
 body {
   background: var(--background);

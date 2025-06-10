@@ -2,10 +2,10 @@ import React from 'react';
 
 const PGTComponent = () => {
   return (
-    <div className="max-w-8xl mx-auto px-4 py-4">
-      <section className="mb-4 bg-soft-primary rounded-xl shadow-lg p-6 md:p-8">
-        <div className="flex items-center mb-3">
-          <div className="bg-pink-100 p-3 rounded-lg mr-4">
+    <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <section className="mb-4 bg-soft-primary rounded-xl shadow-lg p-4 sm:p-6 md:p-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center mb-3">
+          <div className="bg-pink-100 p-3 rounded-lg mb-3 sm:mb-0 sm:mr-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-8 w-8 text-pink-700"
@@ -20,9 +20,11 @@ const PGTComponent = () => {
               />
             </svg>
           </div>
-          <h2 className="text-3xl font-bold text-pink-800">PGT (Preimplantation Genetic Testing) in IVF</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-pink-800">PGT (Preimplantation Genetic Testing) in IVF</h2>
         </div>
-        <p className="text-xl text-gray-700 mb-3 italic">Know Your Embryos Before Transfer – Science Meets Selection</p>
+        <p className="text-lg sm:text-xl text-gray-700 mb-3 italic">
+          Know Your Embryos Before Transfer – Science Meets Selection
+        </p>
         <p className="mb-3 leading-relaxed text-gray-700">
           At ASCAS, we believe in giving every embryo the best chance at life. Preimplantation Genetic Testing (PGT)
           allows us to check the genetic health of embryos before transferring them into the uterus.
@@ -34,7 +36,7 @@ const PGTComponent = () => {
             PGT is a lab test done on embryos created through IVF. A few cells are carefully taken from the embryo
             (usually on Day 5 or 6) and sent for genetic analysis to check for:
           </p>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
             <li className="flex items-start">
               <span className="text-pink-600 mr-2">•</span>
               <span>Chromosomal number errors (aneuploidy)</span>
@@ -87,7 +89,7 @@ const PGTComponent = () => {
 
         <div className="border-b border-gray-200 py-6 my-3">
           <h3 className="text-xl font-semibold text-cyan-700 mb-3">🎯 Who Should Consider PGT?</h3>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <li className="flex items-start">
               <span className="text-pink-600 mr-2">•</span>
               <span>Women over 35 years of age</span>
@@ -190,7 +192,7 @@ const PGTComponent = () => {
 
         <div className="py-6">
           <h3 className="text-xl font-semibold text-cyan-700 mb-3">🌸 ASCAS Approach</h3>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <li className="flex items-start">
               <span className="text-pink-600 mr-2">•</span>
               <span>Partnered with leading genetic labs for accurate reporting</span>
