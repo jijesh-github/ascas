@@ -1,5 +1,4 @@
 import DietChart from '@/components/blog/DietChart';
-import DietChartBlog from '@/components/blog/DietChart';
 import FertilityDietComponent from '@/components/blog/FertilityDietComponent';
 import HysteroscopyComponent from '@/components/blog/HysteroscopyComponent';
 import IUIBlogComponent from '@/components/blog/IUIBlogComponent';
