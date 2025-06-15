@@ -35,7 +35,7 @@ const OITreatmentComponent = () => {
 
         {/* Main content grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <div className="mb-6 md:mb-8">
               <h3 className="text-lg md:text-xl font-semibold text-cyan-700 mb-2 md:mb-3">
                 What is Ovulation Induction + Timed Intercourse?
@@ -86,7 +86,7 @@ const OITreatmentComponent = () => {
           </div>
 
           {/* Cost box - moves below on mobile */}
-          <div className="bg-pink-50 rounded-xl p-4 sm:p-5 border border-pink-100">
+          {/* <div className="bg-pink-50 rounded-xl p-4 sm:p-5 border border-pink-100">
             <h3 className="text-lg md:text-xl font-semibold text-blue-800 mb-3 md:mb-4">Cost of OI + TI at ASCAS</h3>
             <div className="space-y-2 md:space-y-3">
               <div className="flex justify-between pb-2 border-b border-pink-200 text-sm sm:text-base">
@@ -106,7 +106,7 @@ const OITreatmentComponent = () => {
                 <span>₹3,000 – ₹6,000</span>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Treatment process */}

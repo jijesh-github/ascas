@@ -117,7 +117,7 @@ const PGTComponent = () => {
           </ul>
         </div>
 
-        <div className="border-b border-gray-200 py-6 my-3">
+        {/*         <div className="border-b border-gray-200 py-6 my-3">
           <h3 className="text-xl font-semibold text-cyan-700 mb-3">💰 Cost of PGT in India (2025)</h3>
           <ul className="space-y-2 mb-4">
             <li className="flex">
@@ -132,7 +132,7 @@ const PGTComponent = () => {
             </li>
           </ul>
           <p className="text-sm italic text-gray-600">Note: PGT is an add-on cost to the standard IVF package.</p>
-        </div>
+        </div> */}
 
         <div className="border-b border-gray-200 py-6 my-3">
           <h3 className="text-xl font-semibold text-cyan-700 mb-3">🧩 What Are Mosaic Embryos?</h3>

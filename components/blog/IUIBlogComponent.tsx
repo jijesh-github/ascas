@@ -24,7 +24,7 @@ const IUIBlogComponent = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="md:col-span-2">
+          <div className="md:col-span-3">
             <div className="mb-8">
               <h3 className="text-xl font-semibold text-cyan-700 mb-3">What is IUI?</h3>
               <p className="mb-4 leading-relaxed text-gray-700">
@@ -66,7 +66,7 @@ const IUIBlogComponent = () => {
             </div>
           </div>
 
-          <div className="bg-teal-50 rounded-xl p-5 border border-teal-100">
+          {/*  <div className="bg-teal-50 rounded-xl p-5 border border-teal-100">
             <h3 className="text-xl font-semibold text-pink-800 mb-4">Cost of IUI in ASCAS (2025)</h3>
             <div className="space-y-3">
               <div className="flex justify-between pb-2 border-b border-teal-200">
@@ -97,7 +97,7 @@ const IUIBlogComponent = () => {
             <p className="mt-4 text-sm text-gray-600 italic">
               Note: Costs may vary depending on city, clinic, and whether daily injections are used.
             </p>
-          </div>
+          </div> */}
         </div>
 
         <div className="mt-8">

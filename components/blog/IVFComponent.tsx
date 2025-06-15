@@ -153,12 +153,12 @@ const IVFComponent = () => {
                     step: '12',
                     title: 'Process Duration',
                     desc: 'The entire IVF/ICSI process, from initial scans to the pregnancy test, typically spans 90 days. However, this duration can vary based on individual patient factors and specific treatment protocols.'
-                  },
-                  {
+                  }
+                  /*  {
                     step: '13',
                     title: 'Cost',
                     desc: 'The approximate cost for the IVF/ICSI process is ₹2.75 – ₹3 Lakhs. This cost typically includes the first embryo transfer, necessary medications, and embryo freezing.'
-                  }
+                  } */
                 ].map(item => (
                   <div key={item.step} className="flex group">
                     <div className="bg-pink-600 text-white rounded-full w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 sm:mr-4 md:mr-5 flex-shrink-0 font-bold text-sm sm:text-base md:text-xl group-hover:bg-pink-700 transition-colors">
