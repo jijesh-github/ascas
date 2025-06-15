@@ -1,3 +1,5 @@
+import DietChart from '@/components/blog/DietChart';
+import DietChartBlog from '@/components/blog/DietChart';
 import FertilityDietComponent from '@/components/blog/FertilityDietComponent';
 import HysteroscopyComponent from '@/components/blog/HysteroscopyComponent';
 import IUIBlogComponent from '@/components/blog/IUIBlogComponent';
@@ -18,10 +20,10 @@ const FertilityBlog = () => {
           </div>
           <h5 className="text-xl md:text-2xl my-2 font-bold text-pink-800">Know More About Your Treatment</h5>
         </div>
-
         <IUIBlogComponent />
         <OITreatmentComponent />
         <IVFComponent />
+        <DietChart />
         <HysteroscopyComponent />
         <PGTComponent />
         <FertilityDietComponent />
