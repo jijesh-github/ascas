@@ -76,7 +76,19 @@ const Footer = () => {
 
         <div className="border-t border-gray-200 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} ASCAS. All rights reserved.</p>
+            <div className="text-center md:text-left">
+              <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} ASCAS. All rights reserved.</p>
+              <p className="text-gray-500 text-sm">
+                Designed and developed by{' '}
+                <a
+                  href="https://www.acutixsoft.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline">
+                  Acutix Soft LLP
+                </a>
+              </p>
+            </div>
             <div className="flex items-center space-x-4 mt-4 md:mt-0">
               <a
                 href="https://www.facebook.com/draishparth"
@@ -99,7 +111,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-red-500 hover:text-red-700 transition-colors"
-                aria-label="Instagram">
+                aria-label="YouTube">
                 <Youtube className="h-6 w-6" />
               </a>
               <Link href="/privacy-policy" className="text-gray-500 hover:text-primary text-sm">
