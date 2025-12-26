@@ -5,6 +5,7 @@ import IUIBlogComponent from '@/components/blog/IUIBlogComponent';
 import IVFComponent from '@/components/blog/IVFComponent';
 import OITreatmentComponent from '@/components/blog/OITreatmentComponent';
 import PGTComponent from '@/components/blog/PGTComponent';
+import PGTSRCaseSeriesComponent from '@/components/blog/PGTSRCaseSeriesComponent';
 import React from 'react';
 
 const FertilityBlog = () => {
@@ -26,6 +27,7 @@ const FertilityBlog = () => {
         <HysteroscopyComponent />
         <PGTComponent />
         <FertilityDietComponent />
+        <PGTSRCaseSeriesComponent />
       </div>
     </main>
   );
