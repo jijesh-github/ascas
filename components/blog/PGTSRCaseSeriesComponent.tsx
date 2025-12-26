@@ -14,7 +14,6 @@ const PGTSRCaseSeriesComponent = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {/* Main Content Column */}
           <div className="lg:col-span-2 space-y-4">
             {/* Abstract Card */}
             <div className="bg-white rounded-xl p-6 shadow-md">
