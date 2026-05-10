@@ -66,6 +66,28 @@ body {
     animation: fadeUp 0.7s ease-out forwards;
   }
 
+  .animate-branch-pulse {
+    animation: branchPulse 2.4s ease-in-out infinite;
+  }
+
+  .animate-branch-announcement {
+    position: relative;
+    isolation: isolate;
+    animation: fadeUp 0.7s ease-out both, branchPulse 2.4s ease-in-out 0.8s infinite;
+  }
+
+  .animate-branch-announcement::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(110deg, transparent 0%, transparent 38%, rgb(255 255 255 / 0.2) 50%, transparent 62%);
+    transform: translateX(-120%);
+    animation: branchShine 3.2s ease-in-out 1s infinite;
+    border-radius: inherit;
+  }
+
   @keyframes fadeUp {
     0% {
       opacity: 0;
@@ -74,6 +96,29 @@ body {
     100% {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes branchPulse {
+    0%,
+    100% {
+      box-shadow: 0 18px 40px rgb(87 0 38 / 0.24), 0 0 0 0 rgb(255 255 255 / 0.18);
+      transform: translateY(0);
+    }
+    50% {
+      box-shadow: 0 22px 48px rgb(87 0 38 / 0.3), 0 0 0 6px rgb(255 255 255 / 0);
+      transform: translateY(-2px);
+    }
+  }
+
+  @keyframes branchShine {
+    0%,
+    35% {
+      transform: translateX(-120%);
+    }
+    70%,
+    100% {
+      transform: translateX(120%);
     }
   }
 

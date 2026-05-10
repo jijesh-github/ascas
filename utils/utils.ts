@@ -1,4 +1,38 @@
 import { iconList } from './iconList';
+
+export const branches = [
+  {
+    id: 'valasaravakkam',
+    name: 'Valasaravakkam',
+    clinicName: 'Accumed Speciality Clinic and Scans Valasaravakkam',
+    addressLines: ['24 Chowdhary Nagar Main Road', 'Valasaravakkam, Chennai', 'Tamil Nadu - 600087'],
+    address: '24 Chowdhary Nagar Main Road Valasaravakkam, Chennai Tamil Nadu - 600087',
+    phone: '+91-9342521779',
+    tel: '+919342521779',
+    whatsapp: 'https://wa.me/919342521779',
+    hours: ['Monday - Saturday: 9 AM - 9 PM', 'Sunday: Emergency Only'],
+    mapUrl: 'https://maps.app.goo.gl/FpnKJTQvc3rGZPqz9',
+    embedMapUrl:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d230.91300280639618!2d80.18052373469796!3d13.04012077225027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52614cc3a6016b%3A0xe59e9878a0ae65c2!2s24%2C%20Chowdry%20Nagar%20Main%20Rd%2C%20opposite%20vasanthi%20dental%20hospital%2C%20Chowthri%20Nagar%2C%20Valasaravakkam%2C%20Chennai%2C%20Tamil%20Nadu%20600087!5e1!3m2!1sen!2sin!4v1748695987640!5m2!1sen!2sin'
+  },
+  {
+    id: 'vadapalani',
+    name: 'Vadapalani',
+    clinicName: 'ASCAS Fertility Center',
+    addressLines: ['14, Arunachalam Rd, next to VB World', 'Saligramam, Chennai', 'Tamil Nadu 600093'],
+    address: '14, Arunachalam Rd, next to VB World, Saligramam, Chennai, Tamil Nadu 600093',
+    phone: '+91-9345293609',
+    tel: '+919345293609',
+    whatsapp: 'https://wa.me/919345293609',
+    hours: ['Monday - Saturday: 9 AM - 8 PM', 'Sunday: Emergency Only'],
+    mapUrl: 'https://maps.app.goo.gl/e5HSPGFUaeCewLav5',
+    embedMapUrl:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.7901065300625!2d80.20137327484277!3d13.049028187273478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526771fa5db163%3A0x16eadf06d51dfdc8!2sASCAS%20Fertility%20and%20Women%27s%20Center!5e0!3m2!1sen!2sin!4v1778395143992!5m2!1sen!2sin'
+  }
+];
+
+export const primaryBranch = branches[0];
+
 export const services = [
   'IVF/ICSI',
   'IUI',
@@ -135,6 +169,26 @@ export const imageGallery = [
     src: '/images/gallery/06.jpeg',
     alt: 'Dr. Aishwarya with her mentor – Professor.Dr.Sunesh (AIIMS- New Delhi).',
     caption: 'Dr. Aishwarya with her mentor – Professor.Dr.Sunesh (AIIMS- New Delhi). '
+  },
+  {
+    src: '/images/gallery/vadapalani/01.jpeg',
+    alt: 'ASCAS Vadapalani branch interior',
+    caption: 'ASCAS Vadapalani Branch'
+  },
+  {
+    src: '/images/gallery/vadapalani/02.jpeg',
+    alt: 'ASCAS Vadapalani branch facility',
+    caption: 'ASCAS Vadapalani Branch'
+  },
+  {
+    src: '/images/gallery/vadapalani/03.jpeg',
+    alt: 'ASCAS Vadapalani branch consultation space',
+    caption: 'ASCAS Vadapalani Branch'
+  },
+  {
+    src: '/images/gallery/vadapalani/04.jpeg',
+    alt: 'ASCAS Vadapalani branch clinic space',
+    caption: 'ASCAS Vadapalani Branch'
   }
 ];
 

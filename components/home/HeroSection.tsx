@@ -1,6 +1,7 @@
 // import { Button } from '@/components/ui/button';
 import DoctorAppointmentForm from '../booking/DoctorAppointmentForm';
 import CountUp from './CountUp';
+import BranchAnnouncement from './BranchAnnouncement';
 
 const HeroSection = () => {
   return (
@@ -13,14 +14,16 @@ const HeroSection = () => {
       </div>
 
       {/* Right Content with Gradient Background */}
-      <div className="flex items-center justify-center p-6 md:p-10 bg-gradient-to-br from-purple-900/70 to-pink-900/40">
-        <div className="container mx-auto px-4 md:px-6 pt-24 relative z-10">
+      <div className="flex items-start justify-center p-6 pt-10 md:p-10 md:pt-14 bg-gradient-to-br from-purple-900/70 to-pink-900/40">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-3xl">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight">
+            <BranchAnnouncement />
+
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-5 leading-tight">
               Unlock the Miracle of Life with Accumed Speciality Clinic and Scans
             </h1>
 
-            <p className="text-lg italic md:text-2xl text-white/90 mb-8 max-w-2xl">
+            <p className="text-lg italic md:text-2xl text-white/90 mb-6 max-w-2xl">
               Your Journey to Parenthood Starts Here
             </p>
 
@@ -44,7 +47,7 @@ const HeroSection = () => {
               </div>
             </div>
 
-            <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 md:gap-8">
+            <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 md:gap-8">
               {[
                 { label: 'Successful IVF Cycles', value: '1000+' },
                 { label: 'Successful IUI Cycles', value: '5000+' },

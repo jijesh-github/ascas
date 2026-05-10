@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Mail, Phone, MapPin, Instagram, Facebook, Youtube } from 'lucide-react';
-import { navLinks, services } from '@/utils/utils';
+import { branches, navLinks, services } from '@/utils/utils';
 
 const Footer = () => {
   return (
@@ -56,16 +56,27 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-800">Contact Us</h3>
             <ul className="space-y-3">
-              <li className="flex items-start">
-                <MapPin className="h-5 w-5 text-purple-500 mr-2 mt-0.5" />
-                <span className="text-gray-600 text-sm">
-                  24 Chowdhary Nagar Main Road Valasaravakkam, Chennai Tamil Nadu - 600087
-                </span>
-              </li>
-              <li className="flex items-center">
-                <Phone className="h-5 w-5 text-purple-500 mr-2" />
-                <span className="text-gray-600 text-sm">+91-9342521779</span>
-              </li>
+              {branches.map(branch => (
+                <li key={branch.id} className="flex items-start">
+                  <MapPin className="h-5 w-5 text-purple-500 mr-2 mt-0.5 shrink-0" />
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800">{branch.clinicName}</p>
+                    <a
+                      href={branch.mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-600 hover:text-purple-600 text-sm">
+                      {branch.address}
+                    </a>
+                    <a
+                      href={`tel:${branch.tel}`}
+                      className="mt-1 flex items-center text-gray-600 hover:text-purple-600 text-sm">
+                      <Phone className="h-4 w-4 text-purple-500 mr-2" />
+                      {branch.phone}
+                    </a>
+                  </div>
+                </li>
+              ))}
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-purple-500 mr-2" />
                 <span className="text-gray-600 text-sm">accumedspecialityclinic@gmail.com</span>

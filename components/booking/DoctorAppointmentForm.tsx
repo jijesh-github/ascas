@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { MapPin, User, Phone } from 'lucide-react';
 import { Button } from '../ui/button';
 import toast, { Toaster } from 'react-hot-toast';
+import { branches, primaryBranch } from '@/utils/utils';
 
 const countryCodes = [
   { code: '+91', label: 'India' },
@@ -20,7 +21,7 @@ const countryCodes = [
 
 export default function DoctorAppointmentForm() {
   const [form, setForm] = useState({
-    location: 'Chennai',
+    location: primaryBranch.name,
     name: '',
     countryCode: '+91',
     phone: '',
@@ -71,7 +72,7 @@ export default function DoctorAppointmentForm() {
 
       if (res.ok) {
         toast.success('Your Booking Request Received, ASCAS Team will get in touch with you shortly!');
-        setForm({ location: 'Chennai', name: '', countryCode: '+91', phone: '', email: '' });
+        setForm({ location: primaryBranch.name, name: '', countryCode: '+91', phone: '', email: '' });
       } else {
         toast.error('Failed to send appointment request.');
       }
@@ -120,16 +121,18 @@ export default function DoctorAppointmentForm() {
         {/* Location */}
         <div className="relative">
           <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5" />
-          <input
-            type="text"
+          <select
             name="location"
-            placeholder="Clinic Location"
             value={form.location}
             onChange={handleChange}
             required
-            disabled
-            className="w-full pl-10 pr-3 py-2 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
-          />
+            className="w-full pl-10 pr-8 py-2 rounded-md border border-gray-300 bg-white shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm">
+            {branches.map(branch => (
+              <option key={branch.id} value={branch.name}>
+                {branch.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* Country code + Phone */}

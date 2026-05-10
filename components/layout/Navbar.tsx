@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '../ui/button';
 import Image from 'next/image';
-import { navLinks } from '@/utils/utils';
+import { branches, navLinks } from '@/utils/utils';
 import { useDoctorForm } from '@/context/DoctorFormContext';
 import { PhoneIcon, Menu, X } from 'lucide-react';
 
@@ -40,7 +40,7 @@ export default function AnimatedUnderlineNavbar() {
         </Link>
 
         {/* Desktop Nav (visible only >= 1024px) */}
-        <nav className="hidden lg:flex space-x-8 xl:space-x-10">
+        <nav className="hidden lg:flex space-x-5 xl:space-x-8">
           {navLinks.map(link => (
             <Link
               key={link.lable}
@@ -54,9 +54,21 @@ export default function AnimatedUnderlineNavbar() {
 
         {/* Call & Button (only visible >= 1024px) */}
         <div className="hidden lg:flex items-center gap-4">
-          <div className="flex items-center text-black text-base font-medium gap-2">
-            <PhoneIcon className="w-5 h-5 text-pink-900" />
-            <span>+91-9342521779</span>
+          <div className="flex min-w-[320px] flex-col gap-1">
+            {branches.map(branch => (
+              <a
+                key={branch.id}
+                href={`tel:${branch.tel}`}
+                className="grid grid-cols-[150px_1fr] items-center gap-3 rounded-full border border-pink-100 px-3 py-1.5 text-xs font-medium text-black transition hover:border-pink-300 hover:bg-pink-50 hover:text-primary">
+                <span className="flex items-center gap-2 whitespace-nowrap font-semibold">
+                  <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-pink-900 text-white">
+                    <PhoneIcon className="w-3 h-3" />
+                  </span>
+                  {branch.name}
+                </span>
+                <span className="whitespace-nowrap text-right">{branch.phone}</span>
+              </a>
+            ))}
           </div>
 
           <div className="h-6 w-px bg-gray-400" />
@@ -88,9 +100,19 @@ export default function AnimatedUnderlineNavbar() {
           ))}
 
           <div className="pt-2 border-t border-gray-200 space-y-2">
-            <div className="flex items-center gap-2 text-black font-medium">
-              <PhoneIcon className="w-5 h-5 text-pink-900" />
-              <span>+91-9342521779</span>
+            <div className="space-y-2">
+              {branches.map(branch => (
+                <a
+                  key={branch.id}
+                  href={`tel:${branch.tel}`}
+                  className="flex items-center justify-between gap-3 rounded-lg bg-pink-50 px-3 py-2 text-black font-medium">
+                  <span className="flex items-center gap-2">
+                    <PhoneIcon className="w-5 h-5 text-pink-900" />
+                    {branch.name}
+                  </span>
+                  <span className="text-sm">{branch.phone}</span>
+                </a>
+              ))}
             </div>
             <Button
               className="w-full bg-pink-900 hover:bg-primary text-white font-medium"

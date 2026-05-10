@@ -1,4 +1,5 @@
 import React from 'react';
+import { branches } from '@/utils/utils';
 
 const TermsOfServicePage = () => {
   return (
@@ -35,7 +36,7 @@ const TermsOfServicePage = () => {
       <h2 className="text-xl font-semibold mt-6 mb-2">5. Contact</h2>
       <p className="mb-4">
         For questions about these terms, contact us at <strong>accumedspecialityclinic@gmail.com</strong> or call{' '}
-        <strong>+91-9342521779</strong>.
+        <strong>{branches.map(branch => branch.phone).join(' / ')}</strong>.
       </p>
     </div>
   );

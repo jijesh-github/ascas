@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useDoctorForm } from '@/context/DoctorFormContext';
+import { branches, primaryBranch } from '@/utils/utils';
 import { Phone, MapPin, Clock } from 'lucide-react';
 
 export default function ContactPage() {
@@ -38,8 +39,8 @@ export default function ContactPage() {
                   <Phone className="w-8 h-8 text-pink-600 mt-1" />
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">Emergency Helpline</h3>
-                    <a href="tel:+919342521779" className="text-xl text-gray-600 hover:text-pink-700">
-                      +91-9342521779
+                    <a href={`tel:${primaryBranch.tel}`} className="text-xl text-gray-600 hover:text-pink-700">
+                      {primaryBranch.phone}
                     </a>
                     <p className="text-sm text-gray-500 mt-1">24/7 Availability</p>
                   </div>
@@ -47,15 +48,40 @@ export default function ContactPage() {
 
                 <div className="flex items-start gap-4">
                   <MapPin className="w-8 h-8 text-pink-600 mt-1" />
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900">Clinic Address</h3>
-                    <p className="text-gray-600">
-                      24 Chowdhary Nagar Main Road
-                      <br />
-                      Valasaravakkam, Chennai
-                      <br />
-                      Tamil Nadu - 600087
-                    </p>
+                  <div className="space-y-5">
+                    <h3 className="text-lg font-semibold text-gray-900">Clinic Branches</h3>
+                    {branches.map(branch => (
+                      <div key={branch.id} className="border-l-2 border-pink-100 pl-4">
+                        <h4 className="font-semibold text-gray-900">{branch.clinicName}</h4>
+                        <p className="text-gray-600">
+                          {branch.addressLines.map(line => (
+                            <span key={line}>
+                              {line}
+                              <br />
+                            </span>
+                          ))}
+                        </p>
+                        <a href={`tel:${branch.tel}`} className="mt-1 inline-block text-sm text-pink-700 hover:underline">
+                          {branch.phone}
+                        </a>
+                        <div className="mt-2 text-sm text-gray-500">
+                          {branch.hours.map(line => (
+                            <span key={line}>
+                              {line}
+                              <br />
+                            </span>
+                          ))}
+                        </div>
+                        <br />
+                        <a
+                          href={branch.mapUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-blue-600 hover:underline">
+                          View Location on Google Maps
+                        </a>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
@@ -63,11 +89,20 @@ export default function ContactPage() {
                   <Clock className="w-8 h-8 text-pink-600 mt-1" />
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">OPD Hours</h3>
-                    <p className="text-gray-600">
-                      Monday - Saturday: 8 AM - 8 PM
-                      <br />
-                      Sunday: Emergency Only
-                    </p>
+                    <div className="space-y-2 text-gray-600">
+                      {branches.map(branch => (
+                        <p key={branch.id}>
+                          <span className="font-medium text-gray-800">{branch.clinicName}:</span>
+                          <br />
+                          {branch.hours.map(line => (
+                            <span key={line}>
+                              {line}
+                              <br />
+                            </span>
+                          ))}
+                        </p>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -139,14 +174,39 @@ export default function ContactPage() {
         </div>
 
         {/* Map Section */}
-        <div className="rounded-2xl overflow-hidden shadow-xl">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d230.91300280639618!2d80.18052373469796!3d13.04012077225027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52614cc3a6016b%3A0xe59e9878a0ae65c2!2s24%2C%20Chowdry%20Nagar%20Main%20Rd%2C%20opposite%20vasanthi%20dental%20hospital%2C%20Chowthri%20Nagar%2C%20Valasaravakkam%2C%20Chennai%2C%20Tamil%20Nadu%20600087!5e1!3m2!1sen!2sin!4v1748695987640!5m2!1sen!2sin"
-            width="100%"
-            height="450"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"></iframe>
+        <div className="grid gap-6 md:grid-cols-2">
+          {branches.map(branch => (
+            <div key={branch.id} className="overflow-hidden rounded-2xl bg-white shadow-xl">
+              <div className="p-5">
+                <h2 className="text-xl font-bold text-gray-900">{branch.clinicName}</h2>
+                <p className="mt-1 text-sm text-gray-600">{branch.address}</p>
+              </div>
+              {branch.embedMapUrl ? (
+                <div className="relative h-[360px]">
+                  <iframe
+                    title={`${branch.name} branch map`}
+                    src={branch.embedMapUrl}
+                    width="100%"
+                    height="100%"
+                    className="h-full w-full"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+              ) : (
+                <div className="flex h-[360px] items-center justify-center bg-pink-50 px-6 text-center">
+                  <a
+                    href={branch.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full bg-pink-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-primary">
+                    View {branch.name} on Google Maps
+                  </a>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </main>
