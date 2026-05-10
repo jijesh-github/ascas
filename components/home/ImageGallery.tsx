@@ -10,7 +10,7 @@ export default function ImageGallery() {
           {imageGallery.map((image, index) => (
             <div key={index} className="rounded overflow-hidden shadow-lg">
               <div className="relative w-full h-60">
-                <Image src={image.src} alt={image.alt} layout="fill" objectFit="cover" className="rounded-t" />
+                <Image src={image.src} alt={image.alt} fill sizes="(min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw" className="rounded-t object-cover" />
               </div>
               <div className="p-4 bg-white">
                 <p className="text-sm text-gray-700">{image.caption}</p>

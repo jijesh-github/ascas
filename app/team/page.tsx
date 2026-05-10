@@ -30,9 +30,9 @@ export default function TeamPage() {
                   <Image
                     src={doctor.image}
                     alt={doctor.name}
-                    layout="fill"
-                    objectFit="cover"
-                    className="hover:scale-105 transition-transform duration-300"
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </div>
 

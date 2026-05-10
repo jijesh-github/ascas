@@ -19,6 +19,8 @@ const countryCodes = [
   { code: '+27', label: 'South Africa' }
 ];
 
+const getTimingOnly = (hours: string[]) => hours[0].split(':').slice(1).join(':').trim();
+
 export default function DoctorAppointmentForm() {
   const [form, setForm] = useState({
     location: primaryBranch.name,
@@ -28,6 +30,7 @@ export default function DoctorAppointmentForm() {
     email: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const selectedBranch = branches.find(branch => branch.name === form.location) ?? primaryBranch;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -40,6 +43,7 @@ export default function DoctorAppointmentForm() {
     e.preventDefault();
 
     const { location, name, countryCode, phone, email } = form;
+    const timing = getTimingOnly(selectedBranch.hours);
     const phoneDigitsOnly = phone.replace(/\D/g, ''); // Remove non-digits
 
     if (!location.trim()) {
@@ -67,7 +71,7 @@ export default function DoctorAppointmentForm() {
       const res = await fetch('/api/send-mail', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ location, name, phone: fullPhone, email })
+        body: JSON.stringify({ location, timing, name, phone: fullPhone, email })
       });
 
       if (res.ok) {
@@ -129,7 +133,7 @@ export default function DoctorAppointmentForm() {
             className="w-full pl-10 pr-8 py-2 rounded-md border border-gray-300 bg-white shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm">
             {branches.map(branch => (
               <option key={branch.id} value={branch.name}>
-                {branch.name}
+                {branch.name} - {getTimingOnly(branch.hours)}
               </option>
             ))}
           </select>

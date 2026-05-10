@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
 export async function POST(req: Request) {
-  const { name, location, email, phone } = await req.json();
+  const { name, location, timing, email, phone } = await req.json();
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -17,7 +17,7 @@ export async function POST(req: Request) {
     from: process.env.EMAIL_USER,
     to: process.env.EMAIL_RECEIVER, // where you want to receive booking requests
     subject: 'New Doctor Appointment Request',
-    text: `Name: ${name}\nLocation: ${location}\nEmail: ${email}\nPhone: ${phone}`
+    text: `Name: ${name}\nLocation: ${location}\nTiming: ${timing || 'Not specified'}\nEmail: ${email}\nPhone: ${phone}`
   };
 
   try {
