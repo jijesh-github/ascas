@@ -2,6 +2,22 @@ import CtaSection from '@/components/home/CtaSection';
 import { doctors } from '@/utils/utils';
 import { HeartHandshake } from 'lucide-react';
 import Image from 'next/image';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Fertility, Gynecology, Radiology and Surgical Specialists',
+  description:
+    'Meet the ASCAS care team, including fertility, gynecology, radiology, fetal imaging, and surgical specialists supporting families in Chennai.',
+  alternates: {
+    canonical: '/team'
+  },
+  openGraph: {
+    title: 'Fertility, Gynecology, Radiology and Surgical Specialists',
+    description:
+      'Meet the specialists providing fertility care, gynecology, radiology, fetal imaging, and surgical support in Chennai.',
+    url: '/team'
+  }
+};
 
 // Icon mapping
 

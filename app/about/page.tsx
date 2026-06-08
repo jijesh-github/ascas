@@ -1,6 +1,22 @@
 import CtaSection from '@/components/home/CtaSection';
 import { doctors, services } from '@/utils/utils';
 import { CheckCircle2, Building2 } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About Our Fertility and Women’s Care Clinic',
+  description:
+    'Learn about ASCAS and Accumed Speciality Clinic and Scans, led by experienced fertility, gynecology, radiology, and surgical specialists in Chennai.',
+  alternates: {
+    canonical: '/about'
+  },
+  openGraph: {
+    title: 'About Our Fertility and Women’s Care Clinic',
+    description:
+      'Compassionate fertility, gynecology, radiology, and surgical care from experienced specialists in Chennai.',
+    url: '/about'
+  }
+};
 
 export default function AboutPage() {
   return (

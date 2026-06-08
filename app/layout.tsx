@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 import { DoctorFormProvider } from '@/context/DoctorFormContext';
 import DoctorFormModal from '@/components/ui/DoctorFormModal';
 import FloatingContactButtons from '@/components/layout/FloatingContactButtons';
+import { branches } from '@/utils/utils';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -24,9 +25,88 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Accumed Speciality Clinic and Scans',
+  metadataBase: new URL('https://www.ascasclinic.com'),
+  title: {
+    default: 'Accumed Speciality Clinic and Scans | Fertility Clinic in Chennai',
+    template: '%s | Accumed Speciality Clinic and Scans'
+  },
   description:
-    'Unlock the Miracle of Life with Accumed Speciality Clinic and Scans Your Journey to Parenthood Starts Here'
+    'Accumed Speciality Clinic and Scans offers fertility care, IVF, IUI, pregnancy support, advanced scans, and women\'s healthcare in Valasaravakkam and Vadapalani, Chennai.',
+  keywords: [
+    'fertility clinic Chennai',
+    'IVF clinic Chennai',
+    'IUI treatment Chennai',
+    'women fertility center Chennai',
+    'pregnancy scans Chennai',
+    'gynecology clinic Chennai',
+    'Valasaravakkam fertility clinic',
+    'Vadapalani fertility clinic',
+    'ASCAS Fertility Center',
+    'Accumed Speciality Clinic and Scans'
+  ],
+  alternates: {
+    canonical: '/'
+  },
+  openGraph: {
+    type: 'website',
+    url: 'https://www.ascasclinic.com',
+    siteName: 'Accumed Speciality Clinic and Scans',
+    title: 'Accumed Speciality Clinic and Scans | Fertility Clinic in Chennai',
+    description:
+      'Fertility care, IVF, IUI, pregnancy support, advanced scans, and women\'s healthcare at Valasaravakkam and Vadapalani, Chennai.',
+    images: [
+      {
+        url: '/images/banner/banner.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Accumed Speciality Clinic and Scans fertility care in Chennai'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Accumed Speciality Clinic and Scans | Fertility Clinic in Chennai',
+    description:
+      'Fertility care, IVF, IUI, pregnancy support, advanced scans, and women\'s healthcare in Chennai.',
+    images: ['/images/banner/banner.jpg']
+  }
+};
+
+const socialLinks = [
+  'https://www.facebook.com/draishparth',
+  'https://www.instagram.com/dr.aishparth',
+  'https://www.youtube.com/@doctormommies'
+];
+
+const clinicJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalClinic',
+  '@id': 'https://www.ascasclinic.com/#clinic',
+  name: 'Accumed Speciality Clinic and Scans',
+  alternateName: ['ASCAS', 'ASCAS Fertility Center'],
+  url: 'https://www.ascasclinic.com',
+  logo: 'https://www.ascasclinic.com/logo.png',
+  image: 'https://www.ascasclinic.com/images/banner/banner.jpg',
+  description:
+    'Fertility care, IVF, IUI, pregnancy support, advanced scans, and women\'s healthcare in Valasaravakkam and Vadapalani, Chennai.',
+  medicalSpecialty: ['Gynecology', 'ReproductiveMedicine', 'Radiology'],
+  telephone: branches.map(branch => branch.phone),
+  sameAs: socialLinks,
+  department: branches.map(branch => ({
+    '@type': 'MedicalClinic',
+    name: branch.clinicName,
+    telephone: branch.phone,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: branch.addressLines[0],
+      addressLocality: 'Chennai',
+      addressRegion: 'Tamil Nadu',
+      addressCountry: 'IN',
+      postalCode: branch.id === 'vadapalani' ? '600093' : '600087'
+    },
+    openingHours: branch.id === 'vadapalani' ? 'Mo-Sa 09:00-20:00' : 'Mo-Sa 09:00-21:00',
+    hasMap: branch.mapUrl
+  }))
 };
 
 export default function RootLayout({
@@ -38,6 +118,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}>
         <DoctorFormProvider>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicJsonLd) }}
+          />
           <Navbar />
           {/* <div className="pt-[76px]">{children}</div> */}
           <div>{children}</div>

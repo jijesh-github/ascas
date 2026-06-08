@@ -1,5 +1,15 @@
 import React from 'react';
 import { branches } from '@/utils/utils';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Terms of Service',
+  description:
+    'Terms of service for using the Accumed Speciality Clinic and Scans website, online appointment requests, and health information pages.',
+  alternates: {
+    canonical: '/terms-of-service'
+  }
+};
 
 const TermsOfServicePage = () => {
   return (

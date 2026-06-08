@@ -6,7 +6,23 @@ import IVFComponent from '@/components/blog/IVFComponent';
 import OITreatmentComponent from '@/components/blog/OITreatmentComponent';
 import PGTComponent from '@/components/blog/PGTComponent';
 import PGTSRCaseSeriesComponent from '@/components/blog/PGTSRCaseSeriesComponent';
+import type { Metadata } from 'next';
 import React from 'react';
+
+export const metadata: Metadata = {
+  title: 'Fertility, IVF, IUI and Pregnancy Care Blog',
+  description:
+    'Read fertility, IVF, IUI, pregnancy, diet, hysteroscopy, PGT, and reproductive health guidance from the ASCAS care team.',
+  alternates: {
+    canonical: '/blog'
+  },
+  openGraph: {
+    title: 'Fertility, IVF, IUI and Pregnancy Care Blog',
+    description:
+      'Fertility, IVF, IUI, pregnancy, diet, hysteroscopy, PGT, and reproductive health education from ASCAS.',
+    url: '/blog'
+  }
+};
 
 const FertilityBlog = () => {
   return (

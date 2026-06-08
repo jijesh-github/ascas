@@ -1,6 +1,22 @@
 import CtaSection from '@/components/home/CtaSection';
 import { services } from '@/utils/utils';
 import { CheckCircle2, Stethoscope, Baby, Scan, Pill, Microscope } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Fertility, Pregnancy, Scan and Women’s Health Services',
+  description:
+    'Explore IVF, IUI, fertility preservation, pregnancy support, gynecological imaging, laparoscopic surgery, and diagnostic services in Chennai.',
+  alternates: {
+    canonical: '/services'
+  },
+  openGraph: {
+    title: 'Fertility, Pregnancy, Scan and Women’s Health Services',
+    description:
+      'IVF, IUI, fertility care, pregnancy support, scans, diagnostics, and gynecological services in Chennai.',
+    url: '/services'
+  }
+};
 
 const ServiceCard = ({ icon, title, items }: { icon: React.ReactNode; title: string; items: string[] }) => (
   <div className="bg-soft-primary rounded-2xl p-6 md:p-8 shadow-xl space-y-6">

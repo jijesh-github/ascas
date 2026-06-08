@@ -1,5 +1,15 @@
 import React from 'react';
 import { branches } from '@/utils/utils';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
+  description:
+    'Privacy policy for Accumed Speciality Clinic and Scans and ASCAS Fertility Center, including how patient and appointment information is handled.',
+  alternates: {
+    canonical: '/privacy-policy'
+  }
+};
 
 const PrivacyPolicyPage = () => {
   return (

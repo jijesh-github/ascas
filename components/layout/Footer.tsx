@@ -16,12 +16,6 @@ const Footer = () => {
               Providing compassionate fertility care and innovative treatments to help couples achieve their dream of
               parenthood.
             </p>
-            <div className="flex space-x-4 pt-2">
-              <a href="#" className="text-gray-500 hover:text-purple-600 transition-colors" aria-label="Facebook"></a>
-              <a href="#" className="text-gray-500 hover:text-purple-600 transition-colors" aria-label="Instagram"></a>
-              <a href="#" className="text-gray-500 hover:text-purple-600 transition-colors" aria-label="Twitter"></a>
-              <a href="#" className="text-gray-500 hover:text-purple-600 transition-colors" aria-label="LinkedIn"></a>
-            </div>
           </div>
 
           {/* Column 2 - Quick Links */}
@@ -110,7 +104,7 @@ const Footer = () => {
                 <Facebook className="h-6 w-6" />
               </a>
               <a
-                href="https://www.instagram.com/accumedspecialityclinic/?hl=en"
+                href="https://www.instagram.com/dr.aishparth"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#E1306C] hover:text-[#e130a6] transition-colors"
