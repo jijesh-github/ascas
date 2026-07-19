@@ -40,12 +40,12 @@ export default function AnimatedUnderlineNavbar() {
         </Link>
 
         {/* Desktop Nav (visible only >= 1024px) */}
-        <nav className="hidden lg:flex space-x-5 xl:space-x-8">
+        <nav className="hidden lg:flex space-x-4 xl:space-x-6">
           {navLinks.map(link => (
             <Link
               key={link.lable}
               href={link.path}
-              className="group relative text-black font-lg hover:text-primary transition-colors">
+              className="group relative whitespace-nowrap text-black font-lg hover:text-primary transition-colors">
               {link.lable}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
             </Link>
@@ -53,7 +53,7 @@ export default function AnimatedUnderlineNavbar() {
         </nav>
 
         {/* Call & Button (only visible >= 1024px) */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex shrink-0 items-center gap-4">
           <div className="flex min-w-[320px] flex-col gap-1">
             {branches.map(branch => (
               <a

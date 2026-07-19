@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { ArrowUpRight, MapPin, Sparkles } from 'lucide-react';
 
@@ -23,7 +24,10 @@ export default function BranchAnnouncement() {
   }, []);
 
   return (
-    <div className="mb-5 w-full max-w-lg animate-branch-announcement overflow-hidden rounded-3xl border border-white/25 bg-white/12 p-2 shadow-2xl shadow-pink-950/25 backdrop-blur-xl">
+    <Link
+      href="/branches/vadapalani"
+      className="mb-5 block w-full max-w-lg animate-branch-announcement overflow-hidden rounded-3xl border border-white/25 bg-white/12 p-2 shadow-2xl shadow-pink-950/25 backdrop-blur-xl transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+      aria-label="Visit our new Vadapalani branch page">
       <div className="relative z-10 flex items-center gap-3">
         <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-2xl bg-pink-950 ring-1 ring-white/30 sm:h-24 sm:w-32">
           {branchImages.map((src, index) => {
@@ -62,7 +66,7 @@ export default function BranchAnnouncement() {
             <p className="min-w-0 text-base font-semibold leading-tight text-white sm:text-lg">
               Now welcoming you at our new branch
             </p>
-            <span className="hidden h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-pink-900 shadow-lg sm:inline-flex">
+            <span className="hidden h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white text-pink-900 shadow-lg transition-transform hover:scale-110 sm:inline-flex">
               <ArrowUpRight className="h-4 w-4" />
             </span>
           </div>
@@ -79,6 +83,6 @@ export default function BranchAnnouncement() {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
