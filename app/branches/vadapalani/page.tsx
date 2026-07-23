@@ -5,16 +5,16 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'ASCAS Fertility Center – Vadapalani Branch',
+  title: 'ASCAS Fertility and Women\'s Center – Vadapalani Branch',
   description:
-    'Visit ASCAS Fertility Center at Vadapalani, Chennai. Book fertility, IVF, IUI, and women\'s health consultations at our new branch on Arunachalam Road, next to VB World.',
+    'Visit ASCAS Fertility and Women\'s Center at Vadapalani, Chennai. Book fertility, IVF, IUI, and women\'s health consultations at our new branch on Arunachalam Road, next to VB World.',
   alternates: {
     canonical: '/branches/vadapalani'
   },
   openGraph: {
-    title: 'ASCAS Fertility Center – Vadapalani Branch',
+    title: 'ASCAS Fertility and Women\'s Center – Vadapalani Branch',
     description:
-      'ASCAS Fertility Center is now open in Vadapalani, Chennai. Offering fertility care, IVF, IUI, pregnancy support, and women\'s healthcare.',
+      'ASCAS Fertility and Women\'s Center is now open in Vadapalani, Chennai. Offering fertility care, IVF, IUI, pregnancy support, and women\'s healthcare.',
     url: '/branches/vadapalani'
   }
 };

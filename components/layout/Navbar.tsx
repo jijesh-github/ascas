@@ -6,13 +6,11 @@ import Link from 'next/link';
 import { Button } from '../ui/button';
 import Image from 'next/image';
 import { branches, navLinks } from '@/utils/utils';
-import { useDoctorForm } from '@/context/DoctorFormContext';
 import { PhoneIcon, Menu, X } from 'lucide-react';
 
 export default function AnimatedUnderlineNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { openForm } = useDoctorForm();
 
   useEffect(() => {
     const scroll = () => setIsScrolled(window.scrollY > 10);
@@ -73,11 +71,12 @@ export default function AnimatedUnderlineNavbar() {
 
           <div className="h-6 w-px bg-gray-400" />
 
-          <Button
-            className="bg-primary hover:bg-primary-hover text-white font-medium cursor-pointer"
-            onClick={openForm}>
-            Book Appointment
-          </Button>
+          <Link href="/book-appointment">
+            <Button
+              className="bg-primary hover:bg-primary-hover text-white font-medium cursor-pointer">
+              Book Appointment
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile / Tablet Menu Button (visible < 1024px) */}
@@ -114,14 +113,11 @@ export default function AnimatedUnderlineNavbar() {
                 </a>
               ))}
             </div>
-            <Button
-              className="w-full bg-pink-900 hover:bg-primary text-white font-medium"
-              onClick={() => {
-                openForm();
-                setMenuOpen(false);
-              }}>
-              Book Appointment
-            </Button>
+            <Link href="/book-appointment" onClick={() => setMenuOpen(false)}>
+              <Button className="w-full bg-pink-900 hover:bg-primary text-white font-medium">
+                Book Appointment
+              </Button>
+            </Link>
           </div>
         </div>
       )}

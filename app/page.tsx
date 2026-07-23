@@ -11,7 +11,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Fertility Clinic in Chennai | IVF, IUI, Scans & Pregnancy Care',
   description:
-    'Book fertility, IVF, IUI, pregnancy care, and advanced scan consultations at Accumed Speciality Clinic and Scans in Valasaravakkam and ASCAS Fertility Center in Vadapalani, Chennai.',
+    'Book fertility, IVF, IUI, pregnancy care, and advanced scan consultations at Accumed Speciality Clinic and Scans in Valasaravakkam and ASCAS Fertility and Women\'s Center in Vadapalani, Chennai.',
   alternates: {
     canonical: '/'
   },

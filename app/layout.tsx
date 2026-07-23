@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     'gynecology clinic Chennai',
     'Valasaravakkam fertility clinic',
     'Vadapalani fertility clinic',
-    'ASCAS Fertility Center',
+    "ASCAS Fertility and Women's Center",
     'Accumed Speciality Clinic and Scans'
   ],
   alternates: {
@@ -83,7 +83,7 @@ const clinicJsonLd = {
   '@type': 'MedicalClinic',
   '@id': 'https://www.ascasclinic.com/#clinic',
   name: 'Accumed Speciality Clinic and Scans',
-  alternateName: ['ASCAS', 'ASCAS Fertility Center'],
+  alternateName: ['ASCAS', "ASCAS Fertility and Women's Center"],
   url: 'https://www.ascasclinic.com',
   logo: 'https://www.ascasclinic.com/logo.png',
   image: 'https://www.ascasclinic.com/images/banner/banner.jpg',

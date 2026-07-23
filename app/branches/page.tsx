@@ -4,16 +4,16 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Our Branches – ASCAS Fertility Center',
+  title: "Our Branches – ASCAS Fertility and Women's Center",
   description:
-    'Find ASCAS Fertility Center branches in Valasaravakkam and Vadapalani, Chennai. Get addresses, contact numbers, working hours, and directions for both clinics.',
+    "Find ASCAS Fertility and Women's Center branches in Valasaravakkam and Vadapalani, Chennai. Get addresses, contact numbers, working hours, and directions for both clinics.",
   alternates: {
     canonical: '/branches'
   },
   openGraph: {
-    title: 'Our Branches – ASCAS Fertility Center',
+    title: "Our Branches – ASCAS Fertility and Women's Center",
     description:
-      'ASCAS Fertility Center operates two branches in Chennai — Valasaravakkam and Vadapalani. Find contact details, addresses, and working hours for each clinic.',
+      "ASCAS Fertility and Women's Center operates two branches in Chennai — Valasaravakkam and Vadapalani. Find contact details, addresses, and working hours for each clinic.",
     url: '/branches'
   }
 };
@@ -36,7 +36,7 @@ export default function BranchesPage() {
           </h1>
 
           <p className="text-base sm:text-lg text-gray-700 leading-relaxed max-w-2xl mx-auto">
-            ASCAS Fertility Center operates two branches across Chennai, bringing expert fertility
+            ASCAS Fertility and Women&apos;s Center operates two branches across Chennai, bringing expert fertility
             care and women&apos;s healthcare closer to you.
           </p>
         </div>

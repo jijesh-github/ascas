@@ -48,7 +48,7 @@ export default function TeamPage() {
                     alt={doctor.name}
                     fill
                     sizes="(min-width: 768px) 33vw, 100vw"
-                    className="object-cover hover:scale-105 transition-transform duration-300"
+                    className={`object-cover ${doctor.imagePosition} hover:scale-105 transition-transform duration-300`}
                   />
                 </div>
 
@@ -78,12 +78,14 @@ export default function TeamPage() {
                 </div>
 
                 {/* Approach */}
-                <div className="bg-purple-50 p-4 rounded-lg">
-                  <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                    <HeartHandshake className="w-5 h-5 text-pink-600" /> Approach
-                  </h3>
-                  <p className="text-gray-600 text-sm">{doctor.philosophy}</p>
-                </div>
+                {doctor.philosophy && (
+                  <div className="bg-purple-50 p-4 rounded-lg">
+                    <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                      <HeartHandshake className="w-5 h-5 text-pink-600" /> Approach
+                    </h3>
+                    <p className="text-gray-600 text-sm">{doctor.philosophy}</p>
+                  </div>
+                )}
               </div>
             );
           })}

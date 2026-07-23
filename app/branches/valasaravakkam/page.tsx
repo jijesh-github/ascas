@@ -1,6 +1,7 @@
 import CtaSection from '@/components/home/CtaSection';
 import { branches } from '@/utils/utils';
 import { Clock, MapPin, MessageSquare, Phone, Images } from 'lucide-react';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -24,7 +25,38 @@ const valasaravakkamBranch = branches.find(b => b.id === 'valasaravakkam')!;
 // To add images, place files in: public/images/gallery/valasaravakkam/
 // and add entries following the pattern below:
 // { src: '/images/gallery/valasaravakkam/01.jpeg', alt: '...', caption: '...' }
-const valasaravakkamGallery: { src: string; alt: string; caption: string }[] = [];
+const valasaravakkamGallery: { src: string; alt: string; caption: string }[] = [
+  {
+    src: '/images/faclities/01.jpeg',
+    alt: 'OPD Waiting Hall at Accumed Speciality Clinic and Scans, Valasaravakkam',
+    caption: 'OPD Waiting Hall'
+  },
+  {
+    src: '/images/faclities/02.jpeg',
+    alt: 'OPD Waiting Hall at Accumed Speciality Clinic and Scans, Valasaravakkam',
+    caption: 'OPD Waiting Hall'
+  },
+  {
+    src: '/images/faclities/03.jpeg',
+    alt: 'IUI Lab at Accumed Speciality Clinic and Scans, Valasaravakkam',
+    caption: 'Our IUI Lab'
+  },
+  {
+    src: '/images/faclities/04.jpeg',
+    alt: 'IUI Room at Accumed Speciality Clinic and Scans, Valasaravakkam',
+    caption: 'Our IUI Room'
+  },
+  {
+    src: '/images/faclities/06.jpeg',
+    alt: 'Scan Suite at Accumed Speciality Clinic and Scans, Valasaravakkam',
+    caption: 'Our Scan Suite'
+  },
+  {
+    src: '/images/faclities/08.jpeg',
+    alt: 'Consultation Room at Accumed Speciality Clinic and Scans, Valasaravakkam',
+    caption: 'Our Consultation Room'
+  }
+];
 
 export default function ValasaravakkamPage() {
   const branch = valasaravakkamBranch;
@@ -57,11 +89,12 @@ export default function ValasaravakkamPage() {
               {valasaravakkamGallery.map((image, index) => (
                 <div key={index} className="rounded overflow-hidden shadow-lg">
                   <div className="relative w-full h-60">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src={image.src}
                       alt={image.alt}
-                      className="rounded-t object-cover w-full h-full"
+                      fill
+                      sizes="(min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="rounded-t object-cover"
                     />
                   </div>
                   <div className="p-4 bg-white">

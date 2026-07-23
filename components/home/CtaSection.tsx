@@ -1,12 +1,11 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { useDoctorForm } from '@/context/DoctorFormContext';
+import Link from 'next/link';
 import { branches } from '@/utils/utils';
 import { MapPin, MessageSquare, Phone } from 'lucide-react';
 
 const CtaSection = () => {
-  const { openForm } = useDoctorForm();
 
   return (
     <section className="bg-gray-300 border border-gray-200 rounded-2xl px-6 py-8 sm:px-10 sm:py-10 shadow-sm">
@@ -21,12 +20,13 @@ const CtaSection = () => {
 
         {/* Call to Actions */}
         <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
-          <Button
-            size="sm"
-            className="rounded-full bg-pink-900 hover:bg-primary text-white px-5 py-2 text-sm font-medium cursor-pointer"
-            onClick={openForm}>
-            Book an Appointment
-          </Button>
+          <Link href="/book-appointment">
+            <Button
+              size="sm"
+              className="rounded-full bg-pink-900 hover:bg-primary text-white px-5 py-2 text-sm font-medium cursor-pointer">
+              Book an Appointment
+            </Button>
+          </Link>
         </div>
       </div>
 
