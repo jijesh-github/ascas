@@ -1,211 +1,201 @@
 'use client';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useDoctorForm } from '@/context/DoctorFormContext';
 import { branches, primaryBranch } from '@/utils/utils';
-import { Phone, MapPin, Clock } from 'lucide-react';
+import PageHero from '@/components/ui/PageHero';
+import { Phone, MapPin, Clock, Headphones, Send, Calendar } from 'lucide-react';
 
 export default function ContactPageClient() {
   const { openForm } = useDoctorForm();
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 5000);
+  };
 
   return (
-    <main className="w-full px-6 py-16 bg-gradient-to-br from-purple-50 via-pink-50 to-white">
-      <div className="max-w-7xl mx-auto space-y-16">
-        {/* Hero Section */}
-        <div className="text-center">
-          <div className="inline-block bg-pink-200/30 px-10 py-5 rounded-full shadow-md">
-            <span className="text-pink-800 font-bold uppercase tracking-wider text-4xl sm:text-5xl">24/7 Support</span>
-          </div>
-        </div>
-        <div className="text-center space-y-8">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6 max-w-3xl mx-auto leading-tight">
-            Take the next step towards parenthood
-          </h1>
-          <p className="text-xl text-gray-600 max-w-xl mx-auto">
-            Don't wait any longer to start your journey to parenthood. Contact us today to schedule a consultation and
-            take the first step towards building your family.
-          </p>
-        </div>
+    <main className="min-h-screen bg-slate-50/40">
+      {/* Page Hero Header */}
+      <PageHero
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Contact Us' }]}
+        eyebrow="24/7 Helpline & Support"
+        eyebrowIcon={<Headphones className="w-4 h-4 text-pink-700" />}
+        title={
+          <>
+            Take the Next Step <span className="font-accent italic text-[#570026] font-normal">Towards Parenthood</span>
+          </>
+        }
+        description="Don't wait to begin your journey. Contact our fertility specialists today to schedule a consultation at our Vadapalani or Valasaravakkam clinics."
+      />
 
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <div className="bg-white rounded-2xl p-8 shadow-xl">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Contact Details</h2>
+      {/* Main Container */}
+      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 py-12 sm:py-16 space-y-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:items-start">
+          
+          {/* Left Column: Contact Information & Branches */}
+          <div className="lg:col-span-6 space-y-6">
+            
+            {/* Emergency Helpline Banner */}
+            <div className="bg-gradient-to-r from-[#570026] via-[#750b39] to-[#861043] rounded-3xl p-6 sm:p-8 text-white shadow-md flex items-start gap-4">
+              <div className="p-3 rounded-2xl bg-white/10 backdrop-blur-md shrink-0">
+                <Phone className="w-7 h-7 text-amber-300" />
+              </div>
+              <div className="space-y-1">
+                <span className="text-xs font-semibold text-pink-200 uppercase tracking-wider block">
+                  24/7 Emergency Helpline
+                </span>
+                <a href={`tel:${primaryBranch.tel}`} className="text-2xl sm:text-3xl font-extrabold block hover:underline">
+                  {primaryBranch.phone}
+                </a>
+                <p className="text-xs sm:text-sm text-white/80">
+                  Call anytime for urgent fertility & pregnancy guidance.
+                </p>
+              </div>
+            </div>
+
+            {/* Clinic Branch Cards */}
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-pink-100/80 shadow-sm space-y-6">
+              <div className="flex items-center gap-3 border-b border-pink-100 pb-4">
+                <MapPin className="w-6 h-6 text-[#570026]" />
+                <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900">Clinic Locations</h2>
+              </div>
 
               <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <Phone className="w-8 h-8 text-pink-600 mt-1" />
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900">Emergency Helpline</h3>
-                    <a href={`tel:${primaryBranch.tel}`} className="text-xl text-gray-600 hover:text-pink-700">
-                      {primaryBranch.phone}
-                    </a>
-                    <p className="text-sm text-gray-500 mt-1">24/7 Availability</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <MapPin className="w-8 h-8 text-pink-600 mt-1" />
-                  <div className="space-y-5">
-                    <h3 className="text-lg font-semibold text-gray-900">Clinic Branches</h3>
-                    {branches.map(branch => (
-                      <div key={branch.id} className="border-l-2 border-pink-100 pl-4">
-                        <h4 className="font-semibold text-gray-900">{branch.clinicName}</h4>
-                        <p className="text-gray-600">
-                          {branch.addressLines.map(line => (
-                            <span key={line}>
-                              {line}
-                              <br />
-                            </span>
-                          ))}
-                        </p>
-                        <a href={`tel:${branch.tel}`} className="mt-1 inline-block text-sm text-pink-700 hover:underline">
-                          {branch.phone}
-                        </a>
-                        <div className="mt-2 text-sm text-gray-500">
-                          {branch.hours.map(line => (
-                            <span key={line}>
-                              {line}
-                              <br />
-                            </span>
-                          ))}
-                        </div>
-                        <br />
-                        <a
-                          href={branch.mapUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm text-blue-600 hover:underline">
-                          View Location on Google Maps
-                        </a>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <Clock className="w-8 h-8 text-pink-600 mt-1" />
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900">OPD Hours</h3>
-                    <div className="space-y-2 text-gray-600">
-                      {branches.map(branch => (
-                        <p key={branch.id}>
-                          <span className="font-medium text-gray-800">{branch.clinicName}:</span>
+                {branches.map(branch => (
+                  <div key={branch.id} className="bg-pink-50/40 rounded-2xl p-5 border border-pink-100/70 space-y-3">
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg">{branch.clinicName}</h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-medium">
+                      {branch.addressLines.map(line => (
+                        <span key={line}>
+                          {line}
                           <br />
-                          {branch.hours.map(line => (
-                            <span key={line}>
-                              {line}
-                              <br />
-                            </span>
-                          ))}
-                        </p>
+                        </span>
                       ))}
+                    </p>
+
+                    <div className="pt-2 flex flex-wrap items-center gap-3 text-xs sm:text-sm">
+                      <a
+                        href={`tel:${branch.tel}`}
+                        className="inline-flex items-center gap-1.5 font-bold text-[#570026] hover:underline">
+                        <Phone className="w-3.5 h-3.5" />
+                        {branch.phone}
+                      </a>
+                      <span className="text-gray-300">•</span>
+                      <a
+                        href={branch.mapUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 font-semibold text-pink-700 hover:underline">
+                        <MapPin className="w-3.5 h-3.5" />
+                        Google Maps
+                      </a>
+                    </div>
+
+                    <div className="pt-2 border-t border-pink-100/60 text-xs text-gray-500 font-medium">
+                      <Clock className="w-3.5 h-3.5 inline mr-1 text-[#570026]" />
+                      {branch.hours.join(' | ')}
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
 
-            {/* Quick Actions */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <Button
-                className="w-full  font-medium py-2 px-4 rounded-md  bg-pink-900 hover:bg-primary transition text-white cursor-pointer"
-                onClick={openForm}>
-                1-Click Appointment
-              </Button>
-            </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-white rounded-2xl p-8 shadow-xl">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
-
-            <form className="space-y-6">
-              <div>
-                <label className="block text-gray-700 mb-2">Full Name</label>
-                <Input
-                  type="text"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
-                  placeholder="Enter your name"
-                />
+          {/* Right Column: Interactive Contact Form */}
+          <div className="lg:col-span-6">
+            <div className="bg-white rounded-3xl p-6 sm:p-10 border border-pink-100/80 shadow-sm space-y-6">
+              <div className="border-b border-pink-100 pb-4">
+                <h2 className="text-2xl font-extrabold text-gray-900">Send Us a Message</h2>
+                <p className="text-xs sm:text-sm text-gray-600 mt-1">
+                  Fill out the form below and our clinic counselors will respond within 24 hours.
+                </p>
               </div>
 
-              <div>
-                <label className="block text-gray-700 mb-2">Email Address</label>
-                <Input
-                  type="email"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
-                  placeholder="your@email.com"
-                />
-              </div>
-
-              <div>
-                <label className="block text-gray-700 mb-2">Phone Number</label>
-                <Input
-                  type="tel"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
-                  placeholder="+91 00000 00000"
-                />
-              </div>
-
-              <div>
-                <label className="block text-gray-700 mb-2">Department</label>
-                <select className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-pink-500 focus:border-transparent">
-                  <option>Fertility Care</option>
-                  <option>Pregnancy Support</option>
-                  <option>Surgical Services</option>
-                  <option>General Inquiry</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-gray-700 mb-2">Message</label>
-                <Textarea
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
-                  placeholder="Type your message here..."></Textarea>
-              </div>
-              <Button className="w-full  font-medium py-2 px-4 rounded-md  transition  bg-pink-900 hover:bg-primary text-white ">
-                Send Message
-              </Button>
-            </form>
-          </div>
-        </div>
-        {/* Map Section */}
-        <div className="grid gap-6 md:grid-cols-2">
-          {branches.map(branch => (
-            <div key={branch.id} className="overflow-hidden rounded-2xl bg-white shadow-xl">
-              <div className="p-5">
-                <h2 className="text-xl font-bold text-gray-900">{branch.clinicName}</h2>
-                <p className="mt-1 text-sm text-gray-600">{branch.address}</p>
-              </div>
-              {branch.embedMapUrl ? (
-                <div className="relative h-[360px]">
-                  <iframe
-                    title={`${branch.name} branch map`}
-                    src={branch.embedMapUrl}
-                    width="100%"
-                    height="100%"
-                    className="h-full w-full"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"></iframe>
+              {submitted ? (
+                <div className="rounded-2xl bg-emerald-50 border border-emerald-200 p-6 text-center space-y-2">
+                  <h3 className="text-lg font-bold text-emerald-800">Message Received!</h3>
+                  <p className="text-sm text-emerald-700">
+                    Thank you for reaching out to ASCAS Clinics. Our team will call you shortly.
+                  </p>
                 </div>
               ) : (
-                <div className="flex h-[360px] items-center justify-center bg-pink-50 px-6 text-center">
-                  <a
-                    href={branch.mapUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-full bg-pink-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-primary">
-                    View {branch.name} on Google Maps
-                  </a>
-                </div>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-gray-700 uppercase tracking-wider">Full Name</label>
+                    <Input
+                      required
+                      placeholder="Enter your full name"
+                      className="rounded-xl border-pink-200 focus:border-[#570026] focus:ring-[#570026]"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-gray-700 uppercase tracking-wider">Phone Number</label>
+                      <Input
+                        required
+                        type="tel"
+                        placeholder="+91 98765 43210"
+                        className="rounded-xl border-pink-200 focus:border-[#570026] focus:ring-[#570026]"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-gray-700 uppercase tracking-wider">Email Address</label>
+                      <Input
+                        type="email"
+                        placeholder="yourname@example.com"
+                        className="rounded-xl border-pink-200 focus:border-[#570026] focus:ring-[#570026]"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-gray-700 uppercase tracking-wider">Preferred Branch</label>
+                    <select className="w-full rounded-xl border border-pink-200 bg-white px-3 py-2 text-sm text-gray-800 focus:border-[#570026] focus:outline-none focus:ring-2 focus:ring-[#570026]">
+                      <option>Accumed Speciality Clinic & Scans (Valasaravakkam)</option>
+                      <option>ASCAS Fertility and Women's Center (Vadapalani)</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-gray-700 uppercase tracking-wider">Your Message / Query</label>
+                    <Textarea
+                      required
+                      rows={4}
+                      placeholder="How can our medical team assist you?"
+                      className="rounded-xl border-pink-200 focus:border-[#570026] focus:ring-[#570026]"
+                    />
+                  </div>
+
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#570026] hover:bg-[#861043] text-white font-semibold text-base shadow-lg shadow-pink-950/20 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer">
+                      <Send className="w-4 h-4 text-amber-300" />
+                      <span>Submit Inquiry</span>
+                    </button>
+                  </div>
+
+                  <div className="pt-3 text-center">
+                    <button
+                      type="button"
+                      onClick={openForm}
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#570026] hover:underline cursor-pointer">
+                      <Calendar className="w-3.5 h-3.5 text-pink-700" />
+                      <span>Prefer direct doctor booking? Click here</span>
+                    </button>
+                  </div>
+                </form>
               )}
             </div>
-          ))}
+          </div>
+
         </div>
       </div>
     </main>

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, UserCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight, UserCircle, MessageSquareQuote } from 'lucide-react';
 import Image from 'next/image';
 
 type Review = {
@@ -85,61 +85,93 @@ export default function TestimonialSlider() {
 
   useEffect(() => {
     if (isHovered) return;
-    const timer = setInterval(handleNext, 5000);
+    const timer = setInterval(handleNext, 6000);
     return () => clearInterval(timer);
   }, [isHovered, index, reviews]);
 
   const currentReview = reviews[index];
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12 relative">
-      <button
-        onClick={handlePrev}
-        className="absolute top-1/2 -translate-y-1/2 -left-6 p-2 bg-pink-900 hover:bg-primary rounded-full text-white z-10 cursor-pointer"
-        aria-label="Previous">
-        <ChevronLeft size={24} />
-      </button>
+    <section className="relative py-20 lg:py-24 bg-[#fcf0f5] border-y border-pink-200/60">
+      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-pink-200 text-[#570026] text-xs sm:text-sm font-semibold tracking-wide uppercase mb-4 shadow-sm">
+            <MessageSquareQuote className="w-4 h-4 text-pink-700" />
+            <span>Patient Stories & Feedback</span>
+          </div>
 
-      <button
-        onClick={handleNext}
-        className="absolute top-1/2 -translate-y-1/2 -right-6 p-2 bg-pink-900 hover:bg-primary rounded-full text-white z-10 cursor-pointer"
-        aria-label="Next">
-        <ChevronRight size={24} />
-      </button>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight mb-4 leading-tight">
+            Inspiring Stories of <span className="font-accent italic text-[#570026] font-normal">Hope & Joy</span>
+          </h2>
 
-      <div
-        className="bg-gradient-to-br rounded-3xl shadow-xl p-8 text-center"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}>
-        <AnimatePresence mode="wait">
-          {currentReview && (
-            <motion.div
-              key={`${chunkIndex}-${index}`}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.6 }}>
-              <div className="flex justify-center mb-4">
-                {imageError || !currentReview.profilePhoto ? (
-                  <UserCircle className="w-24 h-24 text-pink-900" />
-                ) : (
-                  <Image
-                    src={currentReview.profilePhoto}
-                    alt={currentReview.author}
-                    width={60}
-                    height={60}
-                    className="rounded-full object-cover border-1 border-indigo-500"
-                    onError={() => setImageError(true)}
-                  />
-                )}
-              </div>
-              <p className="text-sm text-gray-700 dark:text-gray-200 italic mb-4">“{currentReview.text}”</p>
-              <h4 className="text-xl font-semibold text-pink-900">{currentReview.author}</h4>
-              <p className="text-sm text-gray-500">{currentReview.date}</p>
-            </motion.div>
-          )}
-        </AnimatePresence>
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+            Real experiences from families and mothers who trusted ASCAS Fertility Center with their parenthood journey.
+          </p>
+        </div>
+
+        {/* Testimonial Card Slider */}
+        <div
+          className="relative bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-pink-100/80 text-center max-w-4xl mx-auto"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}>
+          
+          <AnimatePresence mode="wait">
+            {currentReview && (
+              <motion.div
+                key={`${chunkIndex}-${index}`}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}>
+                <div className="flex justify-center mb-6">
+                  {imageError || !currentReview.profilePhoto ? (
+                    <div className="p-3 rounded-full bg-pink-50 border border-pink-100 text-[#570026]">
+                      <UserCircle className="w-16 h-16" />
+                    </div>
+                  ) : (
+                    <Image
+                      src={currentReview.profilePhoto}
+                      alt={currentReview.author}
+                      width={72}
+                      height={72}
+                      className="rounded-full object-cover ring-4 ring-pink-100 shadow-md"
+                      onError={() => setImageError(true)}
+                    />
+                  )}
+                </div>
+
+                <blockquote className="text-base sm:text-xl text-gray-800 italic leading-relaxed max-w-3xl mx-auto mb-6">
+                  “{currentReview.text}”
+                </blockquote>
+
+                <h4 className="text-lg sm:text-xl font-bold text-[#570026]">
+                  {currentReview.author}
+                </h4>
+                <p className="text-xs sm:text-sm text-gray-500 mt-1">
+                  {currentReview.date}
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Navigation Controls */}
+          <div className="mt-8 flex items-center justify-center gap-4">
+            <button
+              onClick={handlePrev}
+              aria-label="Previous review"
+              className="p-3 rounded-full bg-pink-50 hover:bg-[#570026] text-[#570026] hover:text-white border border-pink-100 transition-colors cursor-pointer">
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={handleNext}
+              aria-label="Next review"
+              className="p-3 rounded-full bg-pink-50 hover:bg-[#570026] text-[#570026] hover:text-white border border-pink-100 transition-colors cursor-pointer">
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

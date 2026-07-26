@@ -21,12 +21,11 @@
   --muted: #f3f4f6;     /* Gray-100 */
 
   /* Font Variables */
+  --font-sans: var(--font-sans), system-ui, sans-serif;
   --font-poppins: 'Poppins', sans-serif;
   --font-geist-sans: 'Geist', sans-serif;
   --font-geist-mono: 'Geist Mono', monospace;
-
-  /* Default font */
-  --font-sans: var(--font-poppins);
+  --font-accent: var(--font-accent), Georgia, serif;
 }
 
 @theme inline {
@@ -40,6 +39,8 @@
 
   --color-soft-primary: var(--soft-primary);
 
+  --color-[#570026]: #570026;
+
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary-hover: var(--secondary-hover);
@@ -47,18 +48,18 @@
 
   --color-muted: var(--muted);
 
+  --font-sans: var(--font-sans), system-ui, sans-serif;
   --font-poppins: 'Poppins', sans-serif;
   --font-geist-sans: 'Geist', sans-serif;
   --font-geist-mono: 'Geist Mono', monospace;
-
-  --font-sans: var(--font-poppins);
+  --font-accent: var(--font-accent), Georgia, serif;
 }
 
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
 }
 
 @layer utilities {
@@ -136,5 +137,49 @@ body {
 
   .delay-3 {
     animation-delay: 0.6s;
+  }
+
+  /* Marquee Motion Gallery Animations */
+  @keyframes marqueeLeft {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes marqueeRight {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  .animate-marquee-left {
+    display: flex;
+    width: max-content;
+    animation: marqueeLeft 40s linear infinite;
+  }
+
+  .animate-marquee-right {
+    display: flex;
+    width: max-content;
+    animation: marqueeRight 40s linear infinite;
+  }
+
+  .pause-on-hover:hover .animate-marquee-left,
+  .pause-on-hover:hover .animate-marquee-right {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee-left,
+    .animate-marquee-right {
+      animation: none !important;
+      transform: none !important;
+    }
   }
 }

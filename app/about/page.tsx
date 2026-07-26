@@ -1,6 +1,9 @@
 import CtaSection from '@/components/home/CtaSection';
-import { doctors, services } from '@/utils/utils';
-import { CheckCircle2, Building2 } from 'lucide-react';
+import PageHero from '@/components/ui/PageHero';
+import DoctorCard from '@/components/home/DoctorCard';
+import { doctorsData } from '@/utils/doctorsData';
+import { services } from '@/utils/utils';
+import { CheckCircle2, Building2, Heart, Award, Sparkles } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -18,94 +21,146 @@ export const metadata: Metadata = {
   }
 };
 
+const uspItems = [
+  { title: '15+ Years Experience', text: 'Combined expertise in Fertility, Gynecology, Fetal Medicine & Radiology.' },
+  { title: 'High Success Rate', text: 'Proven outcomes in IVF, IUI, and complex assisted reproductive treatments.' },
+  { title: '360° Comprehensive Care', text: 'End-to-end guidance from initial fertility diagnosis to safe delivery.' },
+  { title: 'Integrated Facilities', text: 'On-site consultation, 4D ultrasound scans, embryology lab & pharmacy.' }
+];
+
+const facilitiesList = [
+  'Advanced Radiology & 4D Scans',
+  'On-Site Embryology & IUI Lab',
+  '24/7 Pharmacy Services',
+  'Private Counseling Rooms',
+  'Comfortable OPD Suites',
+  'High-Risk Pregnancy Monitoring'
+];
+
 export default function AboutPage() {
   return (
-    <main className="w-full px-4 sm:px-6 py-12 sm:py-16 bg-gradient-to-br from-purple-50 via-pink-50 to-white">
-      <div className="max-w-7xl mx-auto space-y-16">
-        {/* Hero Section */}
-        <div className="text-center space-y-10 px-2 sm:px-4">
-          <div className="inline-block bg-pink-200/30 px-6 sm:px-10 py-4 sm:py-5 rounded-full shadow-md">
-            <span className="text-pink-800 font-bold uppercase tracking-wider text-3xl sm:text-5xl">
-              Compassionate Care
-            </span>
-          </div>
+    <main className="min-h-screen bg-slate-50/40">
+      {/* Hero Header */}
+      <PageHero
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'About Us' }]}
+        eyebrow="About ASCAS Clinic"
+        eyebrowIcon={<Heart className="w-4 h-4 text-pink-700" />}
+        title={
+          <>
+            Compassionate Care & <span className="font-accent italic text-[#570026] font-normal">Medical Excellence</span>
+          </>
+        }
+        description="At Accumed Speciality Clinic & Scans (ASCAS), we combine state-of-the-art reproductive technologies with warm, personalized medical care to fulfill every aspiring parent's dream."
+      />
 
-          <p className="text-base sm:text-lg text-gray-700 leading-relaxed max-w-3xl sm:max-w-4xl mx-auto">
-            At <span className="font-semibold text-pink-700">ASCAS</span>, we blend cutting-edge technology with
-            compassionate, personalized care. Led by renowned specialists —
-            <strong className="text-gray-900"> Dr. Aishwarya Parthasarathy</strong> and
-            <strong className="text-gray-900"> Dr. Ashwin Muralidharan</strong> — our team is dedicated to supporting
-            you through every step of your parenthood journey.
-          </p>
-        </div>
+      {/* Main Content Sections Container */}
+      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 py-12 sm:py-16 space-y-16 lg:space-y-20">
 
-        {/* USP Section */}
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {[
-            { title: '10+ Years Experience', text: 'Combined Expertise in Fertility, Gynaecology and Radiology.' },
-            { title: '80% Success Rate', text: 'In Assisted Reproductive Treatments' },
-            { title: '360° Care', text: 'From conception to delivery' },
-            { title: 'One Place for All Your Needs', text: 'Consultation, Diagnosis & Pharmacy.' }
-          ].map((item, idx) => (
-            <div key={idx} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="text-pink-600 text-2xl sm:text-3xl mb-2 sm:mb-4">0{idx + 1}</div>
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">{item.title}</h3>
-              <p className="text-gray-600 text-sm sm:text-base">{item.text}</p>
+        {/* Story / Vision Section */}
+        <section className="bg-white rounded-3xl p-8 sm:p-12 lg:p-14 border border-pink-100/80 shadow-sm relative overflow-hidden">
+          <div className="max-w-4xl mx-auto space-y-6 text-center">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-50 border border-pink-100 text-[#570026] text-xs sm:text-sm font-semibold uppercase tracking-wide">
+              <Award className="w-4 h-4 text-amber-600" />
+              <span>Our Healthcare Philosophy</span>
             </div>
-          ))}
-        </section>
+            
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 leading-tight">
+              Guided byRenowned Specialists <span className="font-accent italic text-[#570026] font-normal">Dedicated to Your Family</span>
+            </h2>
 
-        {/* Team Section */}
-        <section className="space-y-10 sm:space-y-12">
-          <div className="text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Meet Our Specialists</h2>
-            <p className="text-gray-600 max-w-md sm:max-w-xl mx-auto text-sm sm:text-base">
-              Board-certified experts dedicated to your family's wellness
+            <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+              Led by acclaimed fertility and reproductive specialists — <strong className="text-gray-900 font-semibold">Dr. Aishwarya Parthasarathy</strong> and <strong className="text-gray-900 font-semibold">Dr. Ashwin Muralidharan</strong> — our team delivers ethical, evidence-based care tailored to each patient’s unique medical requirements.
             </p>
           </div>
+        </section>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
-            {doctors.map((doctor, idx) => (
+        {/* USP Grid Section */}
+        <section className="space-y-8">
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 tracking-tight">
+              Why Patients Trust <span className="font-accent italic text-[#570026] font-normal">ASCAS</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {uspItems.map((item, idx) => (
               <div
                 key={idx}
-                className="group relative bg-white rounded-2xl p-6 sm:p-8 shadow-xl hover:transform hover:-translate-y-2 transition-all duration-300">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1">{doctor.name}</h3>
-                  <p className="text-pink-600 font-medium text-sm sm:text-base">{doctor.role}</p>
+                className="bg-white rounded-3xl p-6 sm:p-8 border border-pink-100/80 shadow-sm hover:shadow-xl hover:border-pink-300/80 hover:-translate-y-1.5 transition-all duration-300 ease-out flex flex-col justify-between">
+                <div>
+                  <span className="text-3xl sm:text-4xl font-extrabold text-[#570026]/20 block mb-4 font-accent">
+                    0{idx + 1}
+                  </span>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                    {item.text}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Services & Facilities */}
-        <section className="py-10 sm:py-12">
-          <div className="text-center mb-10 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-3">Our Comprehensive Care</h2>
-            <p className="text-gray-600 text-sm sm:text-base">End-to-end support from conception to delivery</p>
+        {/* Specialists Team Section (Alternating background) */}
+        <section className="bg-[#fcf0f5] -mx-4 sm:-mx-6 lg:-mx-10 xl:-mx-12 px-4 sm:px-6 lg:px-10 xl:px-12 py-16 sm:py-20 border-y border-pink-200/60 space-y-12">
+          <div className="text-center max-w-3xl mx-auto space-y-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-pink-200 text-[#570026] text-xs sm:text-sm font-semibold uppercase tracking-wide shadow-sm">
+              <Sparkles className="w-4 h-4 text-pink-700" />
+              <span>Expert Care Team</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight">
+              Meet Our Leading <span className="font-accent italic text-[#570026] font-normal">Specialists</span>
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600">
+              Experienced, board-certified experts offering empathetic support and advanced clinical care.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
-              <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Services</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                {services.map(service => (
-                  <div key={service} className="flex items-center space-x-2">
-                    <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" />
-                    <span className="text-sm sm:text-base">{service}</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {doctorsData.map(doctor => (
+              <DoctorCard key={doctor.id} doctor={doctor} />
+            ))}
+          </div>
+        </section>
+
+        {/* Comprehensive Care & Facilities */}
+        <section className="space-y-8">
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 tracking-tight">
+              Comprehensive <span className="font-accent italic text-[#570026] font-normal">Care & Infrastructure</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Services List */}
+            <div className="bg-white rounded-3xl p-8 sm:p-10 border border-pink-100/80 shadow-sm space-y-6">
+              <div className="flex items-center gap-3 border-b border-pink-100 pb-4">
+                <CheckCircle2 className="w-6 h-6 text-[#570026]" />
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Clinical Services</h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {services.map((service, idx) => (
+                  <div key={idx} className="flex items-center gap-2.5 bg-pink-50/50 rounded-2xl p-3.5 border border-pink-100/60">
+                    <CheckCircle2 className="w-4 h-4 text-[#570026] shrink-0" />
+                    <span className="text-sm font-semibold text-gray-800">{service}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
-              <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Facilities</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                {['Advanced Radiology', 'In-House Lab', '24/7 Pharmacy', 'Counseling Rooms'].map(facility => (
-                  <div key={facility} className="flex items-center space-x-2">
-                    <Building2 className="w-5 h-5 text-blue-500" />
-                    <span className="text-sm sm:text-base">{facility}</span>
+            {/* Facilities List */}
+            <div className="bg-white rounded-3xl p-8 sm:p-10 border border-pink-100/80 shadow-sm space-y-6">
+              <div className="flex items-center gap-3 border-b border-pink-100 pb-4">
+                <Building2 className="w-6 h-6 text-[#570026]" />
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Infrastructure & Facilities</h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {facilitiesList.map((facility, idx) => (
+                  <div key={idx} className="flex items-center gap-2.5 bg-pink-50/50 rounded-2xl p-3.5 border border-pink-100/60">
+                    <Building2 className="w-4 h-4 text-[#570026] shrink-0" />
+                    <span className="text-sm font-semibold text-gray-800">{facility}</span>
                   </div>
                 ))}
               </div>
@@ -113,8 +168,9 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* Reusable CTA */}
         <CtaSection />
+
       </div>
     </main>
   );

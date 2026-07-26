@@ -1,5 +1,7 @@
 import React from 'react';
+import PageHero from '@/components/ui/PageHero';
 import { branches } from '@/utils/utils';
+import { FileText } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -11,45 +13,63 @@ export const metadata: Metadata = {
   }
 };
 
-const TermsOfServicePage = () => {
+export default function TermsOfServicePage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 text-gray-800">
-      <h1 className="text-3xl font-bold mb-6 text-primary">Terms of Service</h1>
-      <p className="mb-4">
-        By using the ASCAS Fertility & Maternity Clinic website, you agree to the following terms and conditions.
-      </p>
+    <main className="min-h-screen bg-slate-50/40">
+      <PageHero
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Terms of Service' }]}
+        eyebrow="Website Usage Terms"
+        eyebrowIcon={<FileText className="w-4 h-4 text-pink-700" />}
+        title={
+          <>
+            Terms of <span className="font-accent italic text-[#570026] font-normal">Service</span>
+          </>
+        }
+        description="Terms and conditions governing the use of Accumed Speciality Clinic & Scans and ASCAS Fertility website and booking services."
+      />
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">1. Website Use</h2>
-      <p className="mb-4">
-        The information provided is for general health awareness and should not be considered a substitute for
-        professional medical advice.
-      </p>
+      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 py-12 sm:py-16">
+        <div className="max-w-4xl mx-auto bg-white rounded-3xl p-8 sm:p-12 border border-pink-100/80 shadow-sm space-y-8 text-gray-700 leading-relaxed">
+          <p className="text-base sm:text-lg">
+            By accessing or using the ASCAS Fertility & Maternity Clinic website, you agree to comply with and be bound by the following terms and conditions.
+          </p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">2. Appointments</h2>
-      <p className="mb-4">
-        Online appointments are provisional and must be confirmed by the clinic. For emergencies, please visit the
-        clinic directly.
-      </p>
+          <div className="space-y-3 border-t border-pink-100 pt-6">
+            <h2 className="text-xl font-extrabold text-gray-900">1. Medical Information Disclaimer</h2>
+            <p className="text-sm sm:text-base">
+              The health information provided on this website is for general educational purposes only. It is not intended as formal medical advice or a substitute for direct clinical consultation with a qualified physician.
+            </p>
+          </div>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">3. Modifications</h2>
-      <p className="mb-4">
-        We may update these terms from time to time. Continued use of the site indicates your acceptance of those
-        changes.
-      </p>
+          <div className="space-y-3 border-t border-pink-100 pt-6">
+            <h2 className="text-xl font-extrabold text-gray-900">2. Online Appointments</h2>
+            <p className="text-sm sm:text-base">
+              Appointment requests submitted online are provisional and subject to final confirmation by clinic staff. For acute medical emergencies, please visit nearest emergency department or call emergency services directly.
+            </p>
+          </div>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">4. Intellectual Property</h2>
-      <p className="mb-4">
-        All content including text, graphics, and logos are the property of ASCAS and protected under applicable
-        copyright laws.
-      </p>
+          <div className="space-y-3 border-t border-pink-100 pt-6">
+            <h2 className="text-xl font-extrabold text-gray-900">3. Intellectual Property</h2>
+            <p className="text-sm sm:text-base">
+              All website content, visual design elements, branding logos, text, and media assets are the property of ASCAS and Accumed Speciality Clinic & Scans, protected under applicable intellectual property laws.
+            </p>
+          </div>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">5. Contact</h2>
-      <p className="mb-4">
-        For questions about these terms, contact us at <strong>accumedspecialityclinic@gmail.com</strong> or call{' '}
-        <strong>{branches.map(branch => branch.phone).join(' / ')}</strong>.
-      </p>
-    </div>
+          <div className="space-y-3 border-t border-pink-100 pt-6">
+            <h2 className="text-xl font-extrabold text-gray-900">4. Policy Updates</h2>
+            <p className="text-sm sm:text-base">
+              We reserve the right to modify these terms of service periodically. Continued use of the website following published updates constitutes acceptance of the modified terms.
+            </p>
+          </div>
+
+          <div className="space-y-3 border-t border-pink-100 pt-6">
+            <h2 className="text-xl font-extrabold text-gray-900">5. Contact Information</h2>
+            <p className="text-sm sm:text-base">
+              If you have questions regarding these terms, please contact us at <strong className="text-[#570026]">accumedspecialityclinic@gmail.com</strong> or call <strong className="text-[#570026]">{branches.map(branch => branch.phone).join(' / ')}</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
   );
-};
-
-export default TermsOfServicePage;
+}

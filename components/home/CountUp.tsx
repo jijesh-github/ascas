@@ -1,50 +1,80 @@
 'use client';
+
 import { useEffect, useRef, useState } from 'react';
 
 type CountUpProps = {
   end: number;
   duration?: number;
   suffix?: string;
-  delay?: number; // delay before restart
+  prefix?: string;
 };
 
-const CountUp = ({ end, duration = 2, suffix = '', delay = 5 }: CountUpProps) => {
+const CountUp = ({ end, duration = 2, suffix = '', prefix = '' }: CountUpProps) => {
   const [count, setCount] = useState(0);
-  const animationRef = useRef<number | null>(null);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const elementRef = useRef<HTMLSpanElement>(null);
+  const hasAnimatedRef = useRef(false);
 
-  const animate = () => {
-    const startTime = performance.now();
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting && !hasAnimatedRef.current) {
+          setIsVisible(true);
+          hasAnimatedRef.current = true;
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    const currentEl = elementRef.current;
+    if (currentEl) {
+      observer.observe(currentEl);
+    }
+
+    return () => {
+      if (currentEl) {
+        observer.unobserve(currentEl);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let startTime: number | null = null;
+    let animationFrameId: number;
 
     const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
-      const value = Math.floor(progress * end);
-      setCount(value);
+      
+      // Easing function (easeOutExpo) for a professional feel
+      const easedProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const currentCount = Math.floor(easedProgress * end);
+      
+      setCount(currentCount);
 
       if (progress < 1) {
-        animationRef.current = requestAnimationFrame(step);
+        animationFrameId = requestAnimationFrame(step);
       } else {
-        // Restart after delay
-        timeoutRef.current = setTimeout(() => {
-          setCount(0);
-          animate();
-        }, delay * 1000);
+        setCount(end);
       }
     };
 
-    animationRef.current = requestAnimationFrame(step);
-  };
-
-  useEffect(() => {
-    animate();
+    animationFrameId = requestAnimationFrame(step);
 
     return () => {
-      if (animationRef.current) cancelAnimationFrame(animationRef.current);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      cancelAnimationFrame(animationFrameId);
     };
-  }, [end, duration, delay]);
+  }, [isVisible, end, duration]);
 
-  return <span>{count.toLocaleString() + suffix}</span>;
+  return (
+    <span ref={elementRef} className="tabular-nums">
+      {prefix}
+      {count.toLocaleString()}
+      {suffix}
+    </span>
+  );
 };
 
 export default CountUp;

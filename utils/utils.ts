@@ -36,9 +36,12 @@ export const primaryBranch = branches[0];
 export const services = [
   'IVF/ICSI',
   'IUI',
-  'Fertility Preservation, Fertility Enhancing Surgeries',
+  'Fertility Preservation',
+  'Fertility Enhancing',
   'Male/Female Infertility Workups',
-  'PCOS & Fibroid Management'
+  'PCOS & Fibroid Management',
+  'Embryology',
+  'Genetic Testing'
 ];
 
 export const doctors = [
@@ -131,7 +134,7 @@ export const doctors = [
     name: 'Dr. Dhivya Kumar',
     role: 'Consultant Laparoscopic and General Surgeon',
     qualification: 'MS General Surgery, DNB General Surgery, MRCS(Ed)',
-    image: '/images/doctor/dhivya.png',
+    image: '/images/doctor/dhivya.jpeg',
     imagePosition: 'object-top',
     about: `Dr. Dhivya Kumar is a Consultant Laparoscopic and General Surgeon and Assistant Professor at Madras Medical College. She holds an MS in General Surgery and DNB in General Surgery from Madras Medical College / NBE, and MRCS(Ed) from the Royal College of Surgeons, UK.`,
     icon: iconList.microscope,
@@ -177,12 +180,30 @@ export const servicesList = [
   {
     title: 'Pregnancy Support',
     icon: iconList.baby,
-    items: ['Pregnancy Related Blood Investigations', 'NT, Anomaly and Growth Scans', 'Pregenancy Related Vaccinations']
+    items: [
+      'Pregnancy Related Blood Investigations',
+      'NT, Anomaly and Growth Scans',
+      'Pregenancy Related Vaccinations',
+      'CTG Monitoring'
+    ]
   },
   {
     title: 'Surgical & Diagnostics',
     icon: iconList.microscope,
-    items: ['Laparoscopic Gynecology Surgeries', 'Advanced Imaging (MRI/CT/4D Ultrasound)', 'In-House Lab & Pharmacy']
+    items: [
+      'Laparoscopic Gynecology Surgeries',
+      'Advanced Imaging (MRI/CT/4D Ultrasound)',
+      'In-House Lab & Pharmacy',
+      'Dilatation and Curettage (D&C)',
+      'Dilatation and Evacuation (D&E)',
+      'Myomectomy',
+      'Hysterectomy',
+      'Ovarian Cystectomy',
+      'Salpingectomy',
+      'Tubal Ligation',
+      'Laparoscopy for Endometriosis or Ectopic Pregnancy',
+      'Cervical Cerclage'
+    ]
   }
 ];
 

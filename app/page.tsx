@@ -1,11 +1,12 @@
 import ClinicalFacilities from '@/components/home/ClinicalFacilities';
 import DreamTeamSection from '@/components/home/DreamTeamSection';
 import HeroSection from '@/components/home/HeroSection';
+import StatsSection from '@/components/home/StatsSection';
+import TreatmentsSection from '@/components/home/TreatmentsSection';
 import ImageGallery from '@/components/home/ImageGallery';
-import OurServices from '@/components/home/OurServices';
 import TestimonialSlider from '@/components/home/TestimonialSlider';
-import WhyChooseSection from '@/components/home/WhyChooseSection';
 import YouTubeGallery from '@/components/home/YouTubeGallery';
+import HomeCtaSection from '@/components/home/HomeCtaSection';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -25,15 +26,16 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-slate-50/30">
       <HeroSection />
-      <WhyChooseSection />
+      <StatsSection />
+      <TreatmentsSection />
       <DreamTeamSection />
-      <OurServices />
       <ClinicalFacilities />
       <ImageGallery />
       <TestimonialSlider />
       <YouTubeGallery />
+      <HomeCtaSection />
     </main>
   );
 }

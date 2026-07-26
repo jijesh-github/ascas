@@ -21,9 +21,8 @@ export default function AnimatedUnderlineNavbar() {
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
-    // <header className={`fixed top-0 w-full z-50 bg-white ${isScrolled ? 'shadow-md' : ''}`}>
-    <header className={` top-0 w-full z-50 bg-white ${isScrolled ? '' : ''}`}>
-      <div className="container mx-auto flex items-center justify-between px-4 py-1">
+    <header className={`top-0 w-full z-50 bg-white border-b border-gray-100 ${isScrolled ? 'shadow-sm' : ''}`}>
+      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 flex items-center justify-between py-2.5">
         {/* Logo */}
         <Link
           href="/"

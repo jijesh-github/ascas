@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono, Poppins } from 'next/font/google';
+import { Plus_Jakarta_Sans, Playfair_Display, Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -7,6 +7,19 @@ import { DoctorFormProvider } from '@/context/DoctorFormContext';
 import DoctorFormModal from '@/components/ui/DoctorFormModal';
 import FloatingContactButtons from '@/components/layout/FloatingContactButtons';
 import { branches } from '@/utils/utils';
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: '--font-sans',
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800']
+});
+
+const playfair = Playfair_Display({
+  variable: '--font-accent',
+  subsets: ['latin'],
+  style: ['normal', 'italic'],
+  weight: ['400', '600', '700']
+});
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -16,12 +29,6 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin']
-});
-
-const poppins = Poppins({
-  variable: '--font-poppins',
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'] // Customize as needed
 });
 
 export const metadata: Metadata = {
@@ -116,7 +123,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}>
+      <body className={`${plusJakartaSans.variable} ${playfair.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}>
         <DoctorFormProvider>
           <script
             type="application/ld+json"

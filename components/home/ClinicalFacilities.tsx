@@ -1,7 +1,7 @@
 'use client';
+
 import { Pill, Syringe, Bone, Armchair, Scan } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function ClinicalFacilities() {
   const facilitiesList = [
@@ -15,121 +15,89 @@ export default function ClinicalFacilities() {
 
   const facilities = [
     {
-      icon: <Armchair className="w-8 h-8" />,
+      icon: <Armchair className="w-6 h-6 text-slate-800" />,
       title: 'Comfortable OPDs',
       content: 'Our outpatient departments are designed to provide a comfortable and relaxing environment for patients.'
     },
     {
-      icon: <Pill className="w-8 h-8" />,
+      icon: <Pill className="w-6 h-6 text-slate-800" />,
       title: 'On-Site Pharmacy',
       content:
         'Our in-house pharmacy ensures that patients have access to the medications they need, conveniently and efficiently.'
     },
     {
-      icon: <Syringe className="w-8 h-8" />,
+      icon: <Syringe className="w-6 h-6 text-slate-800" />,
       title: 'Full-Time Diagnostic Lab',
       content:
         'Our state-of-the-art laboratory provides accurate and timely diagnostic results, enabling our specialists to develop effective treatment plans.'
     },
     {
-      icon: <Scan className="w-8 h-8" />,
+      icon: <Scan className="w-6 h-6 text-slate-800" />,
       title: 'Advanced Radiology Suite',
       content:
         'Our radiology suite is equipped with the latest technology, enabling our specialists to provide accurate and detailed imaging services.'
     },
     {
-      icon: <Bone className="w-8 h-8" />,
+      icon: <Bone className="w-6 h-6 text-slate-800" />,
       title: 'Counseling & Physiotherapy Rooms',
       content:
         'Our counseling and physiotherapy rooms provide a safe and supportive environment for patients to discuss their concerns and receive therapy.'
     }
   ];
 
-  // const [randomFacilities, setRandomFacilities] = useState<{ title: string; image: string }[]>([]);
-  // const [isAnimating, setIsAnimating] = useState(false);
-
-  /* useEffect(() => {
-    let cycleTimeout: NodeJS.Timeout;
-
-    const startCycle = () => {
-      // No loading block now
-      setIsAnimating(true);
-
-      const shuffled = [...facilitiesList].sort(() => 0.5 - Math.random());
-      setRandomFacilities(shuffled.slice(0, 6));
-
-      // Remove animation class after 500ms (duration of fade-in)
-      setTimeout(() => {
-        setIsAnimating(false);
-      }, 500);
-
-      // Schedule next cycle
-      cycleTimeout = setTimeout(() => {
-        startCycle();
-      }, 30000);
-    };
-
-    startCycle();
-
-    return () => clearTimeout(cycleTimeout);
-  }, []); */
-
   return (
-    <div className="bg-white">
-      <div className="max-w-7xl mx-auto px-4 py-16 space-y-20">
-        {/* Clinic Facilities */}
-        <div className="space-y-12">
-          <div className="text-center space-y-4">
-            <h2 className="text-4xl font-bold text-pink-800">Clinic Facilities</h2>
+    <section className="relative py-20 lg:py-24 bg-[#fcf0f5] border-y border-pink-200/60">
+      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12">
+        {/* Section Header */}
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#570026] tracking-tight">
+            Clinic Facilities
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          {/* Image Gallery */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            {facilitiesList.map((item, i) => (
+              <div
+                key={i}
+                className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-4 border border-pink-100/80 flex flex-col items-center">
+                <div className="overflow-hidden rounded-xl w-full aspect-[4/3] relative bg-pink-50/50">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="mt-3.5 text-center">
+                  <p className="text-sm font-semibold text-gray-800">{item.title}</p>
+                </div>
+              </div>
+            ))}
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8">
-            {/* Image Gallery */}
-            <div className="grid grid-cols-2 gap-4">
-              {facilitiesList.map((item, i) => (
-                <Link
-                  key={i}
-                  href="#"
-                  className={`relative block overflow-hidden rounded-lg shadow-lg bg-white max-w-xs mx-auto
-                    transition-opacity duration-500 transform
-                    
-                  `}>
-                  <div className="p-4">
-                    <div className="overflow-hidden rounded-lg">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        width={420}
-                        height={420}
-                        className="object-cover w-full h-auto"
-                      />
-                    </div>
-                    <div className="mt-4 text-center">
-                      <p className="text-sm text-gray-600 mt-1">{item.title}</p>
-                    </div>
-                  </div>
-                  <span className="absolute inset-0 z-10" />
-                </Link>
-              ))}
-            </div>
-
-            {/* Facilities List */}
-            <div className="space-y-6">
-              {facilities.map((facility, index) => (
-                <div
-                  key={index}
-                  className="flex items-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow">
-                  <div className="flex-shrink-0 bg-blue-100 p-3 rounded-lg">{facility.icon}</div>
-                  <div className="ml-4">
-                    <h3 className="text-lg font-semibold text-gray-900">{facility.title}</h3>
-                    <p className="text-gray-600 mt-1">{facility.content}</p>
-                  </div>
+          {/* Facilities List */}
+          <div className="space-y-4 sm:space-y-5">
+            {facilities.map((facility, index) => (
+              <div
+                key={index}
+                className="flex items-center p-5 sm:p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-pink-100/80">
+                <div className="flex-shrink-0 bg-[#e0edff] p-3.5 rounded-xl flex items-center justify-center mr-4 sm:mr-5">
+                  {facility.icon}
                 </div>
-              ))}
-            </div>
+                <div>
+                  <h3 className="text-base sm:text-lg font-bold text-gray-900">{facility.title}</h3>
+                  <p className="text-xs sm:text-sm text-gray-600 mt-1 leading-relaxed">{facility.content}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
+
+

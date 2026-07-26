@@ -1,55 +1,33 @@
-import Image from 'next/image';
-import { doctors } from '@/utils/utils';
+'use client';
+
+import DoctorCard from './DoctorCard';
+import { doctorsData } from '@/utils/doctorsData';
+import { Stethoscope } from 'lucide-react';
 
 export default function DreamTeamSection() {
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-purple-50">
-      <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-primary mb-16">
-          Meet Our Team of Experts
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-          {doctors.map((doctor, idx) => (
-            <div
-              key={idx}
-              className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 p-5 sm:p-6">
-              <div className="relative w-full h-68 overflow-hidden rounded-2xl mb-5">
-                <Image
-                  src={doctor.image}
-                  alt={doctor.name}
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className={`object-cover ${doctor.imagePosition} transition-transform duration-500 group-hover:scale-105`}
-                />
-              </div>
+    <section className="relative py-20 lg:py-24 bg-white border-b border-gray-100">
+      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-100/70 border border-pink-200/80 text-[#570026] text-xs sm:text-sm font-semibold tracking-wide uppercase mb-4">
+            <Stethoscope className="w-4 h-4 text-pink-700" />
+            <span>Expert Medical Specialists</span>
+          </div>
 
-              <div className="flex items-center flex-col">
-                <div className="flex items-center mb-1 gap-3">
-                  <div className="text-purple-600">{doctor.icon}</div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-pink-800">{doctor.name}</h3>
-                </div>
-                <p className="text-base text-primary font-semibold  mb-1">{doctor.qualification}</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight mb-4 leading-tight">
+            Meet the Experts Behind <span className="font-accent italic text-[#570026] font-normal">Your Parenthood Journey</span>
+          </h2>
 
-                <p className="text-base text-primary font-semibold  mb-3">{doctor.role}</p>
-              </div>
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+            Our team of experienced fertility specialists, gynecologists, radiologists, and surgeons are dedicated to providing compassionate, individualized reproductive healthcare.
+          </p>
+        </div>
 
-              <div className="mb-4">
-                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">{doctor.about}</p>
-              </div>
-
-              <div className="mb-4">
-                <p className="text-pink-800 font-semibold mb-1">🩺 Expertise:</p>
-                <ul className="text-sm sm:text-base text-gray-700 space-y-1 list-disc ml-5">
-                  {doctor.expertise.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <blockquote className="italic text-sm sm:text-base text-gray-600 border-l-4 border-purple-200 pl-3 mb-4 leading-relaxed">
-                {doctor.philosophy}
-              </blockquote>
-            </div>
+        {/* 3-Column Responsive Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {doctorsData.map(doctor => (
+            <DoctorCard key={doctor.id} doctor={doctor} />
           ))}
         </div>
       </div>
