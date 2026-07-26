@@ -20,12 +20,12 @@ export default function DoctorsDirectoryPage() {
         eyebrowIcon={<Stethoscope className="w-4 h-4 text-pink-700" />}
         title={
           <>
-            Meet Our Experienced <span className="font-accent italic text-[#570026] font-normal">Specialists</span>
+            Meet Our Experienced <span className="font-accent italic text-amber-300 font-normal">Specialists</span>
           </>
         }
         description="Compassionate reproductive medicine, gynecology, radiology, and surgical experts dedicated to your family's health."
       />
-      <DreamTeamSection />
+      <DreamTeamSection showHeader={false} />
     </main>
   );
 }

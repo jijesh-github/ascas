@@ -22,7 +22,7 @@ export default function PrivacyPolicyPage() {
         eyebrowIcon={<ShieldCheck className="w-4 h-4 text-pink-700" />}
         title={
           <>
-            Privacy <span className="font-accent italic text-[#570026] font-normal">Policy</span>
+            Privacy <span className="font-accent italic text-amber-300 font-normal">Policy</span>
           </>
         }
         description="Learn how Accumed Speciality Clinic & Scans and ASCAS Fertility Center safeguard your personal health information and privacy."

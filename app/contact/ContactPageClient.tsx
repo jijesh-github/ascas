@@ -27,7 +27,7 @@ export default function ContactPageClient() {
         eyebrowIcon={<Headphones className="w-4 h-4 text-pink-700" />}
         title={
           <>
-            Take the Next Step <span className="font-accent italic text-[#570026] font-normal">Towards Parenthood</span>
+            Take the Next Step <span className="font-accent italic text-amber-300 font-normal">Towards Parenthood</span>
           </>
         }
         description="Don't wait to begin your journey. Contact our fertility specialists today to schedule a consultation at our Vadapalani or Valasaravakkam clinics."

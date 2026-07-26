@@ -182,4 +182,87 @@ body {
       transform: none !important;
     }
   }
+
+  /* Premium Animated Light Border Button Style for Hero CTA */
+  .hero-animated-border-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    padding: 2.5px;
+    background: #570026;
+    overflow: hidden;
+    isolation: isolate;
+    box-shadow:
+      0 0 10px -1px rgba(255, 192, 218, 0.35),
+      0 6px 20px -4px rgba(87, 0, 38, 0.45);
+    transition: filter 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hero-animated-border-btn::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    bottom: -100%;
+    left: -100%;
+    right: -100%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      transparent 240deg,
+      rgba(244, 114, 182, 0.45) 270deg,
+      rgba(253, 164, 175, 0.85) 300deg,
+      rgba(255, 255, 255, 1) 325deg,
+      rgba(253, 164, 175, 0.85) 345deg,
+      rgba(244, 114, 182, 0.45) 355deg,
+      transparent 360deg
+    );
+    animation: rotateHeroBorder 4s linear infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero-animated-border-btn-inner {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    width: 100%;
+    height: 100%;
+    padding: 0.925rem 1.8rem;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, #67002d 0%, #570026 100%);
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .hero-animated-border-btn:hover {
+    filter: brightness(1.12);
+    transform: translateY(-1.5px);
+    box-shadow:
+      0 0 14px -1px rgba(255, 192, 218, 0.55),
+      0 10px 24px -4px rgba(87, 0, 38, 0.6);
+  }
+
+  @keyframes rotateHeroBorder {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-animated-border-btn::before {
+      animation: none !important;
+      background: rgba(255, 255, 255, 0.4);
+    }
+    .hero-animated-border-btn {
+      transform: none !important;
+    }
+  }
 }

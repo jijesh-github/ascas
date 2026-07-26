@@ -126,7 +126,7 @@ export default function BookAppointmentClient() {
         eyebrowIcon={<Sparkles className="w-4 h-4 text-pink-700" />}
         title={
           <>
-            Book Your <span className="font-accent italic text-[#570026] font-normal">Consultation</span>
+            Book Your <span className="font-accent italic text-amber-300 font-normal">Consultation</span>
           </>
         }
         description="Choose between an In-Person Clinic Visit or an Online Video Consultation with our specialists."

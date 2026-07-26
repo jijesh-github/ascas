@@ -22,7 +22,7 @@ export default function TermsOfServicePage() {
         eyebrowIcon={<FileText className="w-4 h-4 text-pink-700" />}
         title={
           <>
-            Terms of <span className="font-accent italic text-[#570026] font-normal">Service</span>
+            Terms of <span className="font-accent italic text-amber-300 font-normal">Service</span>
           </>
         }
         description="Terms and conditions governing the use of Accumed Speciality Clinic & Scans and ASCAS Fertility website and booking services."

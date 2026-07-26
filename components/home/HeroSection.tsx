@@ -176,9 +176,11 @@ const HeroSection = () => {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5">
                 <button
                   onClick={openForm}
-                  className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-full bg-[#570026] hover:bg-[#861043] text-white font-semibold text-base sm:text-lg shadow-xl shadow-pink-950/40 hover:shadow-pink-900/60 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer">
-                  <Calendar className="w-5 h-5 text-amber-300" />
-                  <span>{slides[currentSlide].primaryCtaText}</span>
+                  className="hero-animated-border-btn cursor-pointer">
+                  <span className="hero-animated-border-btn-inner text-base sm:text-lg">
+                    <Calendar className="w-5 h-5 text-amber-300 shrink-0" />
+                    <span>{slides[currentSlide].primaryCtaText}</span>
+                  </span>
                 </button>
 
                 <Link

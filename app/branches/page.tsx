@@ -30,7 +30,7 @@ export default function BranchesPage() {
         eyebrowIcon={<Building2 className="w-4 h-4 text-pink-700" />}
         title={
           <>
-            Find Us <span className="font-accent italic text-[#570026] font-normal">Near You</span>
+            Find Us <span className="font-accent italic text-amber-300 font-normal">Near You</span>
           </>
         }
         description="ASCAS Fertility and Women's Center operates two modern branches across Chennai in Vadapalani and Valasaravakkam, bringing expert reproductive care closer to you."

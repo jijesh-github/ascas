@@ -30,7 +30,7 @@ export default function ServicesPage() {
         eyebrowIcon={<Stethoscope className="w-4 h-4 text-pink-700" />}
         title={
           <>
-            Our Services & <span className="font-accent italic text-[#570026] font-normal">Medical Treatments</span>
+            Our Services & <span className="font-accent italic text-amber-300 font-normal">Medical Treatments</span>
           </>
         }
         description="Comprehensive reproductive medicine, advanced embryology, 4D diagnostic scans, laparoscopic surgery, and high-risk pregnancy support at ASCAS Clinics."

@@ -20,12 +20,12 @@ export default function TreatmentsDirectoryPage() {
         eyebrowIcon={<Sparkles className="w-4 h-4 text-pink-700" />}
         title={
           <>
-            Advanced Fertility <span className="font-accent italic text-[#570026] font-normal">Treatments & Care</span>
+            Advanced Fertility <span className="font-accent italic text-amber-300 font-normal">Treatments & Care</span>
           </>
         }
         description="Evidence-based reproductive protocols, state-of-the-art embryology labs, and personalized treatment pathways tailored to your journey."
       />
-      <TreatmentsSection />
+      <TreatmentsSection showHeader={false} showAll={true} />
     </main>
   );
 }

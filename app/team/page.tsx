@@ -30,7 +30,7 @@ export default function TeamPage() {
         eyebrowIcon={<Stethoscope className="w-4 h-4 text-pink-700" />}
         title={
           <>
-            Meet Our Expert <span className="font-accent italic text-[#570026] font-normal">Care Team</span>
+            Meet Our Expert <span className="font-accent italic text-amber-300 font-normal">Care Team</span>
           </>
         }
         description="Board-certified fertility specialists, gynecologists, radiologists, and surgeons providing patient-centered, empathetic care across our Chennai clinics."

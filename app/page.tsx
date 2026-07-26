@@ -1,4 +1,4 @@
-import ClinicalFacilities from '@/components/home/ClinicalFacilities';
+import WhyChooseSection from '@/components/home/WhyChooseSection';
 import DreamTeamSection from '@/components/home/DreamTeamSection';
 import HeroSection from '@/components/home/HeroSection';
 import StatsSection from '@/components/home/StatsSection';
@@ -31,7 +31,7 @@ export default function Home() {
       <StatsSection />
       <TreatmentsSection />
       <DreamTeamSection />
-      <ClinicalFacilities />
+      <WhyChooseSection />
       <ImageGallery />
       <TestimonialSlider />
       <YouTubeGallery />

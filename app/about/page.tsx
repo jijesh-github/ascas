@@ -47,7 +47,7 @@ export default function AboutPage() {
         eyebrowIcon={<Heart className="w-4 h-4 text-pink-700" />}
         title={
           <>
-            Compassionate Care & <span className="font-accent italic text-[#570026] font-normal">Medical Excellence</span>
+            Compassionate Care & <span className="font-accent italic text-amber-300 font-normal">Medical Excellence</span>
           </>
         }
         description="At Accumed Speciality Clinic & Scans (ASCAS), we combine state-of-the-art reproductive technologies with warm, personalized medical care to fulfill every aspiring parent's dream."
