@@ -24,7 +24,7 @@ function WatermarkIcon({ id }: { id: string }) {
           strokeWidth="1.2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="w-32 h-32 sm:w-36 sm:h-36">
+          className="w-28 h-28 sm:w-32 sm:h-32">
           <circle cx="60" cy="60" r="42" strokeDasharray="4 3" />
           <circle cx="60" cy="60" r="32" strokeWidth="1.5" />
           <circle cx="50" cy="52" r="14" />
@@ -52,7 +52,7 @@ function WatermarkIcon({ id }: { id: string }) {
           strokeWidth="1.2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="w-32 h-32 sm:w-36 sm:h-36">
+          className="w-28 h-28 sm:w-32 sm:h-32">
           {/* Oocyte outer zona and inner plasma */}
           <circle cx="68" cy="60" r="38" />
           <circle cx="68" cy="60" r="28" strokeWidth="1.5" />
@@ -76,7 +76,7 @@ function WatermarkIcon({ id }: { id: string }) {
           strokeWidth="1.2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="w-32 h-32 sm:w-36 sm:h-36">
+          className="w-28 h-28 sm:w-32 sm:h-32">
           <path d="M60 22C38 22 20 40 20 62c0 24 40 48 40 48s40-24 40-48c0-22-18-40-40-40z" strokeWidth="1.4" />
           <path d="M60 38c-12 0-22 10-22 22 0 14 22 28 22 28s22-14 22-28c0-12-10-22-22-22z" />
           <path d="M60 48a10 10 0 1 0 0 20 10 10 0 0 0 0-20z" strokeDasharray="3 2" />
@@ -93,7 +93,7 @@ function WatermarkIcon({ id }: { id: string }) {
           strokeWidth="1.2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="w-32 h-32 sm:w-36 sm:h-36">
+          className="w-28 h-28 sm:w-32 sm:h-32">
           <path d="M60 14L22 30v32c0 26 38 44 38 44s38-18 38-44V30L60 14z" strokeWidth="1.4" />
           {/* Inner crystal cell emblem */}
           <circle cx="60" cy="58" r="16" />
@@ -114,7 +114,7 @@ function WatermarkIcon({ id }: { id: string }) {
           strokeWidth="1.2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="w-32 h-32 sm:w-36 sm:h-36">
+          className="w-28 h-28 sm:w-32 sm:h-32">
           <path d="M60 18c-16 22-38 32-38 52 0 20 17 34 38 34s38-14 38-34c0-20-22-30-38-52z" strokeWidth="1.4" />
           <path d="M60 38c-10 14-22 22-22 34 0 12 10 20 22 20s22-8 22-20c0-12-12-20-22-34z" />
           <path d="M60 52v26" strokeDasharray="3 2" />
@@ -131,7 +131,7 @@ function WatermarkIcon({ id }: { id: string }) {
           strokeWidth="1.2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="w-32 h-32 sm:w-36 sm:h-36">
+          className="w-28 h-28 sm:w-32 sm:h-32">
           {/* Intertwined DNA vitality helix */}
           <path d="M30 20c30 20 30 60 60 80" strokeWidth="1.4" />
           <path d="M90 20c-30 20-30 60-60 80" strokeWidth="1.4" />
@@ -155,7 +155,7 @@ function WatermarkIcon({ id }: { id: string }) {
           strokeWidth="1.2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="w-32 h-32 sm:w-36 sm:h-36">
+          className="w-28 h-28 sm:w-32 sm:h-32">
           <circle cx="60" cy="60" r="40" />
           <circle cx="60" cy="60" r="24" strokeDasharray="4 3" />
         </svg>
@@ -170,29 +170,29 @@ export default function TreatmentCard({ treatment }: TreatmentCardProps) {
   return (
     <Link
       href={treatment.href}
-      className="group relative flex flex-col justify-between h-full p-8 sm:p-9 rounded-2xl sm:rounded-3xl bg-white border border-pink-100/70 hover:border-pink-300/80 hover:bg-[#fffbfe] transition-all duration-300 ease-out overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-[#570026]">
+      className="group relative flex flex-col justify-between h-full p-6 sm:p-7 rounded-2xl sm:rounded-3xl bg-white border border-pink-100/70 hover:border-pink-300/80 hover:bg-[#fffbfe] transition-all duration-300 ease-out overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-[#570026] shadow-sm hover:shadow-md min-h-[190px] sm:min-h-[205px]">
       
       {/* Large, Subtle Line-Art Background Watermark Icon (Right Aligned) */}
-      <div className="absolute -right-3 -top-3 sm:right-1 sm:top-2 text-[#570026]/[0.07] group-hover:text-[#570026]/[0.15] transition-all duration-500 ease-out group-hover:scale-105 group-hover:-translate-y-1 pointer-events-none z-0">
+      <div className="absolute -right-2 -top-2 sm:right-1 sm:top-1 text-[#570026]/[0.08] group-hover:text-[#570026]/[0.16] transition-all duration-500 ease-out group-hover:scale-105 group-hover:-translate-y-1 pointer-events-none z-0">
         <WatermarkIcon id={treatment.id} />
       </div>
 
-      {/* Left-Aligned Main Content Section */}
-      <div className="relative z-10 pr-10 sm:pr-14">
+      {/* Main Content Section */}
+      <div className="relative z-10 pr-12 sm:pr-14">
         {/* Clean, Prominent Treatment Title */}
-        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-[#570026] transition-colors duration-300 leading-tight mb-3">
+        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-[#570026] transition-colors duration-300 leading-tight mb-2.5">
           {displayTitle}
         </h3>
 
-        {/* Concise 1-Line Description */}
+        {/* Concise Description */}
         <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
           {treatment.shortDescription}
         </p>
       </div>
 
       {/* Minimal Bottom Arrow Navigation */}
-      <div className="relative z-10 mt-8 sm:mt-10 flex items-center">
-        <span className="w-10 h-10 rounded-full border border-pink-200/80 bg-pink-50/50 group-hover:bg-[#570026] group-hover:border-[#570026] text-[#570026] group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-none">
+      <div className="relative z-10 mt-5 sm:mt-6 flex items-center">
+        <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-pink-200/80 bg-pink-50/50 group-hover:bg-[#570026] group-hover:border-[#570026] text-[#570026] group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-none">
           <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" />
         </span>
       </div>
