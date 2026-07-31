@@ -89,7 +89,6 @@ const slides: Slide[] = [
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
   const { openForm } = useDoctorForm();
 
   const nextSlide = useCallback(() => {
@@ -100,20 +99,17 @@ const HeroSection = () => {
     setCurrentSlide(prev => (prev - 1 + slides.length) % slides.length);
   }, []);
 
-  // Auto-play interval
+  // Auto-play interval (continuous flow)
   useEffect(() => {
-    if (isPaused) return;
     const interval = setInterval(() => {
       nextSlide();
     }, 6000);
     return () => clearInterval(interval);
-  }, [nextSlide, isPaused]);
+  }, [nextSlide]);
 
   return (
     <section
-      className="relative w-full min-h-[85vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-950"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}>
+      className="relative w-full min-h-[85vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-950">
       
       {/* Background Slideshow Layer */}
       <AnimatePresence mode="wait">

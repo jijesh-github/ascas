@@ -265,4 +265,102 @@ body {
       transform: none !important;
     }
   }
+
+  /* ASCAS Blog Article Typography System */
+  .prose-ascas {
+    color: #374151;
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+
+  .prose-ascas h1,
+  .prose-ascas h2,
+  .prose-ascas h3,
+  .prose-ascas h4,
+  .prose-ascas h5,
+  .prose-ascas h6 {
+    color: #111827;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-top: 2.25rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.015em;
+  }
+
+  .prose-ascas h1 { font-size: 2.25rem; color: #570026; }
+  .prose-ascas h2 { font-size: 1.75rem; color: #570026; border-bottom: 2px solid #fce7f3; padding-bottom: 0.5rem; }
+  .prose-ascas h3 { font-size: 1.375rem; }
+  .prose-ascas h4 { font-size: 1.1875rem; }
+
+  .prose-ascas p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+  }
+
+  .prose-ascas a {
+    color: #570026;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+  }
+
+  .prose-ascas a:hover {
+    color: #861043;
+  }
+
+  .prose-ascas strong,
+  .prose-ascas b {
+    color: #111827;
+    font-weight: 700;
+  }
+
+  .prose-ascas ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .prose-ascas ol {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .prose-ascas li {
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-ascas blockquote {
+    border-left: 4px solid #570026;
+    background-color: #fcf0f5;
+    padding: 1rem 1.5rem;
+    margin: 1.75rem 0;
+    border-radius: 0 0.75rem 0.75rem 0;
+    font-style: italic;
+    color: #4b5563;
+  }
+
+  .prose-ascas blockquote p {
+    margin-bottom: 0;
+  }
+
+  .prose-ascas img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    margin: 2rem auto;
+    display: block;
+    box-shadow: 0 4px 12px rgba(87, 0, 38, 0.08);
+  }
+
+  .prose-ascas iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    border-radius: 1rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
 }

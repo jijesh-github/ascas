@@ -9,17 +9,17 @@ const statsData = [
     label: 'Successful IVF Cycles'
   },
   {
-    value: 5000,
+    value: 3000,
     suffix: '+',
     label: 'Successful IUI Cycles'
   },
   {
-    value: 2000,
+    value: 1000,
     suffix: '+',
     label: 'Laparoscopic Surgeries'
   },
   {
-    value: 1000,
+    value: 3000,
     suffix: '+',
     label: 'Natural Conception Cycles'
   }

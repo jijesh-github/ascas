@@ -32,7 +32,7 @@ export default function ImageGallery() {
       </div>
 
       {/* Motion Gallery Showcase Outer Wrapper */}
-      <div className="relative w-full overflow-hidden pause-on-hover space-y-6 sm:space-y-8 py-2">
+      <div className="relative w-full overflow-hidden space-y-6 sm:space-y-8 py-2">
         {/* Left & Right Edge Gradient Mask Fade */}
         <div className="pointer-events-none absolute inset-y-0 left-0 w-20 sm:w-40 bg-gradient-to-r from-white via-white/80 to-transparent z-20" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-20 sm:w-40 bg-gradient-to-l from-white via-white/80 to-transparent z-20" />

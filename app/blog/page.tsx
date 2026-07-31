@@ -1,52 +1,37 @@
-import DietChart from '@/components/blog/DietChart';
-import FertilityDietComponent from '@/components/blog/FertilityDietComponent';
-import HysteroscopyComponent from '@/components/blog/HysteroscopyComponent';
-import IUIBlogComponent from '@/components/blog/IUIBlogComponent';
-import IVFComponent from '@/components/blog/IVFComponent';
-import OITreatmentComponent from '@/components/blog/OITreatmentComponent';
-import PGTComponent from '@/components/blog/PGTComponent';
-import PGTSRCaseSeriesComponent from '@/components/blog/PGTSRCaseSeriesComponent';
 import type { Metadata } from 'next';
 import React from 'react';
+import BlogHero from '@/components/blog/BlogHero';
+import BlogGridClient from '@/components/blog/BlogGridClient';
+import { getBlogPosts } from '@/lib/blogger';
+
+// Force dynamic server rendering on every request to ensure newly published Blogger posts appear immediately
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: 'Fertility, IVF, IUI and Pregnancy Care Blog',
+  title: "Fertility & Women's Health Blog | ASCAS Chennai",
   description:
-    'Read fertility, IVF, IUI, pregnancy, diet, hysteroscopy, PGT, and reproductive health guidance from the ASCAS care team.',
+    "Read expert fertility, IVF, IUI, pregnancy care, and reproductive health guidance from the ASCAS medical team.",
   alternates: {
     canonical: '/blog'
   },
   openGraph: {
-    title: 'Fertility, IVF, IUI and Pregnancy Care Blog',
+    title: "Fertility & Women's Health Blog | ASCAS Chennai",
     description:
-      'Fertility, IVF, IUI, pregnancy, diet, hysteroscopy, PGT, and reproductive health education from ASCAS.',
+      "Expert fertility, IVF, IUI, pregnancy care, and reproductive health guidance from ASCAS.",
     url: '/blog'
   }
 };
 
-const FertilityBlog = () => {
+export default async function FertilityBlogPage() {
+  const { posts, isConfigured, error } = await getBlogPosts();
+
   return (
-    <main className="w-full px-4 py-8 md:px-6 md:py-16 bg-gradient-to-br from-purple-50 via-pink-50 to-white">
-      <div className="max-w-8xl mx-auto space-y-8 md:space-y-2">
-        <div className="text-center">
-          <div className="inline-block bg-pink-200/30 px-6 py-3 md:px-10 md:py-5 rounded-full shadow-md">
-            <span className="text-pink-800 font-bold uppercase tracking-wider text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
-              Blog
-            </span>
-          </div>
-          <h5 className="text-xl md:text-2xl my-2 font-bold text-pink-800">Know More About Your Treatment</h5>
-        </div>
-        <IUIBlogComponent />
-        <OITreatmentComponent />
-        <IVFComponent />
-        <DietChart />
-        <HysteroscopyComponent />
-        <PGTComponent />
-        <FertilityDietComponent />
-        <PGTSRCaseSeriesComponent />
+    <main className="min-h-screen bg-slate-50/30 pb-20">
+      <BlogHero />
+      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 pt-10 sm:pt-14">
+        <BlogGridClient posts={posts} isConfigured={isConfigured} error={error} />
       </div>
     </main>
   );
-};
-
-export default FertilityBlog;
+}

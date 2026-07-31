@@ -22,17 +22,17 @@ export default function AnimatedUnderlineNavbar() {
 
   return (
     <header className={`top-0 w-full z-50 bg-white border-b border-gray-100 ${isScrolled ? 'shadow-sm' : ''}`}>
-      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 flex items-center justify-between py-2.5">
+      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 flex items-center justify-between py-1.5 sm:py-2">
         {/* Logo */}
         <Link
           href="/"
-          className="inline-flex items-center justify-center p-1.5 bg-primary rounded-md shadow-md hover:shadow-lg transition-all duration-300">
+          className="inline-flex items-center justify-center p-1 sm:p-1.5 bg-primary rounded-md shadow-sm hover:shadow-md transition-all duration-300">
           <Image
             src="/logo.png"
             alt="ascas logo"
-            width={99}
-            height={99}
-            className="transition-transform duration-300"
+            width={60}
+            height={60}
+            className="w-12 sm:w-14 md:w-16 h-auto object-contain transition-transform duration-300"
           />
         </Link>
 
