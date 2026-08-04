@@ -3,11 +3,8 @@
 import Link from 'next/link';
 import { branches } from '@/utils/utils';
 import { MapPin, MessageSquare, Phone, Calendar, HeartHandshake } from 'lucide-react';
-import { useDoctorForm } from '@/context/DoctorFormContext';
 
 const CtaSection = () => {
-  const { openForm } = useDoctorForm();
-
   return (
     <section className="relative py-14 sm:py-16 bg-[#fcf0f5] border border-pink-200/80 rounded-3xl overflow-hidden shadow-sm">
       {/* Decorative Background Glows */}
@@ -32,12 +29,12 @@ const CtaSection = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-3.5 shrink-0">
-            <button
-              onClick={openForm}
+            <Link
+              href="/book-appointment"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#570026] hover:bg-[#861043] text-white font-semibold text-base shadow-lg shadow-pink-950/20 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer">
               <Calendar className="w-4 h-4 text-amber-300" />
               <span>Book Appointment</span>
-            </button>
+            </Link>
             
             <Link
               href="/contact"

@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Calendar, Sparkles, ArrowRight, Stethoscope } from 'lucide-react';
-import { useDoctorForm } from '@/context/DoctorFormContext';
 
 interface Slide {
   id: number;
@@ -89,7 +88,6 @@ const slides: Slide[] = [
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const { openForm } = useDoctorForm();
 
   const nextSlide = useCallback(() => {
     setCurrentSlide(prev => (prev + 1) % slides.length);
@@ -170,14 +168,14 @@ const HeroSection = () => {
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5">
-                <button
-                  onClick={openForm}
+                <Link
+                  href="/book-appointment"
                   className="hero-animated-border-btn cursor-pointer">
                   <span className="hero-animated-border-btn-inner text-base sm:text-lg">
                     <Calendar className="w-5 h-5 text-amber-300 shrink-0" />
                     <span>{slides[currentSlide].primaryCtaText}</span>
                   </span>
-                </button>
+                </Link>
 
                 <Link
                   href={slides[currentSlide].secondaryCtaLink}

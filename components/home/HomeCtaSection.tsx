@@ -2,11 +2,8 @@
 
 import Link from 'next/link';
 import { Calendar, PhoneCall, HeartHandshake } from 'lucide-react';
-import { useDoctorForm } from '@/context/DoctorFormContext';
 
 export default function HomeCtaSection() {
-  const { openForm } = useDoctorForm();
-
   return (
     <section className="relative py-20 lg:py-24 bg-[#fcf0f5] border-t border-pink-200/60 overflow-hidden">
       {/* Decorative Subtle Background Accents */}
@@ -34,12 +31,12 @@ export default function HomeCtaSection() {
 
           {/* Action CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5">
-            <button
-              onClick={openForm}
+            <Link
+              href="/book-appointment"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-[#570026] hover:bg-[#861043] text-white font-semibold text-base sm:text-lg shadow-lg shadow-pink-950/20 hover:shadow-pink-900/40 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer">
               <Calendar className="w-5 h-5 text-amber-300" />
               <span>Book an Appointment</span>
-            </button>
+            </Link>
 
             <Link
               href="/contact"

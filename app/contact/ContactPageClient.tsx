@@ -1,15 +1,14 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useDoctorForm } from '@/context/DoctorFormContext';
 import { branches, primaryBranch } from '@/utils/utils';
 import PageHero from '@/components/ui/PageHero';
 import { Phone, MapPin, Clock, Headphones, Send, Calendar } from 'lucide-react';
 
 export default function ContactPageClient() {
-  const { openForm } = useDoctorForm();
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -183,13 +182,12 @@ export default function ContactPageClient() {
                   </div>
 
                   <div className="pt-3 text-center">
-                    <button
-                      type="button"
-                      onClick={openForm}
+                    <Link
+                      href="/book-appointment"
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-[#570026] hover:underline cursor-pointer">
                       <Calendar className="w-3.5 h-3.5 text-pink-700" />
                       <span>Prefer direct doctor booking? Click here</span>
-                    </button>
+                    </Link>
                   </div>
                 </form>
               )}
