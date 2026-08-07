@@ -38,7 +38,7 @@ const slides: Slide[] = [
   },
   {
     id: 2,
-    image: '/images/banner/banner.jpg',
+    image: '/images/banner/banner.png',
     badgeText: 'Advanced Reproductive Medicine',
     badgeLink: '/services',
     headlineNode: (
@@ -123,13 +123,14 @@ const HeroSection = () => {
             alt="ASCAS Fertility Center"
             fill
             priority={currentSlide === 0}
+            quality={95}
             sizes="100vw"
-            className={`object-cover ${slides[currentSlide].imagePosition}`}
+            className={`object-cover brightness-[1.08] contrast-[1.08] saturate-[1.15] ${slides[currentSlide].imagePosition}`}
           />
           
-          {/* Subtle Dual Overlay for High Text Legibility & Depth */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/65 to-slate-950/30 md:via-slate-950/50 md:to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/30" />
+          {/* Refined Gradient Overlays for High Vibrancy, Clarity & Legibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/45 to-slate-950/15 md:via-slate-950/35 md:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/20" />
         </motion.div>
       </AnimatePresence>
 

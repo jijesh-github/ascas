@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   const title = `${post.title} | ASCAS Fertility & Women's Health Blog`;
   const description = post.excerpt || `Read ${post.title} on the ASCAS clinic blog.`;
   const canonicalUrl = `/blog/${post.slug}`;
-  const images = post.featuredImage ? [post.featuredImage] : ['/images/banner/banner.jpg'];
+  const images = post.featuredImage ? [post.featuredImage] : ['/images/banner/banner.png'];
 
   return {
     title,

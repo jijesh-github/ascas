@@ -64,7 +64,7 @@ export const metadata: Metadata = {
       'Fertility care, IVF, IUI, pregnancy support, advanced scans, and women\'s healthcare at Valasaravakkam and Vadapalani, Chennai.',
     images: [
       {
-        url: '/images/banner/banner.jpg',
+        url: '/images/banner/banner.png',
         width: 1200,
         height: 630,
         alt: 'Accumed Speciality Clinic and Scans fertility care in Chennai'
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     title: 'Accumed Speciality Clinic and Scans | Fertility Clinic in Chennai',
     description:
       'Fertility care, IVF, IUI, pregnancy support, advanced scans, and women\'s healthcare in Chennai.',
-    images: ['/images/banner/banner.jpg']
+    images: ['/images/banner/banner.png']
   }
 };
 
@@ -94,7 +94,7 @@ const clinicJsonLd = {
   alternateName: ['ASCAS', "ASCAS Fertility and Women's Center"],
   url: 'https://www.ascasclinic.com',
   logo: 'https://www.ascasclinic.com/logo.png',
-  image: 'https://www.ascasclinic.com/images/banner/banner.jpg',
+  image: 'https://www.ascasclinic.com/images/banner/banner.png',
   description:
     'Fertility care, IVF, IUI, pregnancy support, advanced scans, and women\'s healthcare in Valasaravakkam and Vadapalani, Chennai.',
   medicalSpecialty: ['Gynecology', 'ReproductiveMedicine', 'Radiology'],
