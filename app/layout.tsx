@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 import { DoctorFormProvider } from '@/context/DoctorFormContext';
 import DoctorFormModal from '@/components/ui/DoctorFormModal';
 import FloatingContactButtons from '@/components/layout/FloatingContactButtons';
+import ScrollToTop from '@/components/layout/ScrollToTop';
 import { branches } from '@/utils/utils';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -133,6 +134,7 @@ export default function RootLayout({
           {/* <div className="pt-[76px]">{children}</div> */}
           <div>{children}</div>
           <FloatingContactButtons />
+          <ScrollToTop />
           <DoctorFormModal />
           <Footer />
         </DoctorFormProvider>

@@ -1,6 +1,17 @@
 import Link from 'next/link';
 import { Mail, Phone, MapPin, Instagram, Facebook, Youtube } from 'lucide-react';
-import { branches, navLinks, services } from '@/utils/utils';
+import { branches, navLinks } from '@/utils/utils';
+
+const footerServices = [
+  { name: 'IVF Treatment', href: '/treatments/ivf' },
+  { name: 'IUI Treatment', href: '/treatments/iui' },
+  { name: 'ICSI Treatment', href: '/treatments/icsi' },
+  { name: 'Fertility Preservation', href: '/treatments/fertility-preservation' },
+  { name: 'Female Infertility & PCOS', href: '/treatments/female-infertility' },
+  { name: 'Male Infertility Care', href: '/treatments/male-infertility' },
+  { name: 'Keyhole Surgeries', href: '/treatments/laparoscopy-hysteroscopy' },
+  { name: 'Genetic Testing (PGT)', href: '/treatments/embryology-genetics' }
+];
 
 const Footer = () => {
   return (
@@ -9,9 +20,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Column 1 - About */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold bg-gradient-to-r from-primary to-pink-600 bg-clip-text text-transparent">
-              ASCAS
-            </h3>
+            <Link href="/" className="inline-block">
+              <h3 className="text-xl font-bold bg-gradient-to-r from-primary to-pink-600 bg-clip-text text-transparent hover:opacity-90 transition-opacity">
+                ASCAS
+              </h3>
+            </Link>
             <p className="text-gray-600 text-sm">
               Providing compassionate fertility care and innovative treatments to help couples achieve their dream of
               parenthood.
@@ -36,10 +49,10 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-800">Our Services</h3>
             <ul className="space-y-2">
-              {services.map(service => (
-                <li key={service}>
-                  <Link href="/" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">
-                    {service}
+              {footerServices.map(service => (
+                <li key={service.name}>
+                  <Link href={service.href} className="text-gray-600 hover:text-purple-600 transition-colors text-sm">
+                    {service.name}
                   </Link>
                 </li>
               ))}
@@ -72,8 +85,12 @@ const Footer = () => {
                 </li>
               ))}
               <li className="flex items-center">
-                <Mail className="h-5 w-5 text-purple-500 mr-2" />
-                <span className="text-gray-600 text-sm">accumedspecialityclinic@gmail.com</span>
+                <Mail className="h-5 w-5 text-purple-500 mr-2 shrink-0" />
+                <a
+                  href="mailto:accumedspecialityclinic@gmail.com"
+                  className="text-gray-600 hover:text-purple-600 transition-colors text-sm break-all">
+                  accumedspecialityclinic@gmail.com
+                </a>
               </li>
             </ul>
           </div>

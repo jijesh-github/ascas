@@ -214,7 +214,7 @@ export const navLinks = [
   { lable: 'Our Team', path: '/team' },
   { lable: 'Blog', path: '/blog' },
   { lable: 'Branches', path: '/branches' },
-  { lable: 'Contact', path: 'contact' }
+  { lable: 'Contact', path: '/contact' }
 ];
 
 export const imageGallery = [
