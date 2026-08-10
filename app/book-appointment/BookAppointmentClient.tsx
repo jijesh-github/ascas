@@ -51,7 +51,7 @@ export default function BookAppointmentClient() {
   const [selectedSlot, setSelectedSlot] = useState<string>('');
   
   const [patientName, setPatientName] = useState('');
-  const [patientPhone, setPatientPhone] = useState('');
+  const [patientPhone, setPatientPhone] = useState('+91 ');
   const [preferredTime, setPreferredTime] = useState('10:00 AM');
   const [consultationReason, setConsultationReason] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -60,6 +60,16 @@ export default function BookAppointmentClient() {
 
   // Copy state for bank info
   const [copiedField, setCopiedField] = useState<string | null>(null);
+
+  // Phone input helper to ensure +91 prefix and strictly 10 digits max
+  const handlePhoneInput = (val: string) => {
+    const digitsOnly = val.replace(/\D/g, '');
+    const subscriberDigits = (digitsOnly.startsWith('91') && digitsOnly.length > 10)
+      ? digitsOnly.slice(2, 12)
+      : (digitsOnly.startsWith('91') ? digitsOnly.slice(2) : digitsOnly).slice(0, 10);
+
+    setPatientPhone(subscriberDigits ? `+91 ${subscriberDigits}` : '+91 ');
+  };
 
   // Active Doctor's Centralized Schedule
   const doctorSchedule = getDoctorSchedule(selectedDoctor.name);
@@ -101,6 +111,13 @@ export default function BookAppointmentClient() {
     e.preventDefault();
     if (isSubmitting) return;
 
+    // Validate strictly 10 digits after +91
+    const subscriberDigits = patientPhone.replace(/\D/g, '').replace(/^91/, '');
+    if (subscriberDigits.length !== 10) {
+      setSubmitError('Please enter a valid 10-digit mobile number after +91.');
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitError(null);
 
@@ -116,7 +133,7 @@ export default function BookAppointmentClient() {
 
     const payload = {
       patientName,
-      mobileNumber: patientPhone,
+      mobileNumber: `+91 ${subscriberDigits}`,
       preferredBranch: selectedBranch.name,
       preferredConsultant: selectedDoctor.name,
       preferredDate: formattedDate,
@@ -136,7 +153,7 @@ export default function BookAppointmentClient() {
       if (res.ok && result.success) {
         setSubmitted(true);
         setPatientName('');
-        setPatientPhone('');
+        setPatientPhone('+91 ');
         setConsultationReason('');
       } else {
         setSubmitError(result.message || 'Failed to submit appointment request. Please try again.');
@@ -425,14 +442,22 @@ export default function BookAppointmentClient() {
                               <Phone className="w-3 h-3 text-[#570026]" />
                               <span>Phone Number</span>
                             </label>
-                            <input
-                              required
-                              type="tel"
-                              value={patientPhone}
-                              onChange={e => setPatientPhone(e.target.value)}
-                              placeholder="+91 98765 43210"
-                              className="w-full rounded-xl border border-pink-200 bg-white px-3.5 py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-[#570026] focus:outline-none focus:ring-2 focus:ring-[#570026]"
-                            />
+                            <div className="relative flex items-center rounded-xl border border-pink-200 bg-white focus-within:border-[#570026] focus-within:ring-2 focus-within:ring-[#570026] overflow-hidden">
+                              <span className="bg-pink-50/80 text-[#570026] font-bold text-xs sm:text-sm px-3.5 py-2.5 border-r border-pink-200 select-none flex items-center gap-1 shrink-0">
+                                +91
+                              </span>
+                              <input
+                                required
+                                type="tel"
+                                value={patientPhone.replace(/^\+91\s?/, '')}
+                                onChange={e => handlePhoneInput(e.target.value)}
+                                placeholder="98765 43210"
+                                maxLength={10}
+                                pattern="\d{10}"
+                                title="Please enter a 10-digit phone number"
+                                className="w-full bg-transparent px-3.5 py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none"
+                              />
+                            </div>
                           </div>
 
                           {/* Reason for Consultation */}
@@ -597,14 +622,22 @@ export default function BookAppointmentClient() {
                             <Phone className="w-3 h-3 text-[#570026]" />
                             <span>Mobile Number</span>
                           </label>
-                          <input
-                            required
-                            type="tel"
-                            value={patientPhone}
-                            onChange={e => setPatientPhone(e.target.value)}
-                            placeholder="+91 98765 43210"
-                            className="w-full rounded-xl border border-pink-200 bg-white px-3.5 py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-[#570026] focus:outline-none focus:ring-2 focus:ring-[#570026]"
-                          />
+                          <div className="relative flex items-center rounded-xl border border-pink-200 bg-white focus-within:border-[#570026] focus-within:ring-2 focus-within:ring-[#570026] overflow-hidden">
+                            <span className="bg-pink-50/80 text-[#570026] font-bold text-xs sm:text-sm px-3.5 py-2.5 border-r border-pink-200 select-none flex items-center gap-1 shrink-0">
+                              +91
+                            </span>
+                            <input
+                              required
+                              type="tel"
+                              value={patientPhone.replace(/^\+91\s?/, '')}
+                              onChange={e => handlePhoneInput(e.target.value)}
+                              placeholder="98765 43210"
+                              maxLength={10}
+                              pattern="\d{10}"
+                              title="Please enter a 10-digit phone number"
+                              className="w-full bg-transparent px-3.5 py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none"
+                            />
+                          </div>
                         </div>
 
                         {/* Reason for Consultation (Optional) */}

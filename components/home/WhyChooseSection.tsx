@@ -7,14 +7,14 @@ const featureIcons = [Award, Heart, Cpu, ShieldCheck];
 
 const WhyChooseSection = () => {
   return (
-    <section className="relative py-20 lg:py-24 bg-[#fcf0f5] border-y border-pink-200/60 overflow-hidden">
+    <section className="relative py-10 lg:py-14 bg-[#fcf0f5] border-y border-pink-200/60 overflow-hidden">
       {/* Decorative ambient background glows */}
       <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-pink-200/40 blur-3xl pointer-events-none" />
       <div className="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-purple-100/40 blur-3xl pointer-events-none" />
 
       <div className="container relative z-10 mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-pink-200 text-[#570026] text-xs sm:text-sm font-semibold tracking-wide uppercase mb-4 shadow-sm">
             <Sparkles className="w-4 h-4 text-pink-700" />
             <span>Why Patients Trust Us</span>

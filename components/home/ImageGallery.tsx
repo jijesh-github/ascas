@@ -15,8 +15,8 @@ export default function ImageGallery() {
   const row2 = [...row2Original, ...row2Original];
 
   return (
-    <section className="relative py-20 lg:py-24 bg-white border-b border-gray-100 overflow-hidden">
-      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 mb-12 sm:mb-14 text-center">
+    <section className="relative py-10 lg:py-14 bg-white border-b border-gray-100 overflow-hidden">
+      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 mb-8 sm:mb-10 text-center">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-100/70 border border-pink-200/80 text-[#570026] text-xs sm:text-sm font-semibold tracking-wide uppercase mb-4">
           <Camera className="w-4 h-4 text-pink-700" />
           <span>Clinical & Facility Milestones</span>

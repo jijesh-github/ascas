@@ -166,7 +166,7 @@ export default function ServicesPageClient() {
       />
 
       {/* Main Container */}
-      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 py-12 sm:py-16 space-y-14 sm:space-y-16">
+      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 py-8 sm:py-10 space-y-10 sm:space-y-12">
 
         {/* Section 1: Reproductive Medicine & Fertility Care */}
         <section className="space-y-6">

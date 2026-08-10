@@ -64,7 +64,7 @@ export default async function TreatmentDetailPage({ params }: Props) {
       />
 
       {/* Main Container */}
-      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 py-12 sm:py-16 space-y-12">
+      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 py-8 sm:py-10 space-y-8">
         
         {/* Treatment Main Card Container */}
         <div className="max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-10 lg:p-12 shadow-sm border border-pink-100/80 space-y-10">

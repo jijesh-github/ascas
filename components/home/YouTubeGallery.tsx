@@ -14,10 +14,10 @@ const YouTubeGallery: React.FC = () => {
   const totalPages = Math.ceil(videos.length / VIDEOS_PER_PAGE);
 
   return (
-    <section className="relative py-20 lg:py-24 bg-white border-t border-gray-100">
+    <section className="relative py-10 lg:py-14 bg-white border-t border-gray-100">
       <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-100/70 border border-pink-200/80 text-[#570026] text-xs sm:text-sm font-semibold tracking-wide uppercase mb-4">
             <Video className="w-4 h-4 text-pink-700" />
             <span>Educational Videos & Awareness</span>

@@ -33,7 +33,7 @@ export default function ContactPageClient() {
       />
 
       {/* Main Container */}
-      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 py-12 sm:py-16 space-y-12">
+      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 py-8 sm:py-10 space-y-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:items-start">
           
           {/* Left Column: Contact Information & Branches */}

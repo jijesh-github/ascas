@@ -5,13 +5,13 @@ import { Calendar, PhoneCall, HeartHandshake } from 'lucide-react';
 
 export default function HomeCtaSection() {
   return (
-    <section className="relative py-20 lg:py-24 bg-[#fcf0f5] border-t border-pink-200/60 overflow-hidden">
+    <section className="relative py-8 lg:py-10 bg-[#fcf0f5] border-t border-pink-200/60 overflow-hidden">
       {/* Decorative Subtle Background Accents */}
       <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-pink-200/40 blur-3xl pointer-events-none" />
       <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-purple-200/30 blur-3xl pointer-events-none" />
 
       <div className="container relative z-10 mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12">
-        <div className="max-w-4xl mx-auto text-center bg-white rounded-3xl p-8 sm:p-12 lg:p-16 border border-pink-100/90 shadow-xl shadow-pink-950/5 relative overflow-hidden">
+        <div className="max-w-4xl mx-auto text-center bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-pink-100/90 shadow-xl shadow-pink-950/5 relative overflow-hidden">
           
           {/* Top Decorative Pill */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-50 border border-pink-100 text-[#570026] text-xs sm:text-sm font-semibold tracking-wide uppercase mb-6">
