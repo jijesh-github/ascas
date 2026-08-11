@@ -16,11 +16,11 @@ export default function TreatmentsSection({ showHeader = true, showAll = false }
     : treatmentsData.filter(t => t.isPrimaryHomepage);
 
   return (
-    <section className="relative py-16 lg:py-20 bg-[#fcf0f5] border-y border-pink-200/60">
+    <section className="relative py-10 lg:py-14 bg-[#fcf0f5] border-y border-pink-200/60">
       <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12">
         {/* Section Header */}
         {showHeader && (
-          <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-pink-200 text-[#570026] text-xs sm:text-sm font-semibold tracking-wide uppercase mb-4 shadow-sm">
               <Sparkles className="w-4 h-4 text-pink-700" />
               <span>Specialized Reproductive Care</span>
@@ -45,7 +45,7 @@ export default function TreatmentsSection({ showHeader = true, showAll = false }
 
         {/* Bottom CTA to View All Treatments */}
         {showHeader && !showAll && (
-          <div className="mt-14 sm:mt-16 text-center">
+          <div className="mt-8 sm:mt-10 text-center">
             <Link
               href="/services"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#570026] hover:bg-[#861043] text-white font-semibold text-base sm:text-lg shadow-lg shadow-pink-950/20 hover:shadow-pink-900/30 hover:scale-[1.02] active:scale-[0.98] transition-all group cursor-pointer">

@@ -112,9 +112,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </div>
 
         {/* Article Container with Controlled Readable Line Length */}
-        <article className="max-w-4xl mx-auto bg-white rounded-3xl border border-pink-100 p-6 sm:p-10 lg:p-14 shadow-sm mb-16">
+        <article className="max-w-6xl mx-auto bg-white rounded-3xl border border-pink-100 p-6 sm:p-10 lg:p-14 shadow-sm mb-16">
           {/* Article Header */}
-          <header className="mb-10 text-center max-w-3xl mx-auto">
+          <header className="mb-10 text-center max-w-5xl mx-auto">
             {/* Category Pills */}
             <div className="flex flex-wrap items-center justify-center gap-2 mb-4">
               {post.labels.map((label, idx) => (
@@ -158,7 +158,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 alt={post.title}
                 fill
                 priority
-                sizes="(max-width: 1024px) 100vw, 896px"
+                sizes="(max-width: 1200px) 100vw, 1152px"
                 className="object-cover"
                 unoptimized
               />
@@ -184,7 +184,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </article>
 
         {/* Final ASCAS CTA Section */}
-        <section className="max-w-4xl mx-auto mb-16 p-8 sm:p-10 bg-gradient-to-br from-[#570026] via-[#750033] to-[#570026] rounded-3xl text-white text-center shadow-lg relative overflow-hidden">
+        <section className="max-w-6xl mx-auto mb-16 p-8 sm:p-10 bg-gradient-to-br from-[#570026] via-[#750033] to-[#570026] rounded-3xl text-white text-center shadow-lg relative overflow-hidden">
           <div className="relative z-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-pink-200 text-xs font-semibold uppercase tracking-wider mb-4 border border-white/10">
               <Sparkles className="w-3.5 h-3.5 text-pink-300" />

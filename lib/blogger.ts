@@ -129,6 +129,56 @@ export function transformBloggerItem(item: BloggerApiItem): BloggerPost {
   };
 }
 
+export interface AtomEntry {
+  id?: { $t?: string };
+  published?: { $t?: string };
+  updated?: { $t?: string };
+  title?: { $t?: string };
+  content?: { $t?: string };
+  category?: Array<{ term?: string }>;
+  link?: Array<{ rel?: string; href?: string }>;
+  author?: Array<{ name?: { $t?: string }; gd$image?: { src?: string } }>;
+  media$thumbnail?: { url?: string };
+}
+
+/**
+ * Transforms Blogger public Atom JSON entry into formatted BloggerPost
+ */
+export function transformAtomEntry(entry: AtomEntry): BloggerPost {
+  const title = entry.title?.$t || 'Untitled Post';
+  const content = entry.content?.$t || '';
+  const alternateLink = entry.link?.find(l => l.rel === 'alternate')?.href;
+  const slug = slugify(title, alternateLink);
+
+  const labels = entry.category?.map(c => c.term).filter((t): t is string => Boolean(t)) || ['General Health'];
+  const authorName = entry.author?.[0]?.name?.$t || 'ASCAS Care Team';
+
+  const thumbnail = entry.media$thumbnail?.url;
+  const imagesObj = thumbnail ? [{ url: thumbnail }] : undefined;
+  const featuredImage = extractFeaturedImage(content, imagesObj);
+  const excerpt = extractExcerpt(content, 180);
+
+  const idStr = entry.id?.$t || '';
+  const postMatch = idStr.match(/post-(\d+)/);
+  const id = postMatch ? postMatch[1] : idStr;
+
+  return {
+    id,
+    published: entry.published?.$t || new Date().toISOString(),
+    updated: entry.updated?.$t || entry.published?.$t || new Date().toISOString(),
+    url: alternateLink || '',
+    title,
+    content,
+    excerpt,
+    featuredImage,
+    author: {
+      displayName: authorName
+    },
+    labels: labels.length > 0 ? labels : ['General Health'],
+    slug
+  };
+}
+
 export interface FetchBlogPostsResult {
   posts: BloggerPost[];
   isConfigured: boolean;
@@ -136,71 +186,71 @@ export interface FetchBlogPostsResult {
 }
 
 /**
- * Fetches current published posts from the Blogger API without caching (no-store).
- * Supports pagination via nextPageToken so all published posts are retrieved.
- * Posts are returned sorted in Newest -> Oldest order.
+ * Fetches current published posts from Blogger without caching (no-store).
+ * Uses API Key if present, otherwise falls back to public Blogger Atom JSON feed.
+ * Default Blog ID set to 989370313265735822 (ASCAS Fertility and Women's Center).
  */
 export async function getBlogPosts(): Promise<FetchBlogPostsResult> {
   const apiKey = process.env.BLOGGER_API_KEY?.trim();
-  const blogId = process.env.BLOGGER_BLOG_ID?.trim();
+  const blogId = process.env.BLOGGER_BLOG_ID?.trim() || '989370313265735822';
 
-  if (!apiKey || !blogId) {
-    return {
-      posts: [],
-      isConfigured: false,
-      error: !blogId
-        ? 'BLOGGER_BLOG_ID environment variable is missing.'
-        : 'BLOGGER_API_KEY environment variable is missing.'
-    };
-  }
+  // 1. Try Blogger API v3 if API key is provided
+  if (apiKey) {
+    try {
+      let allItems: BloggerApiItem[] = [];
+      let pageToken: string | undefined = undefined;
+      let pageCount = 0;
+      const maxPages = 10;
 
-  try {
-    let allItems: BloggerApiItem[] = [];
-    let pageToken: string | undefined = undefined;
-    let pageCount = 0;
-    const maxPages = 10; // Safety cap (up to 500 published posts)
+      do {
+        let endpoint = `https://www.googleapis.com/blogger/v3/blogs/${encodeURIComponent(
+          blogId
+        )}/posts?key=${encodeURIComponent(apiKey)}&fetchBodies=true&fetchImages=true&status=LIVE&maxResults=50`;
 
-    do {
-      let endpoint = `https://www.googleapis.com/blogger/v3/blogs/${encodeURIComponent(
-        blogId
-      )}/posts?key=${encodeURIComponent(apiKey)}&fetchBodies=true&fetchImages=true&status=LIVE&maxResults=50`;
-
-      if (pageToken) {
-        endpoint += `&pageToken=${encodeURIComponent(pageToken)}`;
-      }
-
-      // cache: 'no-store' ensures every request retrieves fresh published posts directly from Blogger API
-      const res = await fetch(endpoint, {
-        cache: 'no-store'
-      });
-
-      if (!res.ok) {
-        const errorData: BloggerApiResponse = await res.json().catch(() => ({}));
-        const message = errorData.error?.message || `Blogger API request failed with status ${res.status}`;
-        console.error('[Blogger API Error]:', message);
-
-        if (allItems.length > 0) {
-          break; // Return posts fetched so far if a subsequent page fails
+        if (pageToken) {
+          endpoint += `&pageToken=${encodeURIComponent(pageToken)}`;
         }
 
-        return {
-          posts: [],
-          isConfigured: true,
-          error: message
-        };
+        const res = await fetch(endpoint, { cache: 'no-store' });
+        if (!res.ok) break;
+
+        const data: BloggerApiResponse = await res.json();
+        if (data.items && Array.isArray(data.items)) {
+          allItems = allItems.concat(data.items);
+        }
+        pageToken = data.nextPageToken;
+        pageCount++;
+      } while (pageToken && pageCount < maxPages);
+
+      if (allItems.length > 0) {
+        const posts = allItems.map(transformBloggerItem);
+        posts.sort((a, b) => new Date(b.published).getTime() - new Date(a.published).getTime());
+        return { posts, isConfigured: true };
       }
+    } catch (e) {
+      console.error('[Blogger API v3 error, falling back to Atom feed]:', e);
+    }
+  }
 
-      const data: BloggerApiResponse = await res.json();
+  // 2. Fetch live posts via Blogger public Atom JSON feed (No API Key Required!)
+  try {
+    const feedUrl = `https://www.blogger.com/feeds/${encodeURIComponent(
+      blogId
+    )}/posts/default?alt=json&max-results=500`;
 
-      if (data.items && Array.isArray(data.items)) {
-        allItems = allItems.concat(data.items);
-      }
+    const res = await fetch(feedUrl, { cache: 'no-store' });
 
-      pageToken = data.nextPageToken;
-      pageCount++;
-    } while (pageToken && pageCount < maxPages);
+    if (!res.ok) {
+      return {
+        posts: [],
+        isConfigured: true,
+        error: `Failed to retrieve blog feed (Status: ${res.status})`
+      };
+    }
 
-    const posts = allItems.map(transformBloggerItem);
+    const data = await res.json();
+    const entries: AtomEntry[] = data.feed?.entry || [];
+    const posts = entries.map(transformAtomEntry);
 
     // Sort strictly Newest -> Oldest by published date
     posts.sort((a, b) => new Date(b.published).getTime() - new Date(a.published).getTime());
@@ -210,8 +260,8 @@ export async function getBlogPosts(): Promise<FetchBlogPostsResult> {
       isConfigured: true
     };
   } catch (err) {
-    const message = err instanceof Error ? err.message : 'Failed to fetch Blogger posts due to a network error.';
-    console.error('[Blogger Fetch Exception]:', err);
+    const message = err instanceof Error ? err.message : 'Failed to fetch Blogger posts.';
+    console.error('[Blogger Feed Fetch Exception]:', err);
     return {
       posts: [],
       isConfigured: true,

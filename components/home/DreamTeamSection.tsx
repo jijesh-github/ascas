@@ -10,11 +10,11 @@ interface DreamTeamSectionProps {
 
 export default function DreamTeamSection({ showHeader = true }: DreamTeamSectionProps = {}) {
   return (
-    <section className="relative py-16 lg:py-20 bg-white border-b border-gray-100">
+    <section className="relative py-10 lg:py-14 bg-white border-b border-gray-100">
       <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12">
         {/* Section Header */}
         {showHeader && (
-          <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-100/70 border border-pink-200/80 text-[#570026] text-xs sm:text-sm font-semibold tracking-wide uppercase mb-4">
               <Stethoscope className="w-4 h-4 text-pink-700" />
               <span>Expert Medical Specialists</span>

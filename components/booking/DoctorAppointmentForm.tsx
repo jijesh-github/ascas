@@ -33,6 +33,11 @@ export default function DoctorAppointmentForm() {
   const selectedBranch = branches.find(branch => branch.name === form.location) ?? primaryBranch;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    if (e.target.name === 'phone') {
+      const digitsOnly = e.target.value.replace(/\D/g, '').slice(0, 10);
+      setForm({ ...form, phone: digitsOnly });
+      return;
+    }
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -160,13 +165,14 @@ export default function DoctorAppointmentForm() {
             <input
               type="tel"
               name="phone"
-              placeholder="Phone Number"
+              placeholder="10-digit Phone Number"
               value={form.phone}
               onChange={handleChange}
+              maxLength={10}
               required
               className="w-full pl-10 pr-3 py-2 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
-              pattern="\d{10,15}"
-              title="Phone number must contain 10 to 15 digits"
+              pattern="\d{10}"
+              title="Phone number must contain exactly 10 digits"
             />
           </div>
         </div>

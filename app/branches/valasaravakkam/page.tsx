@@ -55,7 +55,7 @@ export default function ValasaravakkamPage() {
       />
 
       {/* Main Container */}
-      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 py-12 sm:py-16 space-y-16">
+      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 py-8 sm:py-10 space-y-10">
         
         {/* Branch Gallery */}
         <section className="space-y-8">

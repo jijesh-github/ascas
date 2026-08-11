@@ -92,10 +92,10 @@ export default function TestimonialSlider() {
   const currentReview = reviews[index];
 
   return (
-    <section className="relative py-20 lg:py-24 bg-[#fcf0f5] border-y border-pink-200/60">
+    <section className="relative py-10 lg:py-14 bg-[#fcf0f5] border-y border-pink-200/60">
       <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-8">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-pink-200 text-[#570026] text-xs sm:text-sm font-semibold tracking-wide uppercase mb-4 shadow-sm">
             <MessageSquareQuote className="w-4 h-4 text-pink-700" />
             <span>Patient Stories & Feedback</span>
@@ -112,7 +112,7 @@ export default function TestimonialSlider() {
 
         {/* Testimonial Card Slider */}
         <div
-          className="relative bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-pink-100/80 text-center max-w-4xl mx-auto"
+          className="relative bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-pink-100/80 text-center max-w-4xl mx-auto"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}>
           
