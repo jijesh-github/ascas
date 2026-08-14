@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans, Playfair_Display, Geist, Geist_Mono } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -126,6 +127,18 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${plusJakartaSans.variable} ${playfair.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}>
         <DoctorFormProvider>
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-SWYN6VF7CZ"
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-SWYN6VF7CZ');
+            `}
+          </Script>
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicJsonLd) }}
