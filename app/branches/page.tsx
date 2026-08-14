@@ -1,7 +1,8 @@
 import { branches } from '@/utils/utils';
 import PageHero from '@/components/ui/PageHero';
 import CtaSection from '@/components/home/CtaSection';
-import { Clock, MapPin, Phone, ArrowRight, Building2 } from 'lucide-react';
+import { Clock, MapPin, Phone, ArrowRight, Building2, MessageSquare, Calendar, Sparkles } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -19,6 +20,27 @@ export const metadata: Metadata = {
     url: '/branches'
   }
 };
+
+const valasaravakkamGallery = [
+  { src: '/images/faclities/01.jpeg', alt: 'OPD Waiting Hall at Accumed Speciality Clinic, Valasaravakkam', caption: 'OPD Waiting Hall' },
+  { src: '/images/faclities/02.jpeg', alt: 'Reception Desk at Accumed Speciality Clinic, Valasaravakkam', caption: 'Reception Desk' },
+  { src: '/images/faclities/03.jpeg', alt: 'IUI Lab at Accumed Speciality Clinic, Valasaravakkam', caption: 'Our IUI Lab' },
+  { src: '/images/faclities/04.jpeg', alt: 'IUI Room at Accumed Speciality Clinic, Valasaravakkam', caption: 'Our IUI Room' },
+  { src: '/images/faclities/06.jpeg', alt: 'Scan Suite at Accumed Speciality Clinic, Valasaravakkam', caption: 'Our Scan Suite' },
+  { src: '/images/faclities/08.jpeg', alt: 'Consultation Room at Accumed Speciality Clinic, Valasaravakkam', caption: 'Consultation Room' }
+];
+
+const vadapalaniGallery = [
+  { src: '/images/gallery/vadapalani/05.jpeg', alt: 'Multi-bed patient ward with hospital beds and privacy curtains at ASCAS Vadapalani', caption: 'Patient Ward' },
+  { src: '/images/gallery/vadapalani/06.jpeg', alt: 'Operation theatre with ceiling-mounted surgical light and operating table at ASCAS Vadapalani', caption: 'Operation Theatre' },
+  { src: '/images/gallery/vadapalani/07.jpeg', alt: 'Ultrasound scan room with imaging console and examination couch at ASCAS Vadapalani', caption: 'Ultrasound Scan Room' },
+  { src: '/images/gallery/vadapalani/08.jpeg', alt: 'Patient changing room with folded gowns on shelves at ASCAS Vadapalani', caption: 'Changing Room' },
+  { src: '/images/gallery/vadapalani/09.jpeg', alt: 'Medical supplies station with stainless-steel trolley stocked at ASCAS Vadapalani', caption: 'Medical Supplies Station' },
+  { src: '/images/gallery/vadapalani/10.jpeg', alt: 'Reception desk with computer and visitor chairs at ASCAS Vadapalani', caption: 'Reception Desk' },
+  { src: '/images/gallery/vadapalani/11.jpeg', alt: 'Patient and visitor elevator with stainless-steel interior at ASCAS Vadapalani', caption: 'Elevator' },
+  { src: '/images/gallery/vadapalani/12.jpeg', alt: 'Embryology lab with inverted microscope at ASCAS Vadapalani', caption: 'Embryology Lab' },
+  { src: '/images/gallery/vadapalani/13.jpeg', alt: 'ICSI micromanipulation station with Olympus inverted microscope at ASCAS Vadapalani', caption: 'Embryology Lab – ICSI Station' }
+];
 
 export default function BranchesPage() {
   return (
@@ -39,17 +61,15 @@ export default function BranchesPage() {
       {/* Main Container */}
       <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 py-8 sm:py-10 space-y-10">
         {/* Branch Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:items-stretch">
-          {branches.map(branch => {
+        <div className="bg-white rounded-3xl border border-pink-100/80 shadow-sm hover:shadow-xl hover:border-pink-300/80 transition-all duration-300 overflow-hidden">
+          {branches.map((branch, index) => {
             const baseName = branch.clinicName.endsWith(branch.name)
               ? branch.clinicName.slice(0, -branch.name.length).trim()
               : branch.clinicName;
+            const gallery = branch.id === 'valasaravakkam' ? valasaravakkamGallery : vadapalaniGallery;
 
             return (
-              <div
-                key={branch.id}
-                className="bg-white rounded-3xl border border-pink-100/80 shadow-sm hover:shadow-xl hover:border-pink-300/80 transition-all duration-300 overflow-hidden flex flex-col justify-between">
-                
+              <div key={branch.id}>
                 {/* Header */}
                 <div className="bg-gradient-to-r from-[#570026] via-[#750b39] to-[#861043] px-6 sm:px-8 py-6 flex flex-col justify-between gap-3 text-white">
                   <div>
@@ -68,7 +88,7 @@ export default function BranchesPage() {
                 </div>
 
                 {/* Body */}
-                <div className="p-6 sm:p-8 space-y-6 flex-1">
+                <div className="p-6 sm:p-8 space-y-6">
                   {/* Address */}
                   <div className="flex items-start gap-3.5">
                     <MapPin className="w-5 h-5 text-[#570026] mt-0.5 shrink-0" />
@@ -112,30 +132,95 @@ export default function BranchesPage() {
                   </div>
                 </div>
 
-                {/* Footer Actions */}
-                <div className="mt-auto px-6 sm:px-8 pb-6 sm:pb-8 pt-4 border-t border-gray-100 flex flex-wrap gap-3">
-                  <Link
-                    href={`/branches/${branch.id}`}
-                    className="inline-flex items-center gap-2 rounded-full bg-[#570026] hover:bg-[#861043] px-6 py-2.5 text-sm font-semibold text-white shadow-md transition hover:scale-[1.02] active:scale-[0.98]">
-                    <span>View Branch Center</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                  <a
-                    href={`tel:${branch.tel}`}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-pink-200 bg-pink-50/50 hover:bg-pink-100 px-5 py-2.5 text-sm font-semibold text-[#570026] transition">
-                    <Phone className="h-4 w-4" />
-                    <span>Call Clinic</span>
-                  </a>
-                  <a
-                    href={branch.mapUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white hover:bg-gray-50 px-5 py-2.5 text-sm font-semibold text-gray-700 transition">
-                    <MapPin className="h-4 w-4 text-[#570026]" />
-                    <span>Get Directions</span>
-                  </a>
+                {/* Gallery Section */}
+                <div className="px-6 sm:px-8 py-8 space-y-6">
+                  <div className="flex items-center gap-2 px-2">
+                    <Sparkles className="w-5 h-5 text-pink-700" />
+                    <h3 className="text-lg font-bold text-gray-900">
+                      Explore Our <span className="font-accent italic text-[#570026] font-normal">{branch.name} Center</span>
+                    </h3>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {gallery.map((image, imgIndex) => (
+                      <div key={imgIndex} className="group bg-white rounded-2xl overflow-hidden border border-pink-100/60 shadow-sm hover:shadow-lg hover:border-pink-300/60 transition-all duration-300">
+                        <div className="relative w-full h-48 overflow-hidden bg-slate-100">
+                          <Image
+                            src={image.src}
+                            alt={image.alt}
+                            fill
+                            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                          />
+                        </div>
+                        <div className="p-3 bg-white border-t border-pink-50">
+                          <p className="text-xs font-bold text-gray-900">{image.caption}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
+                {/* Map Section */}
+                <div className="px-6 sm:px-8 pb-8">
+                  <div className="bg-slate-50 rounded-2xl overflow-hidden border border-pink-100/60">
+                    <div className="px-4 py-3 border-b border-pink-100">
+                      <h3 className="text-base font-bold text-gray-900">Location Map</h3>
+                    </div>
+                    <div className="w-full h-64 bg-slate-100">
+                      <iframe
+                        title={`${branch.name} Branch Map`}
+                        src={branch.embedMapUrl}
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Footer Actions */}
+                <div className="px-6 sm:px-8 pb-6 sm:pb-8 pt-4 border-t border-gray-100 space-y-4">
+                  <div className="flex flex-wrap gap-3">
+                    <a
+                      href={`tel:${branch.tel}`}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-pink-200 bg-pink-50/50 hover:bg-pink-100 px-5 py-2.5 text-sm font-semibold text-[#570026] transition">
+                      <Phone className="h-4 w-4" />
+                      <span>Call Clinic</span>
+                    </a>
+                    <a
+                      href={branch.mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white hover:bg-gray-50 px-5 py-2.5 text-sm font-semibold text-gray-700 transition">
+                      <MapPin className="h-4 w-4 text-[#570026]" />
+                      <span>Get Directions</span>
+                    </a>
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    <Link
+                      href="/book-appointment"
+                      className="inline-flex items-center gap-2 rounded-full bg-[#570026] hover:bg-[#861043] px-6 py-2.5 text-sm font-semibold text-white shadow-md transition hover:scale-[1.02] active:scale-[0.98]">
+                      <Calendar className="h-4 w-4 text-amber-300" />
+                      <span>Book Appointment</span>
+                    </Link>
+                    <a
+                      href={branch.whatsapp}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-emerald-700 hover:bg-emerald-800 px-5 py-2.5 text-sm font-semibold text-white transition">
+                      <MessageSquare className="h-4 w-4" />
+                      <span>WhatsApp</span>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Divider between branches (not after last one) */}
+                {index < branches.length - 1 && (
+                  <div className="border-t border-gray-200" />
+                )}
               </div>
             );
           })}
