@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   Clock,
   MapPin,
@@ -21,7 +22,8 @@ import {
   Check,
   CreditCard,
   Award,
-  Loader2
+  Loader2,
+  Home
 } from 'lucide-react';
 import { doctors, branches } from '@/utils/utils';
 import DoctorSelectCard from '@/components/booking/DoctorSelectCard';
@@ -54,6 +56,7 @@ export default function BookAppointmentClient() {
   const [patientPhone, setPatientPhone] = useState('+91 ');
   const [preferredTime, setPreferredTime] = useState('10:00 AM');
   const [consultationReason, setConsultationReason] = useState('');
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
@@ -69,6 +72,16 @@ export default function BookAppointmentClient() {
       : (digitsOnly.startsWith('91') ? digitsOnly.slice(2) : digitsOnly).slice(0, 10);
 
     setPatientPhone(subscriberDigits ? `+91 ${subscriberDigits}` : '+91 ');
+    if (formErrors.phone) {
+      setFormErrors(prev => ({ ...prev, phone: '' }));
+    }
+  };
+
+  const handleNameInput = (val: string) => {
+    setPatientName(val);
+    if (formErrors.name) {
+      setFormErrors(prev => ({ ...prev, name: '' }));
+    }
   };
 
   // Active Doctor's Centralized Schedule
@@ -111,13 +124,28 @@ export default function BookAppointmentClient() {
     e.preventDefault();
     if (isSubmitting) return;
 
+    const errors: Record<string, string> = {};
+
+    if (!patientName.trim()) {
+      errors.name = 'Patient Full Name is required.';
+    } else if (patientName.trim().length < 3) {
+      errors.name = 'Name must be at least 3 characters.';
+    }
+
     // Validate strictly 10 digits after +91
     const subscriberDigits = patientPhone.replace(/\D/g, '').replace(/^91/, '');
-    if (subscriberDigits.length !== 10) {
-      setSubmitError('Please enter a valid 10-digit mobile number after +91.');
+    if (!subscriberDigits) {
+      errors.phone = 'Mobile number is required.';
+    } else if (subscriberDigits.length !== 10) {
+      errors.phone = 'Please enter a valid 10-digit mobile number.';
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
       return;
     }
 
+    setFormErrors({});
     setIsSubmitting(true);
     setSubmitError(null);
 
@@ -132,13 +160,13 @@ export default function BookAppointmentClient() {
       : '';
 
     const payload = {
-      patientName,
+      patientName: patientName.trim(),
       mobileNumber: `+91 ${subscriberDigits}`,
       preferredBranch: selectedBranch.name,
       preferredConsultant: selectedDoctor.name,
       preferredDate: formattedDate,
       preferredTime: isFixedSlot ? selectedSlot || 'Not specified' : preferredTime,
-      reason: consultationReason
+      reason: consultationReason.trim()
     };
 
     try {
@@ -181,70 +209,72 @@ export default function BookAppointmentClient() {
   )}`;
 
   return (
-    <main className="min-h-screen bg-slate-50/40 pb-16 lg:pb-24">
-      {/* Page Hero Header */}
-      <PageHero
-        breadcrumbs={[
-          { label: 'Home', href: '/' },
-          { label: 'Book Appointment' }
-        ]}
-        eyebrow="Consultation Booking"
-        eyebrowIcon={<Sparkles className="w-4 h-4 text-pink-700" />}
-        title={
-          <>
-            Book Your <span className="font-accent italic text-amber-300 font-normal">Consultation</span>
-          </>
-        }
-        description="Choose between an In-Person Clinic Visit or an Online Video Consultation with our specialists."
-      />
+    <main className="min-h-screen bg-slate-50/40 pb-8 sm:pb-12">
+      {/* Sleek, Compact Top Header Banner */}
+      <div className="bg-gradient-to-r from-[#3b001a] via-[#570026] to-[#750b39] text-white py-3 sm:py-3.5 px-4 sm:px-6 shadow-sm border-b border-pink-900/40">
+        <div className="container mx-auto max-w-[1440px] flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4">
+          <div className="flex items-center gap-2.5">
+            <Link href="/" className="inline-flex items-center gap-1 text-xs text-pink-200 hover:text-white transition-colors">
+              <Home className="w-3.5 h-3.5 text-amber-300" />
+              <span>Home</span>
+            </Link>
+            <span className="text-pink-400/80 text-xs">/</span>
+            <h1 className="text-xs sm:text-sm font-bold text-amber-300 tracking-tight">Book Your Consultation</h1>
+            <span className="hidden md:inline-block h-3 w-px bg-pink-700/60 mx-1" />
+            <span className="hidden md:inline-block text-xs font-normal text-pink-100/80">
+              In-Person Clinic Visit or Online Video Consultation
+            </span>
+          </div>
 
-      {/* Main Container */}
-      <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12 pt-8 sm:pt-10 space-y-8 sm:space-y-10">
-        
-        {/* 1. CONSULTATION TYPE SELECTION TOGGLE */}
-        <div className="flex justify-center">
-          <div className="inline-flex p-1.5 rounded-full bg-white border border-pink-200/80 shadow-sm max-w-full overflow-x-auto">
+          {/* Consultation Type Toggle Pill */}
+          <div className="inline-flex p-1 rounded-full bg-black/25 border border-white/20 shadow-inner">
             <button
               type="button"
               onClick={() => setConsultationType('in_person')}
-              className={`px-5 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap ${
+              className={`px-3.5 sm:px-5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
                 consultationType === 'in_person'
-                  ? 'bg-[#570026] text-white shadow-sm'
-                  : 'text-gray-700 hover:text-[#570026] bg-transparent'
+                  ? 'bg-amber-300 text-[#570026] shadow-sm'
+                  : 'text-white hover:text-amber-200 bg-transparent'
               }`}>
-              <Building2 className="w-4 h-4 shrink-0" />
-              <span>In-Person Consultation</span>
+              <Building2 className="w-3.5 h-3.5 shrink-0" />
+              <span>In-Person Visit</span>
             </button>
             <button
               type="button"
               onClick={() => setConsultationType('online')}
-              className={`px-5 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap ${
+              className={`px-3.5 sm:px-5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
                 consultationType === 'online'
-                  ? 'bg-[#570026] text-white shadow-sm'
-                  : 'text-gray-700 hover:text-[#570026] bg-transparent'
+                  ? 'bg-amber-300 text-[#570026] shadow-sm'
+                  : 'text-white hover:text-amber-200 bg-transparent'
               }`}>
-              <Video className="w-4 h-4 shrink-0 text-pink-300" />
-              <span>Online Consultation</span>
+              <Video className="w-3.5 h-3.5 shrink-0" />
+              <span>Online Video</span>
             </button>
           </div>
         </div>
+      </div>
 
+      {/* Main Container */}
+      <div className="container mx-auto max-w-[1440px] px-3 sm:px-6 lg:px-8 pt-3.5 sm:pt-4 space-y-3.5">
+        
         {/* 2. IN-PERSON CONSULTATION VIEW */}
         {consultationType === 'in_person' && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          <div className="space-y-3.5">
 
-            {/* LEFT SIDE: Doctor Selection List */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="flex items-center justify-between border-b border-pink-100 pb-4">
-                <div>
-                  <span className="text-xs font-bold text-[#570026] uppercase tracking-wider block mb-0.5">Step 1 of 3</span>
-                  <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900">Select Specialist</h2>
+            {/* STEP 1: DOCTOR SELECTION ROW / GRID */}
+            <div className="bg-white rounded-2xl p-3 sm:p-3.5 border border-pink-100/80 shadow-sm space-y-2">
+              <div className="flex items-center justify-between border-b border-pink-100/80 pb-1.5">
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-0.5 rounded-md bg-pink-100 text-[#570026] text-[10px] font-bold uppercase tracking-wider">
+                    Step 1 of 3
+                  </span>
+                  <h2 className="text-xs sm:text-sm font-extrabold text-gray-900">Select Specialist</h2>
                 </div>
-                <span className="text-xs font-semibold text-gray-500">{doctors.length} Doctors Available</span>
+                <span className="text-[11px] font-semibold text-gray-500">{doctors.length} Doctors Available</span>
               </div>
 
-              {/* Doctor Rows List */}
-              <div className="space-y-3.5">
+              {/* Doctors Horizontal Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
                 {doctors.map((doctor, idx) => (
                   <DoctorSelectCard
                     key={idx}
@@ -258,66 +288,29 @@ export default function BookAppointmentClient() {
                   />
                 ))}
               </div>
-
-              {/* Trust Assurance Note */}
-              <div className="rounded-2xl bg-white p-5 border border-pink-100/80 flex items-start gap-3.5 shadow-sm">
-                <ShieldCheck className="w-6 h-6 text-[#570026] shrink-0 mt-0.5" />
-                <div className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                  <strong className="text-gray-900 block mb-0.5">Direct Clinic Scheduling</strong>
-                  Your appointment request is transmitted directly to ASCAS Clinic counselors. No booking fees required.
-                </div>
-              </div>
             </div>
 
-            {/* RIGHT SIDE: Booking Details Panel */}
-            <div className="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
+            {/* STEP 2 & 3: 2-COLUMN SPLIT */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-start">
               
-              <div className="bg-white rounded-3xl p-6 sm:p-8 border border-pink-100/80 shadow-sm space-y-6">
-                
-                <div className="border-b border-pink-100 pb-4">
-                  <span className="text-xs font-bold text-[#570026] uppercase tracking-wider block mb-0.5">Step 2 & 3</span>
-                  <h2 className="text-xl font-extrabold text-gray-900">
-                    {doctorSchedule.scheduleType === 'fixed' ? 'Appointment Details' : 'Appointment Request'}
-                  </h2>
+              {/* LEFT COLUMN: Schedule (Branch, Date, Time Slots) */}
+              <div className="lg:col-span-6 bg-white rounded-2xl p-3.5 sm:p-4 border border-pink-100/80 shadow-sm space-y-3">
+                <div className="flex items-center gap-2 border-b border-pink-100/80 pb-1.5">
+                  <span className="px-2 py-0.5 rounded-md bg-pink-100 text-[#570026] text-[10px] font-bold uppercase tracking-wider">
+                    Step 2 of 3
+                  </span>
+                  <h3 className="text-xs sm:text-sm font-extrabold text-gray-900">Select Branch, Date & Time Slot</h3>
                 </div>
 
-                {/* 1. Selected Doctor Preview */}
-                <div className="bg-[#fcf0f5] rounded-2xl p-4 border border-pink-200/60 space-y-3">
-                  <div className="flex items-center gap-3.5">
-                    <div className="relative w-14 h-14 shrink-0 rounded-xl overflow-hidden bg-white ring-1 ring-black/5">
-                      <Image
-                        src={selectedDoctor.image}
-                        alt={selectedDoctor.name}
-                        fill
-                        sizes="56px"
-                        className={`object-cover ${selectedDoctor.imagePosition}`}
-                      />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#570026] block">Selected Doctor</span>
-                      <h3 className="text-sm sm:text-base font-extrabold text-gray-900 truncate">{selectedDoctor.name}</h3>
-                      <p className="text-xs font-medium text-[#570026]/90 truncate">{selectedDoctor.role}</p>
-                    </div>
-                  </div>
-
-                  {/* Doctor's Schedule Overview Badge */}
-                  <div className="pt-2 border-t border-pink-200/60 flex items-center gap-1.5 text-xs font-semibold text-[#570026]">
-                    <Clock className="w-3.5 h-3.5 shrink-0" />
-                    <span className="truncate">{doctorSchedule.summaryText}</span>
-                  </div>
-                </div>
-
-                {/* DOCTORS WITH FIXED CONSULTATION SLOTS */}
                 {doctorSchedule.scheduleType === 'fixed' ? (
                   <>
-                    {/* 2. Clinic Branch Selector */}
-                    <div className="space-y-2">
-                      <label className="text-xs font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
-                        <MapPin className="w-3.5 h-3.5 text-[#570026]" />
+                    {/* Branch Selection */}
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1">
+                        <MapPin className="w-3 h-3 text-[#570026]" />
                         <span>Clinic Branch</span>
                       </label>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      <div className="grid grid-cols-2 gap-2">
                         {branches.map(branch => {
                           const isSelected = selectedBranch.id === branch.id;
                           return (
@@ -325,13 +318,13 @@ export default function BookAppointmentClient() {
                               key={branch.id}
                               type="button"
                               onClick={() => setSelectedBranch(branch)}
-                              className={`px-3.5 py-2.5 rounded-xl border text-xs font-bold text-left transition-all cursor-pointer ${
+                              className={`px-3 py-2 rounded-xl border text-xs font-bold text-left transition-all cursor-pointer ${
                                 isSelected
                                   ? 'border-[#570026] bg-[#570026] text-white shadow-sm'
                                   : 'border-pink-100 bg-pink-50/40 text-gray-700 hover:border-pink-300'
                               }`}>
                               <span className="block truncate">{branch.name}</span>
-                              <span className={`text-[10px] font-normal block truncate mt-0.5 ${isSelected ? 'text-white/80' : 'text-gray-500'}`}>
+                              <span className={`text-[9px] font-normal block truncate ${isSelected ? 'text-white/80' : 'text-gray-500'}`}>
                                 {branch.id === 'vadapalani' ? 'Arunachalam Rd' : 'Chowdhary Nagar'}
                               </span>
                             </button>
@@ -340,13 +333,12 @@ export default function BookAppointmentClient() {
                       </div>
                     </div>
 
-                    {/* 3. Date Selection */}
-                    <div className="space-y-3 pt-2 border-t border-pink-50">
-                      <label className="text-xs font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
-                        <CalendarIcon className="w-3.5 h-3.5 text-[#570026]" />
-                        <span>Select Date</span>
+                    {/* Date Selection */}
+                    <div className="space-y-1.5 pt-1.5 border-t border-pink-50">
+                      <label className="text-[10px] font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1">
+                        <CalendarIcon className="w-3 h-3 text-[#570026]" />
+                        <span>Consultation Date</span>
                       </label>
-
                       <WeekDayPicker
                         selectedDate={selectedDate}
                         onDateSelect={setSelectedDate}
@@ -354,22 +346,22 @@ export default function BookAppointmentClient() {
                       />
                     </div>
 
-                    {/* 4. Time Slot Selection */}
-                    <div className="space-y-2.5 pt-2 border-t border-pink-50">
-                      <label className="text-xs font-bold text-gray-700 uppercase tracking-wider flex items-center justify-between">
-                        <span className="flex items-center gap-1.5">
-                          <Clock className="w-3.5 h-3.5 text-[#570026]" />
+                    {/* Time Slots */}
+                    <div className="space-y-1.5 pt-1.5 border-t border-pink-50">
+                      <div className="flex items-center justify-between">
+                        <label className="text-[10px] font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1">
+                          <Clock className="w-3 h-3 text-[#570026]" />
                           <span>Available Time Slots</span>
-                        </span>
+                        </label>
                         {slotData.timeRangeText && (
-                          <span className="text-[11px] font-semibold text-[#570026] normal-case bg-pink-50 px-2 py-0.5 rounded-full border border-pink-100">
+                          <span className="text-[9px] font-semibold text-[#570026] bg-pink-50 px-2 py-0.5 rounded-full border border-pink-100">
                             {slotData.timeRangeText}
                           </span>
                         )}
-                      </label>
+                      </div>
 
                       {slotData.slots.length > 0 ? (
-                        <div className="grid grid-cols-3 gap-2">
+                        <div className="grid grid-cols-3 gap-1.5">
                           {slotData.slots.map((timeStr, idx) => {
                             const isSelected = selectedSlot === timeStr;
                             return (
@@ -377,7 +369,7 @@ export default function BookAppointmentClient() {
                                 key={idx}
                                 type="button"
                                 onClick={() => setSelectedSlot(timeStr)}
-                                className={`py-2 px-2 rounded-xl border text-xs font-semibold text-center transition-all cursor-pointer ${
+                                className={`py-1.5 px-2 rounded-lg border text-xs font-semibold text-center transition-all cursor-pointer ${
                                   isSelected
                                     ? 'border-[#570026] bg-[#570026] text-white shadow-sm'
                                     : 'border-gray-200 bg-white text-gray-700 hover:border-pink-300 hover:bg-pink-50/50'
@@ -388,297 +380,245 @@ export default function BookAppointmentClient() {
                           })}
                         </div>
                       ) : (
-                        <div className="rounded-2xl bg-pink-50/70 border border-pink-200/60 p-4 text-center space-y-1">
-                          <AlertCircle className="w-5 h-5 text-[#570026] mx-auto" />
-                          <p className="text-xs font-medium text-gray-700 leading-relaxed">
+                        <div className="rounded-xl bg-pink-50/70 border border-pink-200/60 p-2.5 text-center space-y-0.5">
+                          <AlertCircle className="w-4 h-4 text-[#570026] mx-auto" />
+                          <p className="text-xs font-medium text-gray-700">
                             {slotData.note}
                           </p>
                         </div>
                       )}
                     </div>
-
-                    {/* 5. Patient Contact Form & Submit */}
-                    <div className="pt-4 border-t border-pink-100 space-y-3">
-                      {submitError && (
-                        <div className="rounded-xl bg-red-50 border border-red-200 p-3 flex items-start gap-2 text-xs text-red-800">
-                          <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
-                          <span>{submitError}</span>
-                        </div>
-                      )}
-
-                      {submitted ? (
-                        <div className="rounded-2xl bg-emerald-50 border border-emerald-200 p-5 text-center space-y-2">
-                          <CheckCircle2 className="w-8 h-8 text-emerald-600 mx-auto" />
-                          <h4 className="text-base font-bold text-emerald-900">Appointment Request Sent!</h4>
-                          <p className="text-xs text-emerald-700 leading-relaxed">
-                            Your appointment request has been submitted successfully. Our team will contact you shortly to confirm your appointment.
-                          </p>
-                          <button
-                            type="button"
-                            onClick={() => setSubmitted(false)}
-                            className="text-xs font-semibold text-[#570026] hover:underline cursor-pointer pt-1 block mx-auto">
-                            Submit another appointment request
-                          </button>
-                        </div>
-                      ) : (
-                        <form onSubmit={handleSubmit} className="space-y-3.5">
-                          <div className="space-y-1">
-                            <label className="text-[11px] font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1">
-                              <User className="w-3 h-3 text-[#570026]" />
-                              <span>Your Full Name</span>
-                            </label>
-                            <input
-                              required
-                              type="text"
-                              value={patientName}
-                              onChange={e => setPatientName(e.target.value)}
-                              placeholder="Enter patient name"
-                              className="w-full rounded-xl border border-pink-200 bg-white px-3.5 py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-[#570026] focus:outline-none focus:ring-2 focus:ring-[#570026]"
-                            />
-                          </div>
-
-                          <div className="space-y-1">
-                            <label className="text-[11px] font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1">
-                              <Phone className="w-3 h-3 text-[#570026]" />
-                              <span>Phone Number</span>
-                            </label>
-                            <div className="relative flex items-center rounded-xl border border-pink-200 bg-white focus-within:border-[#570026] focus-within:ring-2 focus-within:ring-[#570026] overflow-hidden">
-                              <span className="bg-pink-50/80 text-[#570026] font-bold text-xs sm:text-sm px-3.5 py-2.5 border-r border-pink-200 select-none flex items-center gap-1 shrink-0">
-                                +91
-                              </span>
-                              <input
-                                required
-                                type="tel"
-                                value={patientPhone.replace(/^\+91\s?/, '')}
-                                onChange={e => handlePhoneInput(e.target.value)}
-                                placeholder="98765 43210"
-                                maxLength={10}
-                                pattern="\d{10}"
-                                title="Please enter a 10-digit phone number"
-                                className="w-full bg-transparent px-3.5 py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none"
-                              />
-                            </div>
-                          </div>
-
-                          {/* Reason for Consultation */}
-                          <div className="space-y-1">
-                            <label className="text-[11px] font-bold text-gray-700 uppercase tracking-wider flex items-center justify-between">
-                              <span className="flex items-center gap-1">
-                                <Stethoscope className="w-3 h-3 text-[#570026]" />
-                                <span>Reason for Consultation</span>
-                              </span>
-                              <span className="text-[10px] text-gray-400 font-normal normal-case">(Optional)</span>
-                            </label>
-                            <textarea
-                              rows={3}
-                              value={consultationReason}
-                              onChange={e => setConsultationReason(e.target.value)}
-                              placeholder="Describe symptoms or reason for visit..."
-                              className="w-full rounded-xl border border-pink-200 bg-white px-3.5 py-2 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-[#570026] focus:outline-none focus:ring-2 focus:ring-[#570026] resize-none"
-                            />
-                          </div>
-
-                          <button
-                            type="submit"
-                            disabled={isSubmitting}
-                            className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-[#570026] hover:bg-[#861043] disabled:opacity-70 text-white font-bold text-sm shadow-md shadow-pink-950/20 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer mt-2">
-                            {isSubmitting ? (
-                              <>
-                                <Loader2 className="w-4 h-4 text-amber-300 animate-spin" />
-                                <span>Submitting Request...</span>
-                              </>
-                            ) : (
-                              <>
-                                <Send className="w-4 h-4 text-amber-300" />
-                                <span>Confirm Appointment Request</span>
-                              </>
-                            )}
-                          </button>
-                        </form>
-                      )}
-                    </div>
                   </>
                 ) : (
-                  /* DOCTORS WITH "ON CALL" STATUS */
-                  <>
-                    {/* Informational Banner Note */}
-                    <div className="rounded-2xl bg-amber-50/80 border border-amber-200/80 p-4 space-y-1.5">
-                      <div className="flex items-center gap-2 text-amber-900 font-bold text-xs">
-                        <Stethoscope className="w-4 h-4 text-amber-700 shrink-0" />
+                  /* On Call / Appointment Request Basis */
+                  <div className="space-y-2.5">
+                    <div className="rounded-xl bg-amber-50/80 border border-amber-200/80 p-2.5 space-y-1">
+                      <div className="flex items-center gap-1 text-amber-900 font-bold text-xs">
+                        <Stethoscope className="w-3.5 h-3.5 text-amber-700 shrink-0" />
                         <span>Appointment Request Basis</span>
                       </div>
                       <p className="text-xs text-amber-800 leading-relaxed font-medium">
-                        This consultant is available on appointment request. Our team will contact you to confirm your preferred date and time.
+                        This consultant is available on request. Our team will contact you to confirm the date and time.
                       </p>
                     </div>
 
-                    {submitError && (
-                      <div className="rounded-xl bg-red-50 border border-red-200 p-3 flex items-start gap-2 text-xs text-red-800">
-                        <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
-                        <span>{submitError}</span>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1">
+                        <MapPin className="w-3 h-3 text-[#570026]" />
+                        <span>Preferred Branch</span>
+                      </label>
+                      <div className="grid grid-cols-2 gap-2">
+                        {branches.map(branch => {
+                          const isSelected = selectedBranch.id === branch.id;
+                          return (
+                            <button
+                              key={branch.id}
+                              type="button"
+                              onClick={() => setSelectedBranch(branch)}
+                              className={`px-3 py-2 rounded-xl border text-xs font-bold text-left transition-all cursor-pointer ${
+                                isSelected
+                                  ? 'border-[#570026] bg-[#570026] text-white shadow-sm'
+                                  : 'border-pink-100 bg-pink-50/40 text-gray-700 hover:border-pink-300'
+                              }`}>
+                              <span className="block truncate">{branch.name}</span>
+                              <span className={`text-[9px] font-normal block truncate ${isSelected ? 'text-white/80' : 'text-gray-500'}`}>
+                                {branch.id === 'vadapalani' ? 'Arunachalam Rd' : 'Chowdhary Nagar'}
+                              </span>
+                            </button>
+                          );
+                        })}
                       </div>
-                    )}
+                    </div>
 
-                    {submitted ? (
-                      <div className="rounded-2xl bg-emerald-50 border border-emerald-200 p-5 text-center space-y-2">
-                        <CheckCircle2 className="w-8 h-8 text-emerald-600 mx-auto" />
-                        <h4 className="text-base font-bold text-emerald-900">Appointment Request Sent!</h4>
-                        <p className="text-xs text-emerald-700 leading-relaxed">
-                          Your appointment request has been submitted successfully. Our team will contact you shortly to confirm your appointment.
-                        </p>
-                        <button
-                          type="button"
-                          onClick={() => setSubmitted(false)}
-                          className="text-xs font-semibold text-[#570026] hover:underline cursor-pointer pt-1 block mx-auto">
-                          Submit another appointment request
-                        </button>
-                      </div>
-                    ) : (
-                      <form onSubmit={handleSubmit} className="space-y-4 pt-1">
-                        {/* Preferred Branch */}
-                        <div className="space-y-2">
-                          <label className="text-xs font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
-                            <MapPin className="w-3.5 h-3.5 text-[#570026]" />
-                            <span>Preferred Branch</span>
-                          </label>
+                    <div className="space-y-1.5 pt-1.5 border-t border-pink-50">
+                      <label className="text-[10px] font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1">
+                        <CalendarIcon className="w-3 h-3 text-[#570026]" />
+                        <span>Preferred Date</span>
+                      </label>
+                      <WeekDayPicker
+                        selectedDate={selectedDate}
+                        onDateSelect={setSelectedDate}
+                        isDateDisabled={(date) => date.getDay() === 0}
+                      />
+                    </div>
 
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                            {branches.map(branch => {
-                              const isSelected = selectedBranch.id === branch.id;
-                              return (
-                                <button
-                                  key={branch.id}
-                                  type="button"
-                                  onClick={() => setSelectedBranch(branch)}
-                                  className={`px-3.5 py-2.5 rounded-xl border text-xs font-bold text-left transition-all cursor-pointer ${
-                                    isSelected
-                                      ? 'border-[#570026] bg-[#570026] text-white shadow-sm'
-                                      : 'border-pink-100 bg-pink-50/40 text-gray-700 hover:border-pink-300'
-                                  }`}>
-                                  <span className="block truncate">{branch.name}</span>
-                                  <span className={`text-[10px] font-normal block truncate mt-0.5 ${isSelected ? 'text-white/80' : 'text-gray-500'}`}>
-                                    {branch.id === 'vadapalani' ? 'Arunachalam Rd' : 'Chowdhary Nagar'}
-                                  </span>
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
+                    <div className="space-y-1 pt-1.5 border-t border-pink-50">
+                      <label className="text-[10px] font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1">
+                        <Clock className="w-3 h-3 text-[#570026]" />
+                        <span>Preferred Time</span>
+                      </label>
+                      <select
+                        value={preferredTime}
+                        onChange={e => setPreferredTime(e.target.value)}
+                        className="w-full rounded-xl border border-pink-200 bg-white px-3 py-2 text-xs text-gray-900 focus:border-[#570026] focus:outline-none">
+                        <option value="09:00 AM">09:00 AM (Morning)</option>
+                        <option value="10:00 AM">10:00 AM (Morning)</option>
+                        <option value="11:00 AM">11:00 AM (Morning)</option>
+                        <option value="12:00 PM">12:00 PM (Noon)</option>
+                        <option value="02:00 PM">02:00 PM (Afternoon)</option>
+                        <option value="04:00 PM">04:00 PM (Evening)</option>
+                        <option value="06:00 PM">06:00 PM (Evening)</option>
+                        <option value="07:30 PM">07:30 PM (Evening)</option>
+                      </select>
+                    </div>
+                  </div>
+                )}
+              </div>
 
-                        {/* Preferred Consultation Date */}
-                        <div className="space-y-3 pt-2 border-t border-pink-50">
-                          <label className="text-xs font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
-                            <CalendarIcon className="w-3.5 h-3.5 text-[#570026]" />
-                            <span>Preferred Consultation Date</span>
-                          </label>
+              {/* RIGHT COLUMN: Selected Doctor Summary & Patient Form */}
+              <div className="lg:col-span-6 bg-white rounded-2xl p-3.5 sm:p-4 border border-pink-100/80 shadow-sm space-y-3">
+                <div className="flex items-center justify-between border-b border-pink-100/80 pb-1.5">
+                  <div className="flex items-center gap-2">
+                    <span className="px-2 py-0.5 rounded-md bg-pink-100 text-[#570026] text-[10px] font-bold uppercase tracking-wider">
+                      Step 3 of 3
+                    </span>
+                    <h3 className="text-xs sm:text-sm font-extrabold text-gray-900">Patient Info & Submit</h3>
+                  </div>
+                </div>
 
-                          <WeekDayPicker
-                            selectedDate={selectedDate}
-                            onDateSelect={setSelectedDate}
-                            isDateDisabled={(date) => date.getDay() === 0}
-                          />
-                        </div>
+                {/* Selected Doctor Summary Card */}
+                <div className="bg-[#fcf0f5] rounded-xl p-2.5 border border-pink-200/60 flex items-center gap-2.5">
+                  <div className="relative w-10 h-10 shrink-0 rounded-lg overflow-hidden bg-white ring-1 ring-black/5">
+                    <Image
+                      src={selectedDoctor.image}
+                      alt={selectedDoctor.name}
+                      fill
+                      sizes="40px"
+                      className={`object-cover ${selectedDoctor.imagePosition}`}
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-[#570026] block">Selected Consultant</span>
+                    <h4 className="text-xs font-extrabold text-gray-900 truncate">{selectedDoctor.name}</h4>
+                    <p className="text-[10px] font-medium text-[#570026]/90 truncate">{selectedDoctor.role}</p>
+                  </div>
+                </div>
 
-                        {/* Preferred Consultation Time */}
-                        <div className="space-y-1.5 pt-2 border-t border-pink-50">
-                          <label className="text-[11px] font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1">
-                            <Clock className="w-3 h-3 text-[#570026]" />
-                            <span>Preferred Consultation Time</span>
-                          </label>
-                          <select
-                            value={preferredTime}
-                            onChange={e => setPreferredTime(e.target.value)}
-                            className="w-full rounded-xl border border-pink-200 bg-white px-3.5 py-2.5 text-xs sm:text-sm text-gray-900 focus:border-[#570026] focus:outline-none focus:ring-2 focus:ring-[#570026]">
-                            <option value="09:00 AM">09:00 AM (Morning)</option>
-                            <option value="10:00 AM">10:00 AM (Morning)</option>
-                            <option value="11:00 AM">11:00 AM (Morning)</option>
-                            <option value="12:00 PM">12:00 PM (Noon)</option>
-                            <option value="02:00 PM">02:00 PM (Afternoon)</option>
-                            <option value="04:00 PM">04:00 PM (Evening)</option>
-                            <option value="06:00 PM">06:00 PM (Evening)</option>
-                            <option value="07:30 PM">07:30 PM (Evening)</option>
-                          </select>
-                        </div>
-
-                        {/* Patient Name */}
-                        <div className="space-y-1 pt-2 border-t border-pink-50">
-                          <label className="text-[11px] font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1">
-                            <User className="w-3 h-3 text-[#570026]" />
-                            <span>Patient Name</span>
-                          </label>
-                          <input
-                            required
-                            type="text"
-                            value={patientName}
-                            onChange={e => setPatientName(e.target.value)}
-                            placeholder="Enter patient full name"
-                            className="w-full rounded-xl border border-pink-200 bg-white px-3.5 py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-[#570026] focus:outline-none focus:ring-2 focus:ring-[#570026]"
-                          />
-                        </div>
-
-                        {/* Mobile Number */}
-                        <div className="space-y-1">
-                          <label className="text-[11px] font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1">
-                            <Phone className="w-3 h-3 text-[#570026]" />
-                            <span>Mobile Number</span>
-                          </label>
-                          <div className="relative flex items-center rounded-xl border border-pink-200 bg-white focus-within:border-[#570026] focus-within:ring-2 focus-within:ring-[#570026] overflow-hidden">
-                            <span className="bg-pink-50/80 text-[#570026] font-bold text-xs sm:text-sm px-3.5 py-2.5 border-r border-pink-200 select-none flex items-center gap-1 shrink-0">
-                              +91
-                            </span>
-                            <input
-                              required
-                              type="tel"
-                              value={patientPhone.replace(/^\+91\s?/, '')}
-                              onChange={e => handlePhoneInput(e.target.value)}
-                              placeholder="98765 43210"
-                              maxLength={10}
-                              pattern="\d{10}"
-                              title="Please enter a 10-digit phone number"
-                              className="w-full bg-transparent px-3.5 py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none"
-                            />
-                          </div>
-                        </div>
-
-                        {/* Reason for Consultation (Optional) */}
-                        <div className="space-y-1">
-                          <label className="text-[11px] font-bold text-gray-700 uppercase tracking-wider flex items-center justify-between">
-                            <span className="flex items-center gap-1">
-                              <Stethoscope className="w-3 h-3 text-[#570026]" />
-                              <span>Reason for Consultation</span>
-                            </span>
-                            <span className="text-[10px] text-gray-400 font-normal normal-case">(Optional)</span>
-                          </label>
-                          <textarea
-                            rows={3}
-                            value={consultationReason}
-                            onChange={e => setConsultationReason(e.target.value)}
-                            placeholder="Describe symptoms or reason for visit..."
-                            className="w-full rounded-xl border border-pink-200 bg-white px-3.5 py-2 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-[#570026] focus:outline-none focus:ring-2 focus:ring-[#570026] resize-none"
-                          />
-                        </div>
-
-                        <button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-[#570026] hover:bg-[#861043] disabled:opacity-70 text-white font-bold text-sm shadow-md shadow-pink-950/20 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer mt-2">
-                          {isSubmitting ? (
-                            <>
-                              <Loader2 className="w-4 h-4 text-amber-300 animate-spin" />
-                              <span>Submitting Request...</span>
-                            </>
-                          ) : (
-                            <>
-                              <Send className="w-4 h-4 text-amber-300" />
-                              <span>Request Appointment</span>
-                            </>
-                          )}
-                        </button>
-                      </form>
-                    )}
-                  </>
+                {/* Submit Error */}
+                {submitError && (
+                  <div className="rounded-xl bg-red-50 border border-red-200 p-2 flex items-start gap-2 text-xs text-red-800">
+                    <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
+                    <span>{submitError}</span>
+                  </div>
                 )}
 
+                {/* Success Message or Patient Form */}
+                {submitted ? (
+                  <div className="rounded-xl bg-emerald-50 border border-emerald-200 p-3 text-center space-y-1.5">
+                    <CheckCircle2 className="w-6 h-6 text-emerald-600 mx-auto" />
+                    <h4 className="text-xs font-bold text-emerald-900">Appointment Request Sent!</h4>
+                    <p className="text-xs text-emerald-700 leading-relaxed">
+                      Your appointment request has been submitted successfully. Our team will contact you shortly to confirm.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setSubmitted(false)}
+                      className="text-xs font-semibold text-[#570026] hover:underline cursor-pointer pt-1 block mx-auto">
+                      Submit another appointment request
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-2.5" noValidate>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1">
+                        <User className="w-3 h-3 text-[#570026]" />
+                        <span>Your Full Name</span>
+                        <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        value={patientName}
+                        onChange={e => handleNameInput(e.target.value)}
+                        placeholder="Enter patient name"
+                        className={`w-full rounded-xl border bg-white px-3 py-2 text-xs text-gray-900 placeholder:text-gray-400 focus:outline-none transition-all ${
+                          formErrors.name
+                            ? 'border-red-400 bg-red-50/20 focus:border-red-500 focus:ring-1 focus:ring-red-200'
+                            : 'border-pink-200 focus:border-[#570026] focus:ring-2 focus:ring-[#570026]'
+                        }`}
+                      />
+                      {formErrors.name && (
+                        <p className="text-[10px] text-red-600 font-medium flex items-center gap-1 mt-0.5">
+                          <AlertCircle className="w-3 h-3 shrink-0" />
+                          <span>{formErrors.name}</span>
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1">
+                        <Phone className="w-3 h-3 text-[#570026]" />
+                        <span>Phone Number</span>
+                        <span className="text-red-500">*</span>
+                      </label>
+                      <div className={`relative flex items-center rounded-xl border bg-white overflow-hidden transition-all ${
+                        formErrors.phone
+                          ? 'border-red-400 ring-1 ring-red-400 bg-red-50/20'
+                          : 'border-pink-200 focus-within:border-[#570026] focus-within:ring-2 focus-within:ring-[#570026]'
+                      }`}>
+                        <span className="bg-pink-50/80 text-[#570026] font-bold text-xs px-2.5 py-2 border-r border-pink-200 select-none flex items-center gap-1 shrink-0">
+                          +91
+                        </span>
+                        <input
+                          type="tel"
+                          value={patientPhone.replace(/^\+91\s?/, '')}
+                          onChange={e => handlePhoneInput(e.target.value)}
+                          placeholder="98765 43210"
+                          maxLength={10}
+                          className="w-full bg-transparent px-3 py-2 text-xs text-gray-900 placeholder:text-gray-400 focus:outline-none"
+                        />
+                      </div>
+                      {formErrors.phone && (
+                        <p className="text-[10px] text-red-600 font-medium flex items-center gap-1 mt-0.5">
+                          <AlertCircle className="w-3 h-3 shrink-0" />
+                          <span>{formErrors.phone}</span>
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Reason for Consultation */}
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold text-gray-700 uppercase tracking-wider flex items-center justify-between">
+                        <span className="flex items-center gap-1">
+                          <Stethoscope className="w-3 h-3 text-[#570026]" />
+                          <span>Reason for Consultation</span>
+                        </span>
+                        <span className="text-[9px] text-gray-400 font-normal normal-case">(Optional)</span>
+                      </label>
+                      <textarea
+                        rows={2}
+                        value={consultationReason}
+                        onChange={e => setConsultationReason(e.target.value)}
+                        placeholder="Describe symptoms or reason for visit..."
+                        className="w-full rounded-xl border border-pink-200 bg-white px-3 py-1.5 text-xs text-gray-900 placeholder:text-gray-400 focus:border-[#570026] focus:outline-none focus:ring-2 focus:ring-[#570026] resize-none"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-full bg-[#570026] hover:bg-[#861043] disabled:opacity-70 text-white font-bold text-xs sm:text-sm shadow-md shadow-pink-950/20 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer mt-1">
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-3.5 h-3.5 text-amber-300 animate-spin" />
+                          <span>Submitting Request...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-3.5 h-3.5 text-amber-300" />
+                          <span>Confirm Appointment Request</span>
+                        </>
+                      )}
+                    </button>
+                  </form>
+                )}
+
+                {/* Direct Clinic Note */}
+                <div className="rounded-xl bg-pink-50/50 p-2 border border-pink-100 flex items-center gap-2">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#570026] shrink-0" />
+                  <span className="text-[9px] text-gray-600">
+                    Direct Clinic Scheduling • No booking fees required
+                  </span>
+                </div>
               </div>
 
             </div>

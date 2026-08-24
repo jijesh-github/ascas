@@ -14,9 +14,24 @@ export async function POST(req: Request) {
     } = body;
 
     // Validate required fields
-    if (!patientName || !mobileNumber || !preferredConsultant) {
+    if (!patientName || typeof patientName !== 'string' || patientName.trim().length < 3) {
       return NextResponse.json(
-        { success: false, message: 'Please fill out all required fields (Name, Mobile Number, and Consultant).' },
+        { success: false, message: 'Validation failed: Please enter a valid name (at least 3 characters).' },
+        { status: 400 }
+      );
+    }
+
+    const mobileDigits = mobileNumber ? String(mobileNumber).replace(/\D/g, '') : '';
+    if (!mobileDigits || mobileDigits.length < 10) {
+      return NextResponse.json(
+        { success: false, message: 'Validation failed: A valid 10-digit mobile number is required.' },
+        { status: 400 }
+      );
+    }
+
+    if (!preferredConsultant) {
+      return NextResponse.json(
+        { success: false, message: 'Validation failed: Preferred consultant is required.' },
         { status: 400 }
       );
     }

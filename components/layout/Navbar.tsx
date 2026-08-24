@@ -26,13 +26,14 @@ export default function AnimatedUnderlineNavbar() {
         {/* Logo */}
         <Link
           href="/"
-          className="inline-flex items-center justify-center p-1 sm:p-1.5 bg-primary rounded-md shadow-sm hover:shadow-md transition-all duration-300">
+          className="inline-flex items-center justify-center transition-opacity hover:opacity-90">
           <Image
             src="/logo.png"
             alt="ascas logo"
             width={60}
             height={60}
-            className="w-12 sm:w-14 md:w-16 h-auto object-contain transition-transform duration-300"
+            className="w-12 sm:w-14 md:w-16 h-auto object-contain transition-transform duration-300 hover:scale-[1.03]"
+            priority
           />
         </Link>
 
