@@ -84,67 +84,67 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
   return (
-    <main className="min-h-screen bg-slate-50/30 pb-20 pt-8 sm:pt-12">
+    <main className="min-h-screen bg-slate-50/30 pb-16 sm:pb-20 pt-4 sm:pt-12">
       <div className="container mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-12">
         {/* Navigation Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-2 text-xs sm:text-sm text-gray-500">
-          <Link href="/" className="hover:text-[#570026] transition-colors">
+        <nav aria-label="Breadcrumb" className="mb-6 sm:mb-8 flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-gray-500">
+          <Link href="/" className="hover:text-[#570026] transition-colors shrink-0">
             Home
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
-          <Link href="/blog" className="hover:text-[#570026] transition-colors">
+          <ChevronRight className="w-3.5 h-3.5 text-gray-400 shrink-0" />
+          <Link href="/blog" className="hover:text-[#570026] transition-colors shrink-0">
             Blog
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
-          <span className="text-gray-900 font-medium truncate max-w-[200px] sm:max-w-xs">
+          <ChevronRight className="w-3.5 h-3.5 text-gray-400 shrink-0" />
+          <span className="text-gray-900 font-medium truncate max-w-[150px] sm:max-w-xs">
             {post.title}
           </span>
         </nav>
 
         {/* Back Link */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#570026] hover:text-[#861043] transition-colors group">
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#570026] hover:text-[#861043] transition-colors group">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             <span>Back to All Articles</span>
           </Link>
         </div>
 
         {/* Article Container with Controlled Readable Line Length */}
-        <article className="max-w-6xl mx-auto bg-white rounded-3xl border border-pink-100 p-6 sm:p-10 lg:p-14 shadow-sm mb-16">
+        <article className="max-w-4xl mx-auto bg-white rounded-2xl sm:rounded-3xl border border-pink-100 p-5 sm:p-10 lg:p-12 shadow-xs mb-10 sm:mb-16 overflow-hidden">
           {/* Article Header */}
-          <header className="mb-10 text-center max-w-5xl mx-auto">
+          <header className="mb-6 sm:mb-10 text-center max-w-3xl mx-auto">
             {/* Category Pills */}
-            <div className="flex flex-wrap items-center justify-center gap-2 mb-4">
+            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-3 sm:mb-4">
               {post.labels.map((label, idx) => (
                 <span
                   key={idx}
-                  className="inline-block bg-[#fcf0f5] text-[#570026] font-semibold px-3 py-1 rounded-full text-xs uppercase tracking-wider">
+                  className="inline-block bg-[#fcf0f5] text-[#570026] font-semibold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[11px] sm:text-xs uppercase tracking-wider">
                   {label}
                 </span>
               ))}
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight mb-6">
+            <h1 className="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight leading-tight mb-4 sm:mb-6">
               {post.title}
             </h1>
 
             {/* Metadata Bar */}
-            <div className="flex flex-wrap items-center justify-center gap-4 text-xs sm:text-sm text-gray-500 pt-4 border-t border-gray-100">
+            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs sm:text-sm text-gray-500 pt-3 sm:pt-4 border-t border-gray-100">
               <div className="flex items-center gap-1.5">
-                <Calendar className="w-4 h-4 text-[#570026]" />
+                <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#570026]" />
                 <time dateTime={post.published}>{formattedDate}</time>
               </div>
-              <span>•</span>
+              <span className="hidden sm:inline">•</span>
               <div className="flex items-center gap-1.5">
-                <User className="w-4 h-4 text-[#570026]" />
+                <User className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#570026]" />
                 <span>{post.author.displayName || 'ASCAS Care Team'}</span>
               </div>
-              <span>•</span>
+              <span className="hidden sm:inline">•</span>
               <div className="flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-[#570026]" />
+                <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#570026]" />
                 <span>{readingTime} min read</span>
               </div>
             </div>
@@ -152,13 +152,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
           {/* Featured Image */}
           {post.featuredImage && (
-            <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-10 bg-pink-50 shadow-xs border border-pink-100">
+            <div className="relative w-full aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden mb-6 sm:mb-10 bg-pink-50 shadow-xs border border-pink-100 max-w-3xl mx-auto">
               <Image
                 src={post.featuredImage}
                 alt={post.title}
                 fill
                 priority
-                sizes="(max-width: 1200px) 100vw, 1152px"
+                sizes="(max-width: 1024px) 100vw, 896px"
                 className="object-cover"
                 unoptimized
               />
@@ -167,12 +167,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
           {/* Article HTML Body with ASCAS Typography Styling */}
           <div
-            className="prose-ascas max-w-none"
+            className="prose-ascas max-w-3xl mx-auto"
             dangerouslySetInnerHTML={{ __html: sanitizedContent }}
           />
 
           {/* Footer Metadata & Share Notice */}
-          <footer className="mt-12 pt-6 border-t border-pink-100 flex flex-wrap items-center justify-between gap-4 text-xs text-gray-500">
+          <footer className="mt-8 sm:mt-12 pt-4 sm:pt-6 border-t border-pink-100 flex flex-wrap items-center justify-between gap-3 text-xs text-gray-500">
             <div>
               <span>Published under: </span>
               <span className="font-semibold text-gray-800">{primaryCategory}</span>
@@ -184,26 +184,26 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </article>
 
         {/* Final ASCAS CTA Section */}
-        <section className="max-w-6xl mx-auto mb-16 p-8 sm:p-10 bg-gradient-to-br from-[#570026] via-[#750033] to-[#570026] rounded-3xl text-white text-center shadow-lg relative overflow-hidden">
+        <section className="max-w-6xl mx-auto mb-12 sm:mb-16 p-6 sm:p-10 bg-gradient-to-br from-[#570026] via-[#750033] to-[#570026] rounded-2xl sm:rounded-3xl text-white text-center shadow-lg relative overflow-hidden">
           <div className="relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-pink-200 text-xs font-semibold uppercase tracking-wider mb-4 border border-white/10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-pink-200 text-xs font-semibold uppercase tracking-wider mb-3 sm:mb-4 border border-white/10">
               <Sparkles className="w-3.5 h-3.5 text-pink-300" />
               <span>Personalized Healthcare</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold mb-3">Have Questions About Your Treatment?</h3>
-            <p className="text-pink-100/90 text-sm sm:text-base max-w-xl mx-auto mb-6 leading-relaxed">
+            <h3 className="text-xl sm:text-3xl font-extrabold mb-2 sm:mb-3">Have Questions About Your Treatment?</h3>
+            <p className="text-pink-100/90 text-xs sm:text-base max-w-xl mx-auto mb-6 leading-relaxed">
               Consult with top fertility specialists & gynecologists at ASCAS Valasaravakkam and Vadapalani, Chennai.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
               <Link
                 href="/book-appointment"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#570026] hover:bg-pink-50 font-bold text-sm sm:text-base shadow-md hover:scale-105 transition-all">
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white text-[#570026] hover:bg-pink-50 font-bold text-sm sm:text-base shadow-md hover:scale-105 transition-all">
                 <Calendar className="w-4 h-4" />
                 <span>Book a Consultation</span>
               </Link>
               <a
                 href="tel:+919841011122"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-sm sm:text-base border border-white/20 transition-all">
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-sm sm:text-base border border-white/20 transition-all">
                 <PhoneCall className="w-4 h-4 text-pink-200" />
                 <span>Call ASCAS Care Line</span>
               </a>

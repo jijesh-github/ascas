@@ -37,9 +37,9 @@ export default function BlogCard({ post }: BlogCardProps) {
       </Link>
 
       {/* Card Content */}
-      <div className="p-6 flex flex-col flex-grow">
+      <div className="p-5 sm:p-6 flex flex-col flex-grow">
         {/* Category & Date */}
-        <div className="flex items-center justify-between text-xs text-gray-500 mb-3 gap-2">
+        <div className="flex flex-wrap items-center justify-between text-xs text-gray-500 mb-3 gap-2">
           <span className="inline-block bg-[#fcf0f5] text-[#570026] font-semibold px-2.5 py-1 rounded-full text-xs">
             {category}
           </span>
@@ -47,17 +47,17 @@ export default function BlogCard({ post }: BlogCardProps) {
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-bold text-gray-900 group-hover:text-[#570026] transition-colors line-clamp-2 mb-3 leading-snug">
+        <h3 className="text-lg sm:text-xl font-bold text-gray-900 group-hover:text-[#570026] transition-colors line-clamp-2 mb-2.5 leading-snug">
           <Link href={`/blog/${post.slug}`}>{post.title}</Link>
         </h3>
 
         {/* Short Excerpt */}
-        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-6 flex-grow">
+        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-5 flex-grow">
           {post.excerpt}
         </p>
 
         {/* Read Article CTA */}
-        <div className="pt-4 border-t border-gray-100 flex items-center justify-between mt-auto">
+        <div className="pt-3.5 border-t border-gray-100 flex items-center justify-between mt-auto">
           <Link
             href={`/blog/${post.slug}`}
             className="inline-flex items-center gap-2 text-sm font-semibold text-[#570026] group-hover:text-[#861043] transition-colors">

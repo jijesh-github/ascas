@@ -168,6 +168,36 @@ export function isDateEligibleForDoctorBranch(doctorKey: string, branchId: strin
 }
 
 /**
+ * Helper to convert slot time strings (e.g., "09:00 AM", "06:30 PM") into minutes from midnight.
+ */
+export function parseSlotMinutes(timeStr: string): number {
+  const match = timeStr.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+  if (!match) return 0;
+  let hours = parseInt(match[1], 10);
+  const minutes = parseInt(match[2], 10);
+  const period = match[3].toUpperCase();
+
+  if (period === 'PM' && hours !== 12) {
+    hours += 12;
+  } else if (period === 'AM' && hours === 12) {
+    hours = 0;
+  }
+  return hours * 60 + minutes;
+}
+
+/**
+ * Checks if a given date is today in local time.
+ */
+export function isTodayDate(date: Date): boolean {
+  const today = new Date();
+  return (
+    date.getFullYear() === today.getFullYear() &&
+    date.getMonth() === today.getMonth() &&
+    date.getDate() === today.getDate()
+  );
+}
+
+/**
  * Returns the time slots or status message for a selected doctor, branch, and date.
  */
 export function getAvailableSlotsForDoctorBranchDate(
@@ -209,9 +239,28 @@ export function getAvailableSlotsForDoctorBranchDate(
     };
   }
 
+  let slots = branchWindow.slots;
+
+  // Filter out past time slots if date is today
+  if (isTodayDate(date)) {
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+    slots = slots.filter(slot => parseSlotMinutes(slot) > currentMinutes);
+
+    if (slots.length === 0) {
+      return {
+        scheduleType: 'fixed',
+        slots: [],
+        timeRangeText: branchWindow.timeRangeText,
+        note: `All consultation time slots for today (${branchWindow.timeRangeText}) have passed. Please select a future date.`
+      };
+    }
+  }
+
   return {
     scheduleType: 'fixed',
-    slots: branchWindow.slots,
+    slots,
     timeRangeText: branchWindow.timeRangeText
   };
 }

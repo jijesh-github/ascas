@@ -7,7 +7,12 @@ import sanitizeHtml from 'sanitize-html';
 export function sanitizeBloggerHtml(htmlContent: string = ''): string {
   if (!htmlContent) return '';
 
-  return sanitizeHtml(htmlContent, {
+  // Remove empty paragraphs, non-breaking space placeholders, and excessive breaks from Blogger
+  const preCleaned = htmlContent
+    .replace(/<p>\s*(?:&nbsp;|\s|<br\s*\/?>)*\s*<\/p>/gi, '')
+    .replace(/(?:<br\s*\/?>\s*){3,}/gi, '<br /><br />');
+
+  return sanitizeHtml(preCleaned, {
     allowedTags: [
       'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'blockquote', 'pre', 'code',
       'ul', 'ol', 'li', 'b', 'i', 'strong', 'em', 'strike', 'sub', 'sup',
@@ -20,7 +25,7 @@ export function sanitizeBloggerHtml(htmlContent: string = ''): string {
       iframe: ['src', 'width', 'height', 'frameborder', 'allow', 'allowfullscreen', 'class', 'title'],
       td: ['colspan', 'rowspan', 'style', 'class'],
       th: ['colspan', 'rowspan', 'style', 'class'],
-      '*': ['class', 'id', 'style']
+      '*': ['class', 'id']
     },
     allowedIframeHostnames: ['www.youtube.com', 'youtube.com', 'player.vimeo.com'],
     transformTags: {
@@ -46,7 +51,7 @@ export function sanitizeBloggerHtml(htmlContent: string = ''): string {
             ...attribs,
             src,
             loading: 'lazy',
-            class: `${attribs.class || ''} max-w-full h-auto rounded-2xl my-6 border border-pink-100 shadow-sm`.trim()
+            class: `${attribs.class || ''} max-w-full h-auto rounded-2xl my-6 border border-pink-100 shadow-sm block mx-auto`.trim()
           }
         };
       }

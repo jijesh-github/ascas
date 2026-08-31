@@ -270,7 +270,22 @@ body {
   .prose-ascas {
     color: #374151;
     font-size: 1.0625rem;
-    line-height: 1.8;
+    line-height: 1.85;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  @media (max-width: 639px) {
+    .prose-ascas {
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+  }
+
+  .prose-ascas p {
+    margin-top: 0 !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.85 !important;
   }
 
   .prose-ascas h1,
@@ -282,20 +297,29 @@ body {
     color: #111827;
     font-family: var(--font-sans), system-ui, sans-serif;
     font-weight: 700;
-    line-height: 1.3;
-    margin-top: 2.25rem;
-    margin-bottom: 1rem;
+    line-height: 1.35 !important;
+    margin-top: 2rem !important;
+    margin-bottom: 1rem !important;
     letter-spacing: -0.015em;
   }
 
-  .prose-ascas h1 { font-size: 2.25rem; color: #570026; }
-  .prose-ascas h2 { font-size: 1.75rem; color: #570026; border-bottom: 2px solid #fce7f3; padding-bottom: 0.5rem; }
-  .prose-ascas h3 { font-size: 1.375rem; }
-  .prose-ascas h4 { font-size: 1.1875rem; }
+  .prose-ascas h1 { font-size: 1.875rem; color: #570026; }
+  .prose-ascas h2 {
+    font-size: 1.5rem;
+    color: #570026;
+    border-bottom: 2px solid #fce7f3;
+    padding-bottom: 0.5rem;
+    margin-top: 2.25rem !important;
+    margin-bottom: 1.125rem !important;
+  }
+  .prose-ascas h3 { font-size: 1.25rem; margin-top: 1.75rem !important; }
+  .prose-ascas h4 { font-size: 1.125rem; }
 
-  .prose-ascas p {
-    margin-bottom: 1.5rem;
-    line-height: 1.8;
+  @media (min-width: 640px) {
+    .prose-ascas h1 { font-size: 2.25rem; }
+    .prose-ascas h2 { font-size: 1.75rem; }
+    .prose-ascas h3 { font-size: 1.375rem; }
+    .prose-ascas h4 { font-size: 1.1875rem; }
   }
 
   .prose-ascas a {
@@ -319,48 +343,77 @@ body {
   .prose-ascas ul {
     list-style-type: disc;
     padding-left: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-top: 0.5rem !important;
+    margin-bottom: 1.5rem !important;
   }
 
   .prose-ascas ol {
     list-style-type: decimal;
     padding-left: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-top: 0.5rem !important;
+    margin-bottom: 1.5rem !important;
   }
 
   .prose-ascas li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem !important;
+    line-height: 1.75;
   }
 
   .prose-ascas blockquote {
     border-left: 4px solid #570026;
     background-color: #fcf0f5;
-    padding: 1rem 1.5rem;
-    margin: 1.75rem 0;
+    padding: 1.125rem 1.5rem !important;
+    margin: 1.875rem 0 !important;
     border-radius: 0 0.75rem 0.75rem 0;
     font-style: italic;
     color: #4b5563;
   }
 
   .prose-ascas blockquote p {
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
   }
 
   .prose-ascas img {
     max-width: 100%;
     height: auto;
     border-radius: 1rem;
-    margin: 2rem auto;
+    margin: 2rem auto !important;
     display: block;
     box-shadow: 0 4px 12px rgba(87, 0, 38, 0.08);
   }
 
   .prose-ascas iframe {
     width: 100%;
+    max-width: 100%;
     aspect-ratio: 16 / 9;
     height: auto;
     border-radius: 1rem;
-    margin: 2rem 0;
+    margin: 2rem 0 !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .prose-ascas table {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin-top: 1.5rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .prose-ascas pre,
+  .prose-ascas code {
+    max-width: 100%;
+    overflow-x: auto;
+    word-break: break-word;
+    white-space: pre-wrap;
+    margin-top: 1rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .prose-ascas p:empty,
+  .prose-ascas div:empty {
+    display: none !important;
   }
 }

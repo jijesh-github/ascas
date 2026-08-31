@@ -82,7 +82,7 @@ export default function BlogGridClient({ posts, isConfigured, error }: BlogGridC
     <div>
       {/* Category Filtering Tabs (Show if more than 1 category) */}
       {categories.length > 2 && (
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 scrollbar-none">
+        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 sm:mb-10 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
           <span className="text-xs font-bold text-gray-400 uppercase tracking-wider mr-2 shrink-0">Filter:</span>
           {categories.map(cat => {
             const isActive = selectedCategory === cat;
@@ -90,7 +90,7 @@ export default function BlogGridClient({ posts, isConfigured, error }: BlogGridC
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all shrink-0 cursor-pointer ${
+                className={`px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all shrink-0 cursor-pointer ${
                   isActive
                     ? 'bg-[#570026] text-white shadow-md shadow-pink-950/20'
                     : 'bg-white text-gray-600 border border-gray-200 hover:border-pink-300 hover:text-[#570026]'
@@ -107,18 +107,18 @@ export default function BlogGridClient({ posts, isConfigured, error }: BlogGridC
 
       {/* Remaining Articles Section */}
       {remainingPosts.length > 0 && (
-        <div className="mt-12">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+        <div className="mt-8 sm:mt-12">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 sm:mb-8">
+            <h2 className="text-xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
               Explore Our <span className="font-accent italic text-[#570026] font-normal">Articles</span>
             </h2>
-            <span className="text-sm font-medium text-gray-500">
+            <span className="text-xs sm:text-sm font-medium text-gray-500">
               Showing {filteredPosts.length} article{filteredPosts.length !== 1 ? 's' : ''}
             </span>
           </div>
 
           {/* 3-Column Responsive Grid: Desktop (3), Tablet (2), Mobile (1) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
             {remainingPosts.map(post => (
               <BlogCard key={post.id} post={post} />
             ))}
