@@ -347,6 +347,15 @@ body {
     margin-bottom: 1.5rem !important;
   }
 
+  .prose-ascas ul.grid {
+    list-style-type: none !important;
+    padding-left: 0 !important;
+  }
+
+  .prose-ascas ul.grid li {
+    margin-bottom: 0 !important;
+  }
+
   .prose-ascas ol {
     list-style-type: decimal;
     padding-left: 1.5rem;
@@ -382,6 +391,18 @@ body {
     box-shadow: 0 4px 12px rgba(87, 0, 38, 0.08);
   }
 
+  .prose-ascas .separator {
+    clear: both;
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .prose-ascas .separator img {
+    margin: 1rem auto !important;
+  }
+
   .prose-ascas iframe {
     width: 100%;
     max-width: 100%;
@@ -413,7 +434,8 @@ body {
   }
 
   .prose-ascas p:empty,
-  .prose-ascas div:empty {
+  .prose-ascas div:empty,
+  .prose-ascas li:empty {
     display: none !important;
   }
 }

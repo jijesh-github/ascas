@@ -5,9 +5,11 @@ import { PhoneCall, MessageSquare } from 'lucide-react';
 import { branches } from '@/utils/utils';
 
 export default function FloatingContactButtons() {
+  const floatingBranches = [...branches].sort((a, b) => (a.id === 'valasaravakkam' ? -1 : 1));
+
   return (
     <div className="fixed bottom-4 right-3 flex max-w-[calc(100vw-1.5rem)] flex-col items-end gap-2 z-50 sm:right-4">
-      {branches.map(branch => (
+      {floatingBranches.map(branch => (
         <div key={branch.id} className="flex max-w-full items-center gap-2">
           <span className="max-w-[9.5rem] truncate rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-gray-800 shadow-md ring-1 ring-gray-100 sm:max-w-none">
             {branch.name}

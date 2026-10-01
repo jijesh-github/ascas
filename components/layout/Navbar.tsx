@@ -12,6 +12,9 @@ export default function AnimatedUnderlineNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Navbar order: Valasaravakkam first, Vadapalani second
+  const navbarBranches = [...branches].sort((a, b) => (a.id === 'valasaravakkam' ? -1 : 1));
+
   useEffect(() => {
     const scroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener('scroll', scroll);
@@ -53,7 +56,7 @@ export default function AnimatedUnderlineNavbar() {
         {/* Call & Button (only visible >= 1024px) */}
         <div className="hidden lg:flex shrink-0 items-center gap-4">
           <div className="flex min-w-[320px] flex-col gap-1">
-            {branches.map(branch => (
+            {navbarBranches.map(branch => (
               <a
                 key={branch.id}
                 href={`tel:${branch.tel}`}
@@ -100,7 +103,7 @@ export default function AnimatedUnderlineNavbar() {
 
           <div className="pt-2 border-t border-gray-200 space-y-2">
             <div className="space-y-2">
-              {branches.map(branch => (
+              {navbarBranches.map(branch => (
                 <a
                   key={branch.id}
                   href={`tel:${branch.tel}`}

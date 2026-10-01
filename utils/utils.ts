@@ -2,20 +2,6 @@ import { iconList } from './iconList';
 
 export const branches = [
   {
-    id: 'valasaravakkam',
-    name: 'Valasaravakkam',
-    clinicName: 'Accumed Speciality Clinic and Scans Valasaravakkam',
-    addressLines: ['24 Chowdhary Nagar Main Road', 'Valasaravakkam, Chennai', 'Tamil Nadu - 600087'],
-    address: '24 Chowdhary Nagar Main Road Valasaravakkam, Chennai Tamil Nadu - 600087',
-    phone: '+91-9342521779',
-    tel: '+919342521779',
-    whatsapp: 'https://wa.me/919342521779',
-    hours: ['Monday - Saturday: 9 AM - 9 PM', 'Sunday: Emergency Only'],
-    mapUrl: 'https://maps.app.goo.gl/v9g9g6Thhx4HvcAj6',
-    embedMapUrl:
-      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2317.9872637993863!2d80.1806221!3d13.040088899999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526128ef1b5ef3%3A0x10eeb6a69254d1cc!2sAccumed%20Speciality%20Clinic%20and%20Scans!5e1!3m2!1sen!2sin!4v1786371189551!5m2!1sen!2sin'
-  },
-  {
     id: 'vadapalani',
     name: 'Vadapalani',
     clinicName: "ASCAS Fertility and Women's Center",
@@ -28,6 +14,20 @@ export const branches = [
     mapUrl: 'https://maps.app.goo.gl/e5HSPGFUaeCewLav5',
     embedMapUrl:
       'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.7901065300625!2d80.20137327484277!3d13.049028187273478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526771fa5db163%3A0x16eadf06d51dfdc8!2sASCAS%20Fertility%20and%20Women%27s%20Center!5e0!3m2!1sen!2sin!4v1778395143992!5m2!1sen!2sin'
+  },
+  {
+    id: 'valasaravakkam',
+    name: 'Valasaravakkam',
+    clinicName: 'Accumed Speciality Clinic and Scans Valasaravakkam',
+    addressLines: ['24 Chowdhary Nagar Main Road', 'Valasaravakkam, Chennai', 'Tamil Nadu - 600087'],
+    address: '24 Chowdhary Nagar Main Road Valasaravakkam, Chennai Tamil Nadu - 600087',
+    phone: '+91-9342521779',
+    tel: '+919342521779',
+    whatsapp: 'https://wa.me/919342521779',
+    hours: ['Monday - Saturday: 9 AM - 9 PM', 'Sunday: Emergency Only'],
+    mapUrl: 'https://maps.app.goo.gl/v9g9g6Thhx4HvcAj6',
+    embedMapUrl:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2317.9872637993863!2d80.1806221!3d13.040088899999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526128ef1b5ef3%3A0x10eeb6a69254d1cc!2sAccumed%20Speciality%20Clinic%20and%20Scans!5e1!3m2!1sen!2sin!4v1786371189551!5m2!1sen!2sin'
   }
 ];
 

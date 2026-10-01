@@ -12,7 +12,7 @@ export default function ContactPageClient() {
     name: '',
     phone: '',
     email: '',
-    branch: branches[0]?.clinicName || 'Accumed Speciality Clinic & Scans (Valasaravakkam)',
+    branch: branches[0]?.clinicName || "ASCAS Fertility and Women's Center (Vadapalani)",
     message: ''
   });
 
@@ -322,11 +322,11 @@ export default function ContactPageClient() {
                       value={formData.branch}
                       onChange={e => handleInputChange('branch', e.target.value)}
                       className="w-full rounded-xl border border-pink-200 bg-white px-3 py-2.5 text-sm text-gray-800 focus:border-[#570026] focus:outline-none focus:ring-2 focus:ring-[#570026]">
-                      <option value="Accumed Speciality Clinic & Scans (Valasaravakkam)">
-                        Accumed Speciality Clinic & Scans (Valasaravakkam)
-                      </option>
                       <option value="ASCAS Fertility and Women's Center (Vadapalani)">
                         ASCAS Fertility and Women's Center (Vadapalani)
+                      </option>
+                      <option value="Accumed Speciality Clinic & Scans (Valasaravakkam)">
+                        Accumed Speciality Clinic & Scans (Valasaravakkam)
                       </option>
                     </select>
                   </div>
