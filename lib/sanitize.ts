@@ -38,10 +38,16 @@ export function sanitizeBloggerHtml(htmlContent: string = ''): string {
     .replace(/\bfrom-teal-50 to-cyan-50\b/g, 'from-pink-50/80 to-purple-50/40')
     .replace(/\btext-pink-800\b/g, 'text-[#570026]');
 
-  // 5. Move the right side 3 points in 'Who Is IUI Recommended for?' slightly left so 'count)' fits on the same line
+  // The IUI intro wrapper has one child spanning a remote-only three-column grid.
+  cleaned = cleaned.replace(
+    /grid grid-cols-1 md:grid-cols-3 gap-8/g,
+    'block w-full'
+  );
+
+  // 5. Keep the IUI content full-width when the Blogger markup has a single content column
   cleaned = cleaned.replace(
     /grid grid-cols-1 md:grid-cols-2 gap-3/g,
-    'grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-x-6 gap-y-3'
+    'grid grid-cols-1 w-full gap-y-3'
   );
 
   // 6. Make Treatment Process grid responsive for mobile, tablet, and desktop
