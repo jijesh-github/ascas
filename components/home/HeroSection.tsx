@@ -1,26 +1,77 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Calendar, Sparkles, ArrowRight, Stethoscope } from 'lucide-react';
+import {
+  ArrowRight,
+  Calendar,
+  Sparkles,
+  Stethoscope,
+} from 'lucide-react';
+
+const slides = [
+  '/images/landing/hero-1.png',
+  '/images/landing/hero-2.png',
+  '/images/landing/hero-3.png',
+  '/images/landing/hero-4.png',
+];
 
 const HeroSection = () => {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updateMotionPreference = () =>
+      setPrefersReducedMotion(mediaQuery.matches);
+
+    updateMotionPreference();
+    mediaQuery.addEventListener('change', updateMotionPreference);
+    return () =>
+      mediaQuery.removeEventListener('change', updateMotionPreference);
+  }, []);
+
+  useEffect(() => {
+    if (isPaused || prefersReducedMotion) return;
+
+    const interval = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % slides.length);
+    }, 3000);
+
+    return () => window.clearInterval(interval);
+  }, [isPaused, prefersReducedMotion]);
+
   return (
-    <section className="relative w-full min-h-[85vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-950">
-      {/* Native Fullscreen Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        aria-hidden="true"
-        className="absolute inset-0 z-0 h-full w-full object-cover"
-      >
-        <source
-          src="/videos/Create_a_premium_emotionally (1).mp4"
-          type="video/mp4"
-        />
-      </video>
+    <section
+      className="relative flex min-h-[85vh] w-full items-center justify-center overflow-hidden bg-slate-950 md:min-h-[90vh]"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {/* Cross-fading background image slides */}
+      {slides.map((src, index) => (
+        <div
+          key={src}
+          aria-hidden="true"
+          className={`absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out motion-reduce:transition-none ${
+            activeSlide === index ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <Image
+            src={src}
+            alt=""
+            fill
+            priority={index === 0}
+            sizes="100vw"
+            loading="eager"
+            className={`object-cover transition-transform duration-[3000ms] ease-linear motion-reduce:transition-none ${
+              activeSlide === index ? 'scale-105' : 'scale-100'
+            }`}
+          />
+        </div>
+      ))}
 
       {/* Refined Gradient Overlays for High Contrast, Clarity & Legibility */}
       <div className="absolute inset-0 z-0 bg-gradient-to-r from-slate-950/80 via-slate-950/45 to-slate-950/15 md:via-slate-950/35 md:to-transparent" />
@@ -83,6 +134,26 @@ const HeroSection = () => {
             </div>
           </motion.div>
         </div>
+      </div>
+
+      <div
+        className="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2"
+        aria-label="Hero slideshow indicators"
+      >
+        {slides.map((src, index) => (
+          <button
+            key={src}
+            type="button"
+            onClick={() => setActiveSlide(index)}
+            className={`h-2 rounded-full transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none ${
+              activeSlide === index
+                ? 'w-7 bg-white'
+                : 'w-2 bg-white/55 hover:bg-white/80'
+            }`}
+            aria-label={`Show slide ${index + 1}`}
+            aria-pressed={activeSlide === index}
+          />
+        ))}
       </div>
 
       {/* Top Border Accent Line */}
