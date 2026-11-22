@@ -1,5 +1,21 @@
 import { BloggerApiItem, BloggerApiResponse, BloggerPost } from './types/blogger';
 
+export function upgradeBloggerImageUrl(url: string): string {
+  let imageUrl = url.startsWith('//') ? `https:${url}` : url;
+
+  if (imageUrl.includes('bp.blogspot.com') || imageUrl.includes('googleusercontent.com')) {
+    imageUrl = imageUrl.replace(/\/s\d+(?:-[^/]+)?\//, match => {
+      const size = Number(match.match(/\d+/)?.[0] || 0);
+      return size >= 1200 ? match : '/s1600/';
+    });
+    imageUrl = imageUrl.replace(/\/w(\d+)-h\d+(?:-[^/]+)?\//, (match, width: string) => {
+      return Number(width) >= 1200 ? match : '/s1600/';
+    });
+  }
+
+  return imageUrl;
+}
+
 /**
  * Extracts the first image URL from Blogger content HTML or Blogger images metadata.
  * Upgrades thumbnail URLs (e.g. /s72-c/, /w72-h72/) to high-resolution variants.
@@ -21,18 +37,7 @@ export function extractFeaturedImage(content: string = '', images?: Array<{ url:
 
   if (!imgUrl) return null;
 
-  // Handle protocol-relative URLs
-  if (imgUrl.startsWith('//')) {
-    imgUrl = `https:${imgUrl}`;
-  }
-
-  // Upgrade Google/Blogger image thumbnail parameters for high quality hero/card rendering
-  // Replace patterns like /s72-c/, /s320/, /s640/, /w72-h72-p-k-no-nu/ with /s1600/ or /w1200-h630/
-  if (imgUrl.includes('bp.blogspot.com') || imgUrl.includes('googleusercontent.com')) {
-    imgUrl = imgUrl.replace(/\/s\d+(-c)?\//, '/s1600/').replace(/\/w\d+-h\d+[^/]*\//, '/s1600/');
-  }
-
-  return imgUrl;
+  return upgradeBloggerImageUrl(imgUrl);
 }
 
 /**
