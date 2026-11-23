@@ -12,10 +12,10 @@ import {
 } from 'lucide-react';
 
 const slides = [
-  '/images/landing/1.webp',
   '/images/landing/2.webp',
   '/images/landing/3.webp',
   '/images/landing/4.webp',
+  '/images/landing/1.webp',
 ];
 
 const HeroSection = () => {

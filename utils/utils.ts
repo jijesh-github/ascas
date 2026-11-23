@@ -111,25 +111,18 @@ export const doctors = [
       'Pacemaker, ICD & CRT Implantation.'
     ]
   },
+  /*
   {
     name: 'Dr. Narayanan A',
     role: 'Consultant Dermatologist',
     qualification: 'MD Dermatology and Venereology – AIIMS, New Delhi',
     image: '/images/doctor/narayanan.jpeg',
     imagePosition: 'object-[50%_15%]',
-    about: `Dr. Narayanan A is a Consultant Dermatologist with an MD in Dermatology and Venereology from AIIMS, New Delhi. He also holds a PDCC in Paediatric Dermatology from JIPMER, Puducherry, a Diplomate of the National Board in Dermatology, Venereology and Leprosy, and an MRCP Specialty Certificate Examination in Dermatology.`,
+    about: `Dr. Narayanan A is a Consultant Dermatologist with an MD in Dermatology and Venereology from AIIMS, New Delhi.`,
     icon: iconList.stethoscope,
-    philosophy: `Dr. Narayanan A is dedicated to providing comprehensive dermatological care across all age groups, from children to adults, combining medical and procedural expertise to address a wide range of skin, hair, and venereological conditions. He is committed to delivering accurate diagnosis and effective, evidence-based treatment tailored to each patient's individual needs.`,
-    expertise: [
-      'Paediatric Dermatology.',
-      'Advanced treatment options for Psoriasis, Acne, Hair Fall & Melasma.',
-      'Vitiligo Surgery.',
-      'Hair Transplantation.',
-      'Laser Hair Reduction.',
-      'Fractional CO2 Laser for Acne Scars.',
-      'Venereology and Sexually Transmitted Infections.'
-    ]
+    expertise: []
   },
+  */
   {
     name: 'Dr. Dhivya Kumar',
     role: 'Consultant Laparoscopic and General Surgeon',

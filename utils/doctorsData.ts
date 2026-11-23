@@ -90,6 +90,7 @@ export const doctorsData: Doctor[] = [
     philosophy: 'Dr. Balamurugan S is committed to delivering precise, evidence-based cardiac care, with a focus on imaging and physiology-guided interventions to achieve the best outcomes for each patient.',
     href: '/doctors/dr-balamurugan-s'
   },
+  /*
   {
     id: 'narayanan',
     slug: 'dr-narayanan-a',
@@ -109,6 +110,7 @@ export const doctorsData: Doctor[] = [
     philosophy: 'Dr. Narayanan A is dedicated to providing comprehensive dermatological care across all age groups, combining medical and procedural expertise to address skin, hair, and venereological conditions.',
     href: '/doctors/dr-narayanan-a'
   },
+  */
   {
     id: 'dhivya',
     slug: 'dr-dhivya-kumar',
@@ -136,8 +138,8 @@ export const doctorsData: Doctor[] = [
     role: 'Consultant General Medicine',
     shortIntro: 'Consultant general physician focused on chronic disease management, adult wellness, preventive care, and compassionate support.',
     fullAbout: 'Dr. B. Nareshkumar is a Consultant General Physician providing adult medical care, chronic disease management, and preventive wellness support.',
-    image: '/images/doctor/nareshkumar.jpeg',
-    imagePosition: 'object-top',
+    image: '/images/doctor/dr-b-nareshkumar.jpg',
+    imagePosition: 'object-[50%_8%]',
     expertise: [
       'Hypertension in adults and young-onset patients: diagnosis, treatment, and complication management',
       'Diabetes mellitus and management of complications',
@@ -151,12 +153,12 @@ export const doctorsData: Doctor[] = [
     id: 'solairaj',
     slug: 'dr-solairaj-d',
     name: 'Dr. Solairaj D',
-    qualification: 'MBBS, DNB (General Surgery), DrNB (Urology)',
+    qualification: 'MBBS, DNB (General Surgery), DNB (Urology)',
     role: 'Consultant Urologist',
     shortIntro: 'Urologist with training in surgical and non-surgical urology, endourology, minimally invasive procedures, and renal transplantation.',
     fullAbout: 'Dr. Solairaj D is a Urologist with comprehensive training in the surgical and non-surgical management of urological conditions. His experience includes endoscopic, minimally invasive, and conventional procedures, with a focus on patient-centered care and advancing expertise in robotic-assisted surgery.',
-    image: '/images/doctor/solairaj.jpeg',
-    imagePosition: 'object-[50%_45%]',
+    image: '/images/doctor/dr-solairaj-d.jpg',
+    imagePosition: 'object-[50%_15%]',
     expertise: [
       'Endourology, including TURP, TURBT, OIU, PCNL, RIRL, and URS',
       'Laparoscopic urology, including nephrectomy, adrenalectomy, and ureterolithotomy',

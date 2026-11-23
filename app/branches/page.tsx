@@ -42,10 +42,15 @@ const vadapalaniGallery = [
   { src: '/images/gallery/vadapalani/13.jpeg', alt: 'ICSI micromanipulation station with Olympus inverted microscope at ASCAS Vadapalani', caption: 'Embryology Lab – ICSI Station' }
 ];
 
-const vadapalaniFrontImages = [
-  { src: '/images/gallery/vadapalani/15.png', alt: 'Front view of the ASCAS hospital building at Vadapalani', caption: 'Hospital Front View' },
-  { src: '/images/gallery/vadapalani/14.jpeg', alt: 'Front view of the ASCAS clinic at Vadapalani', caption: 'Clinic Front View' }
-];
+const vadapalaniFrontImage = {
+  src: '/images/gallery/vadapalani/15.png',
+  alt: 'Front view of the ASCAS hospital building at Vadapalani'
+};
+
+const valasaravakkamFrontImage = {
+  src: '/images/gallery/vadapalani/14.jpeg',
+  alt: 'Front view of the ASCAS clinic at Valasaravakkam'
+};
 
 export default function BranchesPage() {
   return (
@@ -94,7 +99,7 @@ export default function BranchesPage() {
 
                 {/* Body */}
                 <div className="p-6 sm:p-8">
-                  <div className={branch.id === 'vadapalani' ? 'grid grid-cols-1 lg:grid-cols-[minmax(280px,0.75fr)_minmax(0,1.25fr)] gap-6 lg:gap-8 items-stretch' : 'space-y-6'}>
+                  <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-6 lg:gap-12 items-center">
                     <div className="space-y-6">
                       {/* Address */}
                       <div className="flex items-start gap-3.5">
@@ -139,22 +144,16 @@ export default function BranchesPage() {
                       </div>
                     </div>
 
-                    {branch.id === 'vadapalani' && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {vadapalaniFrontImages.map(image => (
-                          <div key={image.src} className="group relative min-h-56 sm:min-h-64 lg:min-h-full overflow-hidden rounded-2xl border border-pink-100/70 bg-slate-100">
-                            <Image
-                              src={image.src}
-                              alt={image.alt}
-                              fill
-                              sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"
-                              className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                            />
-                            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3">
-                              <p className="text-xs font-bold text-white">{image.caption}</p>
-                            </div>
-                          </div>
-                        ))}
+                    {(branch.id === 'vadapalani' || branch.id === 'valasaravakkam') && (
+                      <div className="w-full max-w-sm lg:max-w-[380px] mx-auto lg:ml-auto lg:mr-24 xl:mr-48 overflow-hidden rounded-2xl">
+                        <Image
+                          src={branch.id === 'vadapalani' ? vadapalaniFrontImage.src : valasaravakkamFrontImage.src}
+                          alt={branch.id === 'vadapalani' ? vadapalaniFrontImage.alt : valasaravakkamFrontImage.alt}
+                          width={branch.id === 'vadapalani' ? 1024 : 1152}
+                          height={768}
+                          sizes="(min-width: 1024px) 380px, (min-width: 640px) 384px, 100vw"
+                          className="w-full h-auto object-cover rounded-2xl hover:scale-105 transition-transform duration-500 ease-out"
+                        />
                       </div>
                     )}
                   </div>
