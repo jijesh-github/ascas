@@ -42,6 +42,11 @@ const vadapalaniGallery = [
   { src: '/images/gallery/vadapalani/13.jpeg', alt: 'ICSI micromanipulation station with Olympus inverted microscope at ASCAS Vadapalani', caption: 'Embryology Lab – ICSI Station' }
 ];
 
+const vadapalaniFrontImages = [
+  { src: '/images/gallery/vadapalani/15.png', alt: 'Front view of the ASCAS hospital building at Vadapalani', caption: 'Hospital Front View' },
+  { src: '/images/gallery/vadapalani/14.jpeg', alt: 'Front view of the ASCAS clinic at Vadapalani', caption: 'Clinic Front View' }
+];
+
 export default function BranchesPage() {
   return (
     <main className="min-h-screen bg-slate-50/40">
@@ -88,47 +93,70 @@ export default function BranchesPage() {
                 </div>
 
                 {/* Body */}
-                <div className="p-6 sm:p-8 space-y-6">
-                  {/* Address */}
-                  <div className="flex items-start gap-3.5">
-                    <MapPin className="w-5 h-5 text-[#570026] mt-0.5 shrink-0" />
-                    <div>
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Clinic Address</p>
-                      <p className="text-gray-700 leading-relaxed text-sm sm:text-base font-medium">
-                        {branch.addressLines.map(line => (
-                          <span key={line}>
-                            {line}
-                            <br />
-                          </span>
-                        ))}
-                      </p>
-                    </div>
-                  </div>
+                <div className="p-6 sm:p-8">
+                  <div className={branch.id === 'vadapalani' ? 'grid grid-cols-1 lg:grid-cols-[minmax(280px,0.75fr)_minmax(0,1.25fr)] gap-6 lg:gap-8 items-stretch' : 'space-y-6'}>
+                    <div className="space-y-6">
+                      {/* Address */}
+                      <div className="flex items-start gap-3.5">
+                        <MapPin className="w-5 h-5 text-[#570026] mt-0.5 shrink-0" />
+                        <div>
+                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Clinic Address</p>
+                          <p className="text-gray-700 leading-relaxed text-sm sm:text-base font-medium">
+                            {branch.addressLines.map(line => (
+                              <span key={line}>
+                                {line}
+                                <br />
+                              </span>
+                            ))}
+                          </p>
+                        </div>
+                      </div>
 
-                  {/* Phone */}
-                  <div className="flex items-start gap-3.5">
-                    <Phone className="w-5 h-5 text-[#570026] mt-0.5 shrink-0" />
-                    <div>
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Helpline Phone</p>
-                      <a
-                        href={`tel:${branch.tel}`}
-                        className="text-[#570026] hover:underline font-bold text-base sm:text-lg">
-                        {branch.phone}
-                      </a>
-                    </div>
-                  </div>
+                      {/* Phone */}
+                      <div className="flex items-start gap-3.5">
+                        <Phone className="w-5 h-5 text-[#570026] mt-0.5 shrink-0" />
+                        <div>
+                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Helpline Phone</p>
+                          <a
+                            href={`tel:${branch.tel}`}
+                            className="text-[#570026] hover:underline font-bold text-base sm:text-lg">
+                            {branch.phone}
+                          </a>
+                        </div>
+                      </div>
 
-                  {/* Working Hours */}
-                  <div className="flex items-start gap-3.5">
-                    <Clock className="w-5 h-5 text-[#570026] mt-0.5 shrink-0" />
-                    <div>
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">OPD Working Hours</p>
-                      <div className="text-gray-700 text-sm font-medium space-y-0.5">
-                        {branch.hours.map(line => (
-                          <p key={line}>{line}</p>
-                        ))}
+                      {/* Working Hours */}
+                      <div className="flex items-start gap-3.5">
+                        <Clock className="w-5 h-5 text-[#570026] mt-0.5 shrink-0" />
+                        <div>
+                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">OPD Working Hours</p>
+                          <div className="text-gray-700 text-sm font-medium space-y-0.5">
+                            {branch.hours.map(line => (
+                              <p key={line}>{line}</p>
+                            ))}
+                          </div>
+                        </div>
                       </div>
                     </div>
+
+                    {branch.id === 'vadapalani' && (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {vadapalaniFrontImages.map(image => (
+                          <div key={image.src} className="group relative min-h-56 sm:min-h-64 lg:min-h-full overflow-hidden rounded-2xl border border-pink-100/70 bg-slate-100">
+                            <Image
+                              src={image.src}
+                              alt={image.alt}
+                              fill
+                              sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"
+                              className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                            />
+                            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3">
+                              <p className="text-xs font-bold text-white">{image.caption}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
 

@@ -21,7 +21,7 @@ const WhyChooseSection = () => {
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight mb-4 leading-tight">
-            Why Choose <span className="font-accent italic text-[#570026] font-normal">ASCAS Clinics?</span>
+            Why Choose <span className="font-accent italic text-[#570026] font-normal">ASCAS?</span>
           </h2>
 
           <p className="text-base sm:text-lg text-gray-600 leading-relaxed">

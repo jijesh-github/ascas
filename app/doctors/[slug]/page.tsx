@@ -44,6 +44,12 @@ export default async function DoctorProfilePage({ params }: Props) {
     notFound();
   }
 
+  const bookingName = doctor.name
+    .split(/\s+/)
+    .slice(1)
+    .filter(part => !/^[A-Z]\.?$/.test(part))
+    .join(' ') || doctor.name;
+
   return (
     <main className="min-h-screen bg-slate-50/40">
       {/* Page Hero Header */}
@@ -121,7 +127,7 @@ export default async function DoctorProfilePage({ params }: Props) {
                   href="/book-appointment"
                   className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#570026] hover:bg-[#861043] text-white font-semibold text-base shadow-lg shadow-pink-950/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
                   <Calendar className="w-5 h-5 text-amber-300" />
-                  <span>Book Consultation with {doctor.name.split(' ')[1] || doctor.name}</span>
+                  <span>Book Consultation with {bookingName}</span>
                 </Link>
               </div>
             </div>

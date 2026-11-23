@@ -127,5 +127,43 @@ export const doctorsData: Doctor[] = [
     ],
     philosophy: 'Dr. Dhivya Kumar is dedicated to providing safe, minimally invasive surgical care, with a strong commitment to supporting patients through every stage of their surgical journey.',
     href: '/doctors/dr-dhivya-kumar'
+  },
+  {
+    id: 'nareshkumar',
+    slug: 'dr-b-nareshkumar',
+    name: 'Dr. B. Nareshkumar',
+    qualification: 'MBBS, MD (General Medicine)',
+    role: 'Consultant General Medicine',
+    shortIntro: 'Consultant general physician focused on chronic disease management, adult wellness, preventive care, and compassionate support.',
+    fullAbout: 'Dr. B. Nareshkumar is a Consultant General Physician providing adult medical care, chronic disease management, and preventive wellness support.',
+    image: '/images/doctor/nareshkumar.jpeg',
+    imagePosition: 'object-top',
+    expertise: [
+      'Hypertension in adults and young-onset patients: diagnosis, treatment, and complication management',
+      'Diabetes mellitus and management of complications',
+      'Adult hypo- and hyperthyroidism, including special conditions',
+      'Lifestyle and medical obesity management with a focus on metabolism'
+    ],
+    philosophy: 'Compassionate Care for a Healthier Tomorrow',
+    href: '/doctors/dr-b-nareshkumar'
+  },
+  {
+    id: 'solairaj',
+    slug: 'dr-solairaj-d',
+    name: 'Dr. Solairaj D',
+    qualification: 'MBBS, DNB (General Surgery), DrNB (Urology)',
+    role: 'Consultant Urologist',
+    shortIntro: 'Urologist with training in surgical and non-surgical urology, endourology, minimally invasive procedures, and renal transplantation.',
+    fullAbout: 'Dr. Solairaj D is a Urologist with comprehensive training in the surgical and non-surgical management of urological conditions. His experience includes endoscopic, minimally invasive, and conventional procedures, with a focus on patient-centered care and advancing expertise in robotic-assisted surgery.',
+    image: '/images/doctor/solairaj.jpeg',
+    imagePosition: 'object-[50%_45%]',
+    expertise: [
+      'Endourology, including TURP, TURBT, OIU, PCNL, RIRL, and URS',
+      'Laparoscopic urology, including nephrectomy, adrenalectomy, and ureterolithotomy',
+      'Open urological surgery and renal transplant care',
+      'Robotic-assisted urological procedures and uro-oncology'
+    ],
+    philosophy: 'He is dedicated to patient-centered care and continually advancing his expertise in urology.',
+    href: '/doctors/dr-solairaj-d'
   }
 ];

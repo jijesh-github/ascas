@@ -26,14 +26,14 @@ export default function AboutPage() {
       {/* Hero Header */}
       <PageHero
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'About Us' }]}
-        eyebrow="About ASCAS Clinic"
+        eyebrow="About ASCAS"
         eyebrowIcon={<Heart className="w-4 h-4 text-pink-700" />}
         title={
           <>
             Compassionate Care & <span className="font-accent italic text-amber-300 font-normal">Medical Excellence</span>
           </>
         }
-        description="At Accumed Speciality Clinic & Scans (ASCAS), we combine state-of-the-art reproductive technologies with warm, personalized medical care to fulfill every aspiring parent's dream."
+        description="At ASCAS, we combine state-of-the-art reproductive technologies with warm, personalized medical care to fulfill every aspiring parent's dream."
       />
 
       {/* Main Content Sections Container */}
